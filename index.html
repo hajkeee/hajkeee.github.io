@@ -45,7 +45,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <p>Click the button to trigger a function that will output "Hello World" in a p element with id="demo".</p>
 
-<button onclick="myFunction()">Click me</button>
+<button onclick= gtag('event', 'aaa', {
+  'event_category' : 'bbb',
+  'event_label' : 'ccc'
+});"myFunction()">Click me</button>
 
 <p id="demo"></p>
 
