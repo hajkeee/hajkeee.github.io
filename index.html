@@ -27,35 +27,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5CPNWT3"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
- <section class="buttons">
-    <h1>Button Hover Effects</h1>
-  <div class="container">
-    
-    <a href="https://twitter.com/Dave_Conner" class="btn btn-1">
-      <svg>
-        <rect x="0" y="0" fill="none" width="100%" height="100%"/>
-      </svg>
-     Hover
-    </a>
-    <!--svg hover inspired by https://codepen.io/karimbalaa/pen/qERbBY?editors=110 -->
-    <!--End of Button 1 -->
-    
-    <a href="https://twitter.com/Dave_Conner" class="btn btn-2">Hover</a> 
-    <!--End of Button 2 -->
-    
-    <a href="https://twitter.com/Dave_Conner" class="btn btn-3">Hover</a> 
-    <!--End of Button 3 -->
-    
-    <a href="https://twitter.com/Dave_Conner" class="btn btn-4"><span>Hover</span></a> 
-    <!--End of Button 4 -->
-    
-    <a href="https://twitter.com/Dave_Conner" class="btn btn-5">Hover</a> 
-    <!--End of Button 5 -->
-    
-    
-  </div>
-  <p>Follow on <a href="https://twitter.com/Dave_Conner" target="_blank">Twitter</a></p>
-</section>
+
+  <h1>The onclick Event</h1>
+
+<p>The onclick event is used to trigger a function when an element is clicked on.</p>
+
+<p>Click the button to trigger a function that will output "Hello World" in a p element with id="demo".</p>
+
+<button onclick="myFunction()">Click me</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  document.getElementById("demo").innerHTML = "Hello World";
+}
+</script>
+  
+  
   
     <script  src="js/index.js"></script>
 
