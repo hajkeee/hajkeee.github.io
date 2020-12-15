@@ -20,18 +20,39 @@
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KK2C36F');</script>
+})(window,document,'script','dataLayer','GTM-KK2C36F');
+  
+  
+  function initPush() {
+                            if (!document.cookie.match(/^(?:.*;)?\s*show_webpush\s*=\s*([^;]+)(?:.*)?$/)) {
+                                var welcomeNotification = {
+                                    title: 'Спасибо за подписку',
+                                    body: 'Теперь вы подписаны на оповещения!',
+                                    icon: 'https://dom.riastatic.com/css/images/domria.png'
+                                };
+                                var DOM_ID = 3;
+                                var pm = new PushMessanger(DOM_ID, welcomeNotification, false).load();
+                                var domain = document.domain || 'ria.com';
+                                var date = new Date();
+                                date.setTime(date.getTime() + 14*24*60*60*1000);
+                                document.cookie = 'show_webpush=1; path=/; domain=' + domain + '; expires=' + date.toUTCString();
+                            }
+                        }
+
+                        !function(e){function t(r){if(n[r])return n[r].exports;var o=n[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,t),o.l=!0,o.exports}var n={};t.m=e,t.c=n,t.d=function(e,n,r){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:r})},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p="",t(t.s=1)}([,function(e,t,n){"use strict";var r=/PSP_ID=.+?/gi,o=/user_online=.+?/gi,c=r.exec(document.cookie),i=o.exec(document.cookie);if(c&&!i){document.createElement("IMG").src="//ui.ria.com/last_visit/set/index.jpg"}}]);
+                        !function(e){function t(r){if(n[r])return n[r].exports;var o=n[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,t),o.l=!0,o.exports}var n={};t.m=e,t.c=n,t.d=function(e,n,r){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:r})},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p="",t(t.s=3)}({3:function(e,t,n){"use strict";var r=location.hash.replace("#","").split(/[&?]/).filter(function(e){return""!=e.trim()}).join("&");r=encodeURI(r);var o=document.createElement("img"),i=Math.floor(1e15*Math.random());o.src="https://slonik.ria.com/api/v3/event/client/index.gif?event_id=387&project_id=9&viewRandom="+i+"&"+r}});
+
+                        var tns_already, tnscm_adn = tnscm_adn || [], currentProtocol = ("https:" == location.protocol ? "https:" : "http:");
+                        (function(c,m){if(c.indexOf&&c.indexOf(m)<0){c.unshift(m);}}(tnscm_adn,"inline_cm"));
+                        if ("undefined"==typeof(tns_already) || null==tns_already || 0==tns_already)
+                        {tns_already=1;var i=new Image();i.src=currentProtocol + "//pa.tns-ua.com/bug/pic.gif?siteid=dom.ria.com&j=1&nocache="+Math.random();
+                        (function(){var p=document.getElementsByTagName('head')[0];var s=document.createElement("script");s.type="text/javascript";s.src= currentProtocol + "//source.mmi.bemobile.ua/cm/cm.js";s.async = true;p.appendChild(s);})();};
+  
+  
+  
+  </script>
 <!-- End Google Tag Manager -->
   
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-143960126-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-143960126-1');
-</script>
   
 </head>
 
