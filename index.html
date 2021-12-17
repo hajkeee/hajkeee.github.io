@@ -38,6 +38,44 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Adobe Launch -->
   <script scr="https://assets.adobedtm.com/90decdbe34ba/de3a7d2b18fa/launch-d2d020555d7e-development.min.js" async></script>
   
+
+<script>
+dataLayer.push({
+  'ecommerce': {
+    'purchase': {
+      'actionField': {
+        'id': 'T12345',                         
+        'affiliation': 'Online Store',
+        'revenue': '35.43',                     
+        'tax':'4.90',
+        'shipping': '5.99',
+        'coupon': 'SUMMER_SALE'
+      },
+      'products': [{                            
+        'name': 'Triblend Android T-Shirt',     
+        'id': '12345',
+        'price': '15.25',
+        'brand': 'Google',
+        'category': 'Apparel',
+        'variant': 'Gray',
+        'quantity': 1,
+        'coupon': ''                           
+       },
+       {
+        'name': 'Donut Friday Scented T-Shirt',
+        'id': '67890',
+        'price': '33.75',
+        'brand': 'Google',
+        'category': 'Apparel',
+        'variant': 'Black',
+        'quantity': 1
+       }]
+    }
+  }
+});
+</script>
+
+
 </head>
 
  <!--<body onload='popBox()'> -->
