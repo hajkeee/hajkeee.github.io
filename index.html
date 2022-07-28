@@ -20,13 +20,14 @@
  <!-- Datalayer -->
 
  <script>
+  const number = document.querySelector("body > div.resume-wrapper > article > div > section:nth-child(1) > div > div.content-text > ul:nth-child(3) > li:nth-child(2)").innerText;
 window.dataLayer = window.dataLayer || [];
 
 dataLayer.push({
  'event': 'Pageview',
  'pagePath': window.location.pathname,
  'pageTitle': document.querySelector("head > title").innerText,
- 'phoneNumber': document.querySelector("body > div.resume-wrapper > article > div > section:nth-child(1) > div > div.content-text > ul:nth-child(3) > li:nth-child(2)").innerText
+ 'phoneNumber': number,
  'visitorType': 'customer'
 });
 </script>
