@@ -24,6 +24,7 @@ window.dataLayer = window.dataLayer || [];
 dataLayer.push({
  'event': 'Pageview',
  'pagePath': window.location.pathname,
+ 'rang': document.querySelector("body > div.resume-wrapper > article > header > div > div.header-text > p.subtitle").innerText,
  'pageTitle': document.querySelector("head > title").innerText,
  'visitorType': 'customer'
 });
