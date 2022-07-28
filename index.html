@@ -19,12 +19,13 @@
 
  <!-- Datalayer -->
 <script>
+var rang = document.querySelector("body > div.resume-wrapper > article > header > div > div.header-text > p.subtitle").innerText;
 window.dataLayer = window.dataLayer || [];
 
 dataLayer.push({
  'event': 'Pageview',
  'pagePath': window.location.pathname,
- 'rang': document.querySelector("body > div.resume-wrapper > article > header > div > div.header-text > p.subtitle").innerText,
+ 'rang': rang,
  'pageTitle': document.querySelector("head > title").innerText,
  'visitorType': 'customer'
 });
