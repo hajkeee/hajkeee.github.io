@@ -32,13 +32,14 @@
   
 <!-- digitalData  -->  
 <script>
-window.digitalData = window.digitalData || [];
-  
-digitalData.push({
+var digitalData = digitalData || {};
+digitalData = {
+    page:{
     'event': 'pageTransition',
     'param': 'mainPage',
     'value': 300
-});
+    },
+};
 </script>  
   
 <!-- digitalData  -->  
