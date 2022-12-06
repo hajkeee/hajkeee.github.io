@@ -27,7 +27,7 @@ position : 'Site bottom'
  dataLayer.push({
  event: 'Manage preferences - 2',
  dl : 'Test'
-} 
-
+});
+}
 
 
