@@ -22,9 +22,11 @@ function resume() {
 button: 'Manage preferences',
 position : 'Site bottom'   
 } 
-  _satellite.track('click');
+
 } */
  digitalData.event = {
 button: 'Manage preferences',
 position : 'Site bottom'   
 }
+
+ _satellite.track('click');
