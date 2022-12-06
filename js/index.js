@@ -17,16 +17,17 @@ function resume() {
 
 
 
-/*function abc(){
+function abc(){
   digitalData.event = {
 button: 'Manage preferences',
 position : 'Site bottom'   
 } 
+ _satellite.track('click'); 
+  
+ dataLayer.push({
+ event: 'Manage preferences - 2',
+ dl : 'Test'
+} 
 
-} */
- digitalData.event = {
-button: 'Manage preferences',
-position : 'Site bottom'   
-}
 
- _satellite.track('click');
+
