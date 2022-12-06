@@ -14,3 +14,7 @@ function pause() {
 function resume() {
   particles.resumeAnimation();
 }
+
+function abc(){
+    _satellite.track('click');
+}
