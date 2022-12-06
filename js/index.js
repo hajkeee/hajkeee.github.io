@@ -15,6 +15,12 @@ function resume() {
   particles.resumeAnimation();
 }
 
+
+
 function abc(){
-    _satellite.track('click');
+  digitalData.event = {
+button: 'Manage preferences',
+position : 'Site bottom'   
+}
+  _satellite.track('click');
 }
