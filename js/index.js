@@ -28,6 +28,7 @@ position : 'Site bottom'
  event: 'Manage preferences - 2',
  dl : 'Test'
 });
+  document.getElementById('ot-sdk-btn').innerText = '123';
 }
 
 
