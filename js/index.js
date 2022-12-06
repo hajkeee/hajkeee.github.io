@@ -17,10 +17,14 @@ function resume() {
 
 
 
-function abc(){
+/*function abc(){
   digitalData.event = {
 button: 'Manage preferences',
 position : 'Site bottom'   
-}
+} 
   _satellite.track('click');
+} */
+ digitalData.event = {
+button: 'Manage preferences',
+position : 'Site bottom'   
 }
