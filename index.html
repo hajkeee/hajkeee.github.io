@@ -367,6 +367,1407 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </p>
  <script type="text/javascript">_satellite.track('pageTransition');</script> 
  <script type="text/javascript">_satellite.pageBottom();</script> 
+
+<script>
+function initialize_secure_privacy() {
+    var y;
+    window.sp = function() {}, sp.allBanners = [], sp.apiLink = "https://api-staging.secureprivacy.ai/", sp.assetLink = "https://frontend-staging.secureprivacy.ai/", sp.bannerLink = "secureprivacy-plugin/web-plugin/", sp.allGivenConsents = [], sp.autoClientId, sp.targetDomain = window.securePrivacy.appId || window.location.host.replace("www.", ""), sp.versionNumber = window.securePrivacy.versionNumber || "1.5", sp.bannerFields, sp.allComplainceDisplay, sp.domainGroup, sp.allComplainceDashboard, sp.widgetDisplaySettings, sp.settingsPage, sp.complianceLawType = "GDPR", sp.visitorCountry = "", sp.visitorRegion = "", sp.whitelist, sp.subscriptionDescription, sp.displayOptions, sp.activeDomainConsentPref, sp.activeWidgetDisplaySettings, sp.dataReqForm, sp.privacyPolicySettings, sp.selectedTab = "settings", sp.isGroupedConsent = !1, sp.isInitialized = !1, sp.detailedTogged = !1, sp.sp_localization = [], sp.selctedLanguage = {}, sp.supportedLanguages = {}, sp.translations = {}, sp.bannerFields = {}, sp.enabledLinks = {
+        privacy: !1,
+        cookie: !1,
+        dataRequest: !1
+    }, sp.allLanguagesJSON = [{
+        code: "af",
+        name: "Afrikaans"
+    }, {
+        code: "sq",
+        name: "Albanian"
+    }, {
+        code: "am",
+        name: "Amharic"
+    }, {
+        code: "ar",
+        name: "Arabic"
+    }, {
+        code: "an",
+        name: "Aragonese"
+    }, {
+        code: "hy",
+        name: "Armenian"
+    }, {
+        code: "as",
+        name: "Assamese"
+    }, {
+        code: "ae",
+        name: "Avestan"
+    }, {
+        code: "az",
+        name: "Azerbaijani"
+    }, {
+        code: "bm",
+        name: "Bambara"
+    }, {
+        code: "eu",
+        name: "Basque"
+    }, {
+        code: "be",
+        name: "Belarusian"
+    }, {
+        code: "bi",
+        name: "Bislama"
+    }, {
+        code: "bs",
+        name: "Bosnian"
+    }, {
+        code: "br",
+        name: "Breton"
+    }, {
+        code: "bg",
+        name: "Bulgarian"
+    }, {
+        code: "ca",
+        name: "Catalan"
+    }, {
+        code: "ch",
+        name: "Chamorro"
+    }, {
+        code: "zh",
+        name: "Chinese"
+    }, {
+        code: "cv",
+        name: "Chuvash"
+    }, {
+        code: "kw",
+        name: "Cornish"
+    }, {
+        code: "co",
+        name: "Corsican"
+    }, {
+        code: "cr",
+        name: "Cree"
+    }, {
+        code: "hr",
+        name: "Croatian"
+    }, {
+        code: "cs",
+        name: "Czech"
+    }, {
+        code: "da",
+        name: "Danish"
+    }, {
+        code: "nl",
+        name: "Dutch"
+    }, {
+        code: "en",
+        name: "English"
+    }, {
+        code: "eo",
+        name: "Esperanto"
+    }, {
+        code: "et",
+        name: "Estonian"
+    }, {
+        code: "fo",
+        name: "Faroese"
+    }, {
+        code: "fj",
+        name: "Fijian"
+    }, {
+        code: "fi",
+        name: "Finnish"
+    }, {
+        code: "fr",
+        name: "French"
+    }, {
+        code: "gl",
+        name: "Galician"
+    }, {
+        code: "de",
+        name: "German"
+    }, {
+        code: "el",
+        name: "Greek, Modern"
+    }, {
+        code: "gn",
+        name: "GuaranÃ­"
+    }, {
+        code: "gu",
+        name: "Gujarati"
+    }, {
+        code: "ht",
+        name: "Haitian"
+    }, {
+        code: "he",
+        name: "Hebrew (modern)"
+    }, {
+        code: "hi",
+        name: "Hindi"
+    }, {
+        code: "hu",
+        name: "Hungarian"
+    }, {
+        code: "id",
+        name: "Indonesian"
+    }, {
+        code: "ie",
+        name: "Interlingue"
+    }, {
+        code: "ga",
+        name: "Irish"
+    }, {
+        code: "io",
+        name: "Ido"
+    }, {
+        code: "is",
+        name: "Icelandic"
+    }, {
+        code: "it",
+        name: "Italian"
+    }, {
+        code: "ja",
+        name: "Japanese"
+    }, {
+        code: "kn",
+        name: "Kannada"
+    }, {
+        code: "kr",
+        name: "Kanuri"
+    }, {
+        code: "km",
+        name: "Khmer"
+    }, {
+        code: "ki",
+        name: "Kikuyu, Gikuyu"
+    }, {
+        code: "rw",
+        name: "Kinyarwanda"
+    }, {
+        code: "ky",
+        name: "Kirghiz, Kyrgyz"
+    }, {
+        code: "kg",
+        name: "Kongo"
+    }, {
+        code: "ko",
+        name: "Korean"
+    }, {
+        code: "ku",
+        name: "Kurdish"
+    }, {
+        code: "la",
+        name: "Latin"
+    }, {
+        code: "lb",
+        name: "Letzeburgesch"
+    }, {
+        code: "li",
+        name: "Limburger"
+    }, {
+        code: "lt",
+        name: "Lithuanian"
+    }, {
+        code: "lu",
+        name: "Luba-Katanga"
+    }, {
+        code: "lv",
+        name: "Latvian"
+    }, {
+        code: "mk",
+        name: "Macedonian"
+    }, {
+        code: "mg",
+        name: "Malagasy"
+    }, {
+        code: "ms",
+        name: "Malay"
+    }, {
+        code: "ml",
+        name: "Malayalam"
+    }, {
+        code: "mt",
+        name: "Maltese"
+    }, {
+        code: "mh",
+        name: "Marshallese"
+    }, {
+        code: "mn",
+        name: "Mongolian"
+    }, {
+        code: "na",
+        name: "Nauru"
+    }, {
+        code: "nb",
+        name: "Norwegian BokmÃ¥l"
+    }, {
+        code: "ne",
+        name: "Nepali"
+    }, {
+        code: "ng",
+        name: "Ndonga"
+    }, {
+        code: "no",
+        name: "Norwegian"
+    }, {
+        code: "nr",
+        name: "South Ndebele"
+    }, {
+        code: "cu",
+        name: "Church Slavonic"
+    }, {
+        code: "om",
+        name: "Oromo"
+    }, {
+        code: "pa",
+        name: "Panjabi, Punjabi"
+    }, {
+        code: "fa",
+        name: "Persian"
+    }, {
+        code: "pl",
+        name: "Polish"
+    }, {
+        code: "ps",
+        name: "Pashto, Pushto"
+    }, {
+        code: "pt",
+        name: "Portuguese"
+    }, {
+        code: "qu",
+        name: "Quechua"
+    }, {
+        code: "ro",
+        name: "Romanian"
+    }, {
+        code: "ru",
+        name: "Russian"
+    }, {
+        code: "sa",
+        name: "Sanskrit (Saá¹�ská¹›ta)"
+    }, {
+        code: "sc",
+        name: "Sardinian"
+    }, {
+        code: "sd",
+        name: "Sindhi"
+    }, {
+        code: "sm",
+        name: "Samoan"
+    }, {
+        code: "sg",
+        name: "Sango"
+    }, {
+        code: "sr",
+        name: "Serbian"
+    }, {
+        code: "gd",
+        name: "Scottish Gaelic"
+    }, {
+        code: "sn",
+        name: "Shona"
+    }, {
+        code: "sk",
+        name: "Slovak"
+    }, {
+        code: "sl",
+        name: "Slovene"
+    }, {
+        code: "so",
+        name: "Somali"
+    }, {
+        code: "st",
+        name: "Southern Sotho"
+    }, {
+        code: "es",
+        name: "Spanish"
+    }, {
+        code: "sv",
+        name: "Swedish"
+    }, {
+        code: "tg",
+        name: "Tajik"
+    }, {
+        code: "th",
+        name: "Thai"
+    }, {
+        code: "bo",
+        name: "Tibetan Standard"
+    }, {
+        code: "tk",
+        name: "Turkmen"
+    }, {
+        code: "tl",
+        name: "Tagalog"
+    }, {
+        code: "tn",
+        name: "Tswana"
+    }, {
+        code: "to",
+        name: "Tonga (Tonga Islands)"
+    }, {
+        code: "tr",
+        name: "Turkish"
+    }, {
+        code: "tt",
+        name: "Tatar"
+    }, {
+        code: "tw",
+        name: "Twi"
+    }, {
+        code: "ug",
+        name: "Uighur, Uyghur"
+    }, {
+        code: "uk",
+        name: "Ukrainian"
+    }, {
+        code: "ur",
+        name: "Urdu"
+    }, {
+        code: "uz",
+        name: "Uzbek"
+    }, {
+        code: "ve",
+        name: "Venda"
+    }, {
+        code: "vi",
+        name: "Vietnamese"
+    }, {
+        code: "cy",
+        name: "Welsh"
+    }, {
+        code: "yi",
+        name: "Yiddish"
+    }, {
+        code: "za",
+        name: "Zhuang, Chuang"
+    }], sp.sp_privacyBannerMarkup = '<div role="main" id="banner-{{categoryID}}"> <div id="sp-button-compliance-container"> <div class="tabs" spRole="tab list"  > <div id="mobile-tabs"> <div class="dropdown"><button id="evToggleDropDown" class="dropbtn"> <span class="active-menu">##SettingsText##</span> <span class="caret-down allAccordianImg"> <img alt="down" src="' + sp.assetLink + 'assets/images/chevron-down.svg"/> </span> </button> <div id="tab-options" class="dropdown-content"> <ul> <li data-tab="settings"><a class="evToggleTabs" data-anchor="settings" title="##SettingsText##"> ##SettingsText## </a></li><li data-tab="settings-iab" style="display:none;"><a class="evToggleTabs" data-anchor="settings-iab" title="##SettingsText##"> ##SettingsText## </a></li><li data-tab="partners" id="partners_btn" style="display:none;"> <a class="evToggleTabs" data-anchor="partners" title="##PartnersText##"> ##PartnersText## </a></li><li data-tab="privacy-policy" style="display:none;"> <a class="evToggleTabs" data-anchor="privacy-policy" title="##PrivacyPolicy##"> ##PrivacyPolicy## </a></li><li data-tab="cookie-policy" style="display:none;"> <a data-anchor="cookie-policy" class="evToggleTabs"  title="##CookiePolicy##"> ##CookiePolicy## </a></li><li data-tab="data-req-form" style="display:none;"> <a class="evToggleTabs" data-anchor="data-req-form"  title="##DataRequestForm##"> ##DataRequestForm## </a></li></ul> </div></div></div><ul class="lg"> <li tabindex="0"  data-tab="settings"> <a class="btn btn-default btn-primary evToggleTabs" data-anchor="settings"  title="##SettingsText##"> ##SettingsText## </a></li><li tabindex="0"  data-tab="settings-iab" style="display:none;"> <a class="btn btn-default btn-primary evToggleTabs" data-anchor="settings-iab"  title="##SettingsText##"> ##SettingsText## </a></li><li tabindex="0" data-tab="partners" style="display:none;" id="partners_btn_li"> <a class="btn btn-default evToggleTabs" data-anchor="partners" title="##PartnersText##"> ##PartnersText## </a></li><li tabindex="0"  data-tab="privacy-policy" style="display:none;"> <a class="btn btn-default evToggleTabs" data-anchor="privacy-policy" title="##PrivacyPolicy##"> ##PrivacyPolicy## </a></li><li tabindex="0" spRole="Cookie Declaration" data-tab="cookie-policy" style="display:none;"> <a class="btn evToggleTabs" data-anchor="cookie-policy" title="##CookiePolicy##"> ##CookiePolicy## </a></li><li tabindex="0" data-tab="data-req-form" style="display:none;"> <a class="btn evToggleTabs" data-anchor="data-req-form" title="##DataRequestForm##"> ##DataRequestForm## </a></li></ul> <div class="language-selector" iab tabindex="0"> <select spRole="Drop down values" aria-label="language" title="language" tabindex="0" onchange="window.parent.sp.switchLanguage(this.value, \'{{categoryID}}\', true)" style="background-color:transparent;color:#45413e;">{{languageControl}}</select></div></div><div class="sp-white-box" tabindex="0"> <img alt="loader" class="loader" style="display:none;" src="' + sp.assetLink + 'assets/images/loader.svg"> <div id="tab-settings"  class="tabs-content">{{cross-domain-privacy-center}}<div  tabindex="0" class="sp-heading-panel" id="sp-popup-heading-all" style="">{{bannerHeading}}</div><div  ##bannerIntroductioStyle## class="sp-banner-intro-div">{{bannerIntroduction}}<div ##dpoIntroductioStyle## class="sp-dpoText"> <strong>{{dpoName}}</strong> <br/>{{dpoText}}</div><div class="group-content-text"> <div class="content-right-panel">{{accordian}}</div></div></div></div><div id="sp_iab_container"></div><div id="tab-privacy-policy" style="display:none;"> <iframe id="privacy-iframe" class="scrollable-iframe" frameborder="0" src="" title="Privacy Policy"></iframe> </div> <div id="sp-alert-messages" style="display: none;" class="error-alert"><span>This language is not supported for IAB declaration</span></div><div id="tab-cookie-policy" style="display:none;"> <iframe id="cookie-iframe" tabindex="0" class="scrollable-iframe" frameborder="0" src="" title="Cookie Policy"></iframe></div><div id="tab-data-req-form" style="display:none;"> <div id="sp_ccpaContainer_CCPA"></div></div></div><div class="sp-banner-footer"> ##poweredby## <div style="float:right;"><button tabindex="0" class="group-banner-btn ccpa-submit-btn" id="sp-data-request-consent" style="display:none;color:{{fontColor}};background:{{saveButtonColor}}" class="group-banner-btn">{{ccpa_save_btn}}</button> <span class="normal-footer" style="display:none;"> <button tabindex="0" class="group-banner-btn" id="sp-handle-Allpopup-consent" style="color:{{fontColor}};background:{{saveButtonColor}}">{{saveButtonText}}</button> <button tabindex="0" class="group-banner-btn" style="color:{{fontColor}};background-color:{{cancelButtonColor}}" id="evNegativeCallAction">{{cancelButtonText}}</button> </span> <span class="iab-footer" style="display:none;"> <button tabindex="0" class="group-banner-btn" id="sp-handle-Allpopup-consent-iab" >{{accept_all_text}}</button> <button tabindex="0" class="group-banner-btn" id="sp-handle-Allpopup-save" >{{save_text}}</button><button tabindex="0" class="group-banner-btn data-req-cancel" style="color:{{fontColor}};background-color:{{cancelButtonColor}};display:none;" id="evDataReqFormNegativeCallAction">{{cancelButtonText}}</button> </span></div> </div></div></div>', sp.fontFamily = "Raleway", sp.fontSource = "Google", sp.pbcCSS = "div#sp-alert-messages *, {transform: translateZ(0);}#sp-alert-messages{text-align: center; font-size: 14px; display: flex;height: 70px;position: absolute;top: 0px;z-index: 99999999999;width: 100%;align-items: center;justify-content: center;}#sp-alert-messages span {display: inline-block;vertical-align: middle;line-height: 20px;}.error-alert{background:#eaeaea;color:red; } .custom-ac-head:focus,a:focus,button:focus,select:focus{outline:1px solid;box-shadow:inset 1px 1px 5px}body{background:0 0;margin:0;padding:0;font-family:##font-family##!important}#sp-trust-badge{border:2px solid #fff!important;border-radius:4px!important;transition:transform .2s ease-in-out,background-color .2s ease-in-out!important;display:inline-block}#sp_ccpaContainer_CCPA{min-height:380px;padding:10px}#tab-settings{min-height:340px;padding:0 15px}#tab-settings-iab{min-height:338px;padding:0 15px}.dropbtn{width:100%;padding:12px;font-size:14px;border:none;cursor:pointer;background:#eaeaea}.dropdown{position:relative;font-family:##font-family##!important}.dropdown .caret-down{float:right;padding-left:10px}.dropdown img{width:12px}.dropdown-content{display:none;position:absolute;background-color:#eaeaea;width:100%;box-shadow:0 8px 16px 0 rgba(0,0,0,.2);z-index:1}.dropdown-content a{color:#45413e;padding:12px;text-decoration:none;display:block;font-size:14px}.dropdown-content a:hover{background-color:#ddd}.active-menu{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:140px;float:left;color:#45413e}.show{display:block}#tab-options ul{padding:0 5px}#tab-options ul li{list-style:none}.powered-by{float:left;line-height:50px;font-size:14px}.tabs ul.lg{display:flex;flex-direction:row;flex-wrap:wrap;margin:0!important;padding:0}.tabs ul.lg li{list-style:none;display:flex;text-align:center;margin:0 15px 0 0!important;position:relative;max-width:15%}.tabs ul.lg .btn{background:#eee;padding:12px;border-radius:1px;cursor:pointer;font-size:13px;position:relative;width:100%;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}.tabs ul.lg .btn-default:hover,.tabs ul.lg .btn-primary{background:##background-color##;color:##font-color##}.tabs-content{padding:0 15px}.scrollable-iframe{height:100%;width:100%}.privacy-policy-small{color:#45413e;float:left;text-decoration:none;font-size:13px;margin:4px 0 4px 0;padding:0}.privacy-consent-group{height:35px;width:100%;cursor:pointer;display:block;margin:0 10px 5px 0;padding:5px 15px;background:#fff;border:solid 1px #eae9e9;border-radius:3px;font-family:inherit;font-size:14px}.sp-dpoText{font-size:14px;line-height:20px;padding-bottom:20px}#main-privacy-banner{width:800px}.privacy-policy{display:inline-block!important}.sp-banner-footer{float:none;text-align:center!important}.secure-privacy-logo-top img{height:50px;border:0;margin-top:0;position:absolute}.language-selector{right:30px;position:absolute;top:23px}.language-selector select{font-family:##font-family##!important;border:none!important;margin:0!important;padding:1px!important;font-size:14px!important;font-display:auto;height:40px;min-width:75px!important;width:65px;right:18px;background-color:transparent;color:#45413e}.tabs{padding:20px 30px;background:#fff}.sp-white-box{background:#fff!important;color:#45413e!important;height:calc(100vh - 160px)!important;border:1px solid #eee;overflow-y:auto}.sp-heading-panel{font-size:22px;font-weight:600;margin-top:10px;margin-bottom:10px}.sp-banner-intro-div{margin:10px 0 20px;padding:0;font-size:14px;line-height:23px}.content-right-panel{padding:0;font-size:14px}.content-right-panel .custom-ac-head{padding:14px;overflow:auto;background-color:#eaeaea;border-radius:1px;margin:0 0 10px;cursor:pointer}.content-right-panel .custom-ac-body img,.content-right-panel .custom-ac-head .heading{float:left}.content-right-panel .caret-down{display:inline-block;line-height:1px;width:25px;height:20px;float:right;text-align:center;font-size:14px;color:inherit;cursor:pointer}.content-right-panel .custom-ac-head .heading h1{text-transform:capitalize;font-size:14px;padding:0 10px 0 0;margin:0;font-weight:400;color:#45413e;line-height:14px}.sp-accor-plugin-count{font-size:13px!important;margin-left:10px!important;border-radius:50%!important;background:#fff!important;min-width:20px!important;height:20px!important;display:inline-block!important;line-height:17px!important;text-align:center!important;color:#45413e!important}.content-right-panel .custom-ac-body{padding:15px 40px;margin:0 0 20px;background-color:#ebebeb}.CategoyText,.CategoyText p{font-size:14px;padding:0;margin:0;line-height:23px}.content-right-panel .custom-ac-body .mt-20{margin-top:20px}.content-right-panel .custom-ac-body .plugins-table{background:0;color:inherit;font-size:14px}.content-right-panel .custom-ac-body table{width:100%}.group-content-text table{margin:0;padding:0}.sp-banner-show table{display:table;border-spacing:2px;border-collapse:separate;box-sizing:border-box;text-indent:0}.sp-banner-show tbody{display:table-row-group}.sp-banner-show table>tr,.sp-banner-show tbody,.sp-banner-show tfoot,.sp-banner-show thead{vertical-align:middle}.sp-banner-show tr{display:table-row;vertical-align:inherit}.content-right-panel .custom-ac-body .plugins-table th{background:0}.content-right-panel .custom-ac-body .plugins-table td,.content-right-panel .custom-ac-body .plugins-table th{padding:8px;border:0;text-align:left;color:inherit}.sp-banner-show th{font-weight:700;color:inherit;font-size:inherit}.group-banner-btn,.privacy-policy{font-size:14px;font-family:##font-family##!important}.sp-banner-show td,.sp-banner-show th{display:table-cell;vertical-align:inherit;padding:1px}.sp-slider-switch a{color:#45413e;text-decoration:none;line-height:16px;border-bottom:solid 1px rgba(69,65,62,.59)}.sp-slider-switch .switch-secure{position:relative;display:inline-block;width:45px;height:15px}.sp-slider-switch .switch-secure input{display:none}.sp-slider-switch .switch{position:relative;display:inline-block;width:45px;height:15px}.sp-slider-switch .switch input{display:none}.sp-slider-switch .slider{overflow:inherit;position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background-color:#ccc;-webkit-transition:.4s;transition:.4s}.sp-slider-switch .slider:before{position:absolute;height:20px;width:20px;left:0;bottom:-2px;background-color:#fff;-webkit-transition:.4s;transition:.4s;box-shadow:0 1px 3px 0 rgba(0,0,0,.4)}.sp-slider-switch input:checked+.slider{background-color:rgba(4,166,0,.42)}.sp-slider-switch input:focus+.slider{box-shadow:0 0 1px #04a600}.sp-slider-switch input:checked+.slider:before{-webkit-transform:translateX(26px);-ms-transform:translateX(26px);transform:translateX(26px);background:#04a600}.sp-slider-switch .slider.sp-round{border-radius:34px}.sp-slider-switch .slider.sp-round:before{border-radius:50%}.sp-loader:before,.sp-slider-switch .slider:before,.sp-slider:before{content:''}.sp-banner-footer{background:#fff;overflow:auto;padding:15px 30px;font-family:##font-family##!important}.privacy-policy{color:#45413e;float:left;text-decoration:none;border-bottom:solid 1px #45413e;margin:10px 0 0;padding:0}.group-banner-btn{margin:0 0 0 15px;padding:16px 14px;float:right;cursor:pointer;text-transform:uppercase;font-weight:600;line-height:14px;min-width:173px;border:0;text-shadow:none;background-image:none;transition:transform .2s ease-in-out,background-color .2s ease-in-out}#main-trush-badge:focus{border:solid 1px #498df9}@media (max-width:480px){.content-right-panel .custom-ac-body { padding: 15px !important;  } .content-right-panel .custom-ac-body .plugins-table {font-size: 12px !important; } .scrollable-iframe{overflow:hidden}.tabs ul.lg{display:none}.tabs-content{padding:0}.tabs{padding:15px!important}.language-selector{position:inherit!important;text-align:left}.language-selector select{height:30px!important;margin-top:5px!important}.powered-by{line-height:20px;float:none}.active-menu{max-width:276px}.sp-white-box{max-height:40vh!important}.group-banner-btn{float:none!important;margin:10px 0 0 0!important}}@media (min-width:480px){#mobile-tabs{display:none}}.loader{width:60px;height:60px;position:absolute;top:50%;left:50%;margin-left:-30px;margin-top:-30px;z-index:99999}@media only screen and (max-width:767px){#tab-cookie-policy iframe,#tab-privacy-policy{height:100%;width:100%}#tab-cookie-policy,#tab-privacy-policy{overflow-x:hidden;overflow-y:scroll;-webkit-overflow-scrolling:touch}}", sp.pbc = "", sp.fontSourceList = ["BrowserDefault", "Google"], sp.consentDiv = '<div class="consent-text ##special_class##" style="background-color:##background-color##;position:relative;width:##width##;height:##height##;font-size:##font-size##;color:##font-color##;font-family:##font-family##"><div style="text-align:center;position:absolute;left:10%;top:28%;width:80%"><p style="margin:10px 0 30px 0">##consentHeading##</p><button tabindex="0" class="group-banner-btn evConsentString" data-consentstring="##consentString##" style="background-color:##SaveButtonColor##;color:##font-color##;border:0;padding:10px 20px;font-size:##font-size##;font-family:##font-family##">##textForConsentButton##</button></div></div>', sp.doNotStoreConsent = !1, sp.unblockingComplete = !1, sp.customizeButtonGoesTo = "PreferenceCenter", window.addEventListener ? window.addEventListener("message", n, !1) : window.attachEvent && window.attachEvent("onmessage", n, !1), sp.cookieList, window.dataLayer = window.dataLayer || [], "function" != typeof y && (y = function() {
+        dataLayer.push(arguments)
+    }), sp.prepareHttp = function(t) {
+        var e = new XMLHttpRequest;
+        return e.open("GET", sp.apiLink + t, !0), e.setRequestHeader("Content-Type", "application/json; charset=UTF-8"), e.onerror = function(e) {
+            console.error("Cannot fetch info for : " + t)
+        }, e
+    };
+    var e = sp.prepareHttp("api/adminsettings/displaypage/ipinfo");
+    e.onload = function() {
+        var e;
+        200 <= this.status && this.status < 400 && (e = JSON.parse(this.response), sp.visitorCountry = e.countryCode.toUpperCase(), sp.visitorCountry = e.countryCode.toUpperCase(), sp.visitorRegion = e.region.toUpperCase())
+    }, e.send();
+    var t = sp.prepareHttp("api/translation/domain/supportedLanguages/visitor?ApiKey=" + securePrivacy.apiKey + "&Domain=" + sp.targetDomain);
+
+    function u(e) {
+        if (e) return e.replace(/\s/g, "").toLowerCase() + "-iframe"
+    }
+
+    function l(e) {
+        if ("GDPR" == sp.complianceLawType || "LGPD" === sp.complianceLawType) {
+            var t = document.getElementsByTagName(e);
+            for (i = 0; i < t.length; i++) {
+                var n = t[i],
+                    a = n.getAttribute("sp-consent");
+                if (a && sp.hasAttr(n, "sp-consent") && !n.getAttribute("src")) {
+                    for (var o = n.clientHeight, s = n.clientWidth, r = sp.widgetDisplaySettings.Extra, p = sp.selctedLanguage.value, c = 0; c < r.length; c++) {
+                        var l = r[c];
+                        l.localization === p && 0
+                    }
+                    var d = sp.consentDiv.sp_replaceAll("##consentHeading##", sp.bannerFields.textForConsentMessage || "consent message").sp_replaceAll("##background-color##", sp.widgetDisplaySettings.BackgroundColor).sp_replaceAll("##width##", s + "px").sp_replaceAll("##height##", o + "px").sp_replaceAll("##font-size##", sp.widgetDisplaySettings.FontSize).sp_replaceAll("##font-color##", sp.widgetDisplaySettings.FontColor).sp_replaceAll("##font-family##", sp.fontFamily).sp_replaceAll("##SaveButtonColor##", sp.widgetDisplaySettings.SaveButtonColor).sp_replaceAll("##textForConsentButton##", sp.bannerFields.textForConsentButton || "Accept").sp_replaceAll("##special_class##", u(a)).sp_replaceAll("##consentString##", a);
+                    n.insertAdjacentHTML("afterend", d), n.style.display = "none"
+                }
+            }
+        }
+    }
+
+    function g() {
+        var e, t, n, a, o, i = (i = sp.getPlans()).join(",");
+        document.getElementById("sp-privacy-policy-embed-widget") && ((e = document.createElement("iframe")).setAttribute("id", "ifrmPrivacyPolicyPopup"), null == (a = document.getElementById("sp-privacy-policy-embed-widget").getAttribute("sp-lang-code")) && (a = "en"), t = ".btn-default:hover, .btn-primary{background:" + sp.widgetDisplaySettings.BackgroundColor + ";color:" + sp.widgetDisplaySettings.FontColor + "}", e.src = sp.assetLink + "privacyPolicy/privacy-policy.html?apikey=" + securePrivacy.apiKey + "&domain=" + sp.targetDomain + "&lang=" + a + "&type=popup&compliance=" + i, document.querySelector("[sp-widget-holder='privacy-policy-popup']").innerHTML = '<style type="text/css">' + t + '</style><input type="button" id="privacy-policy-popup-btn" class="btn-primary" style="padding:5px;margin-left:10px;margin-top:10px;" value="Privacy Policy" onclick="window.parent.sp.updateIFrameLink(\'privacy\');" /><input id="cookie-declaration-popup-btn" type="button" style="padding:5px;margin-left:10px;margin-top:10px;" value="Cookie Declaration" onclick="window.parent.sp.updateIFrameLink();" />', document.querySelector("[sp-widget-holder='privacy-policy-popup']").append(e), document.querySelector("[sp-widget-holder='privacy-policy-popup']").innerHTML += '<div class="sp-privacy-head"><button class="sp-close-button" id="closePrivacyPopup" onclick="window.parent.sp.closePrivacyPopup();">&times;</button> </div>', document.querySelector("[sp-widget-holder='privacy-policy-popup']").classList.add("sp-privacy-banner-middle"), document.getElementById("ifrmPrivacyPolicyPopup") && (document.getElementById("ifrmPrivacyPolicyPopup").frameBorder = 0, document.getElementById("ifrmPrivacyPolicyPopup").width = 800, document.getElementById("ifrmPrivacyPolicyPopup").height = 600), document.querySelector(".sp-privacy-policy-preview") && (document.querySelector(".sp-privacy-policy-preview").style.display = "initial")), document.querySelector("[sp-privacy-policy-text='direct-text']") && ((n = document.createElement("iframe")).setAttribute("id", "ifrmPrivacyPolicyDirectText"), document.querySelector("[sp-privacy-policy-text='direct-text']").append(n), a = document.querySelector("[sp-privacy-policy-text='direct-text']").getAttribute("sp-lang-code"), document.getElementById("ifrmPrivacyPolicyDirectText").frameBorder = 0, document.getElementById("ifrmPrivacyPolicyDirectText").title = "Privacy policy", document.getElementById("ifrmPrivacyPolicyDirectText").scrolling = "no", (o = document.querySelector("[sp-privacy-policy-text='direct-text']").clientHeight) < 700 && (o = 700), o += "px", document.getElementById("ifrmPrivacyPolicyDirectText").style.width = "100%", document.getElementById("ifrmPrivacyPolicyDirectText").style.height = o, document.getElementById("ifrmPrivacyPolicyDirectText").style.backgroundColor = "#fff", null == a && (a = "en"), n.src = sp.assetLink + "privacyPolicy/privacy-policy.html?apikey=" + securePrivacy.apiKey + "&domain=" + sp.targetDomain + "&lang=" + a + "&compliance=" + i + "&type=text&height=" + o)
+    }
+
+    function n(e) {
+        var t = e.data;
+        "showPrivacyBanner" === t.func && sp.showPrivacyBanner(), "setHeight" === t.func && (document.getElementById("ifrmPrivacyPolicyDirectText").style.height = t.message, document.querySelector("[sp-privacy-policy-text='direct-text']").style.height = t.message)
+    }
+
+    function r() {
+        if (null !== document.getElementById("ifrmPrivacyBanner")) {
+            document.getElementById("ifrmPrivacyBanner").contentWindow.document.getElementById("evToggleDropDown").addEventListener("click", function(e) {
+                window.parent.sp.toggleDropDown()
+            }, !0), document.getElementById("ifrmPrivacyBanner").contentWindow.document.getElementById("sp-data-request-consent").addEventListener("click", function(e) {
+                window.parent.ccpa_sp.requestRemoval()
+            }, !0), document.getElementById("ifrmPrivacyBanner").contentWindow.document.getElementById("sp-handle-Allpopup-consent").addEventListener("click", function(e) {
+                window.parent.sp.saveAllConsents("privacyBanner", !0)
+            }, !0), document.getElementById("ifrmPrivacyBanner").contentWindow.document.getElementById("evNegativeCallAction").addEventListener("click", function(e) {
+                window.parent.sp.hidePrivacyBanner()
+            }, !0), document.getElementById("ifrmPrivacyBanner").contentWindow.document.getElementById("evDataReqFormNegativeCallAction").addEventListener("click", function(e) {
+                window.parent.sp.hidePrivacyBanner()
+            }, !0), document.getElementById("ifrmPrivacyBanner").contentWindow.document.getElementById("sp-handle-Allpopup-consent-iab").addEventListener("click", function(e) {
+                window.parent.iab_sp.acceptAll()
+            }, !0), document.getElementById("ifrmPrivacyBanner").contentWindow.document.getElementById("sp-handle-Allpopup-save").addEventListener("click", function(e) {
+                window.parent.iab_sp.saveAll()
+            }, !0);
+            for (var e = document.getElementById("ifrmPrivacyBanner").contentWindow.document.getElementsByClassName("evToggleTabs"), t = 0; t < e.length; t++) e[t].addEventListener("click", function(e) {
+                window.parent.sp.toggleTabs(e.target.getAttribute("data-anchor"))
+            }, !0);
+            for (var n = document.getElementById("ifrmPrivacyBanner").contentWindow.document.getElementsByClassName("custom-ac-head"), t = 0; t < n.length; t++) n[t].addEventListener("click", function(e) {
+                window.parent.sp.expandCollapse(e.currentTarget.getAttribute("data-categoryid"))
+            }, !0);
+            for (var a = document.getElementById("ifrmPrivacyBanner").contentWindow.document.getElementsByClassName("show-cookies"), t = 0; t < a.length; t++) a[t].addEventListener("click", function(e) {
+                var t = "plugin-" + e.currentTarget.getAttribute("data-pluginId");
+                window.parent.sp.expandCollapseCookieSection(e.currentTarget.getAttribute("data-categoryId"), t)
+            }, !0);
+            for (var o = document.getElementById("ifrmPrivacyBanner").contentWindow.document.getElementsByClassName("tracker-compliance"), t = 0; t < o.length; t++) o[t].addEventListener("click", function(e) {
+                e.target.setAttribute("checked", this.checked)
+            }, !0)
+        }
+        if (null !== document.getElementById("ifrmCookieBanner")) {
+            var i = document.getElementById("ifrmCookieBanner").contentWindow.document.getElementById("evOpenSP");
+            i && i.addEventListener("click", function(e) {
+                window.parent.sp.openSP()
+            }, !0);
+            var s = document.getElementById("ifrmCookieBanner").contentWindow.document.getElementById("evDetailedCookieBanner");
+            s && !sp.detailedTogged && (s.addEventListener("click", function(e) {
+                window.parent.sp.toggleAdvancedBanner(this)
+            }, !0), sp.detailedTogged = !0);
+            for (var r = document.getElementById("ifrmCookieBanner").contentWindow.document.getElementsByClassName("evSelectAllCheckbox"), t = 0; t < r.length; t++) r[t].addEventListener("click", function(e) {
+                window.parent.sp.checkBoxAllConsent(this, e.target.getAttribute("data-categoryHeading"))
+            }, !0);
+            for (var p = document.getElementById("ifrmCookieBanner").contentWindow.document.getElementsByClassName("evExpandCollapseAdvanceCookieSection"), t = 0; t < p.length; t++) p[t].addEventListener("click", function(e) {
+                var t = "SPCookieSectionPlugin-" + e.currentTarget.getAttribute("data-complianceid");
+                window.parent.sp.expandCollapseAdvanceCookieSection(e.currentTarget.getAttribute("data-categoryid"), t)
+            }, !0);
+            for (var c = document.getElementById("ifrmCookieBanner").contentWindow.document.getElementsByClassName("evAdvancedCategory"), t = 0; t < c.length; t++) c[t].addEventListener("click", function(e) {
+                window.parent.sp.changeCategoryTab(this)
+            }, !0);
+            for (var l = document.getElementById("ifrmCookieBanner").contentWindow.document.getElementsByClassName("evSpRejectBtn"), t = 0; t < l.length; t++) l[t].addEventListener("click", function(e) {
+                window.parent.sp.saveAllConsents("cookieBanner", !1)
+            }, !0);
+            for (var d = document.getElementById("ifrmCookieBanner").contentWindow.document.getElementsByClassName("evSpAcceptBtn"), t = 0; t < d.length; t++) d[t].addEventListener("click", function(e) {
+                window.parent.sp.saveAllConsents("cookieBanner", !0)
+            }, !0);
+            var u = sp.allComplainceDisplay.filter(function(e) {
+                return e.ComplianceLawType === sp.complianceLawType
+            })[0];
+            u && u.Options && u.Options.customizeButtonGoesTo && (sp.customizeButtonGoesTo = u.Options.customizeButtonGoesTo);
+            for (var y = document.getElementById("ifrmCookieBanner").contentWindow.document.getElementsByClassName("evSpOpenWidget"), t = 0; t < y.length; t++) y[t].addEventListener("click", function(e) {
+                var t;
+                "DetailCookieBanner" == sp.customizeButtonGoesTo ? (t = document.getElementById("ifrmCookieBanner").contentWindow.document.getElementById("evDetailedCookieBanner"), window.parent.sp.toggleAdvancedBanner(t)) : (sp.getCookieListForPreferenceCenter(), sp.hideCookieBanner())
+            }, !0)
+        }
+        var g, m = document.getElementById("closePrivacyPopup");
+        m && m.addEventListener("click", function(e) {
+            window.parent.sp.closePrivacyPopup()
+        }, !0), !document.getElementById("ifrmTrustBadge") || (g = document.getElementById("ifrmTrustBadge").contentWindow.document.getElementById("sp-trust-badge")) && g.addEventListener("click", function(e) {
+            window.parent.sp.getCookieListForPreferenceCenter()
+        }, !0);
+        for (var b = document.getElementsByClassName("evConsentString"), t = 0; t < b.length; t++) b[t].addEventListener("click", function(e) {
+            window.parent.sp.savePluginConsent(e.target.getAttribute("data-consentString"))
+        }, !0)
+    }
+
+    function B(e, t, n) {
+        for (var a, o = 0; o < n.length; o++) {
+            var i = n[o];
+            if (parseInt(i.ComplianceTypeID) === parseInt(e))
+                if (i.PluginPreferences) {
+                    pluginPrefered = JSON.parse(i.PluginPreferences);
+                    for (var s = 0; s < pluginPrefered.length; s++) {
+                        var r = pluginPrefered[s];
+                        r.ComplianceType === t && (a = r.IsBlockEnabled)
+                    }
+                } else a = !0
+        }
+        return a
+    }
+
+    function p() {
+        for (var e = sp.allBanners.CategoryDetails, t = 0; t < e.length; t++)
+            for (var n = e[t].PluginList, a = 0; a < n.length; a++) {
+                var o = n[a],
+                    i = sp.getCategoryKeyword(e[t].CategoyId),
+                    s = sp.cookieList.filter(function(e) {
+                        return e.Plugin === o.ComplianceType && e.Category === i
+                    }).filter(function(t, e, n) {
+                        return n.findIndex(function(e) {
+                            return e.Name == t.Name
+                        }) === e
+                    });
+                o.cookies = s;
+                var r = "SPCookieSectionPlugin-" + o.ComplianceTypeID,
+                    p = "clsShowCookieBanner-" + e[t].CategoyId + r,
+                    c = document.getElementById("ifrmCookieBanner").contentWindow.document.getElementsByClassName(p);
+                null != c && 0 < c.length && (c[0].innerText = sp.bannerFields.showCookiesText + " (" + s.length + ")");
+                var l = "eleCookieBannerBodyCookies_" + e[t].CategoyId + r,
+                    d = document.getElementById("ifrmCookieBanner").contentWindow.document.getElementsByClassName(l);
+                if (null != d && 0 < d.length) {
+                    for (var u = "<td colspan='4'><div id='elmCookieBannerShow_" + e[t].CategoyId + r + "' class='advanceCookieBannerBodyCookies-" + e[t].CategoyId + r + "' style='display:none;width:100%;margin-top: 0px;'> <table style='width:100%;margin-top: 0px;'>", y = 0; y < o.cookies.length; y++) u += '<tr><td colspan="4"> <hr class="margin-bottom-10"/> <div class="cookie-name-section" style="font-size: 12px;"> ' + o.cookies[y].Name + ' </div> <div class="cookie-description-section" style="font-size: 12px;"> ' + o.cookies[y].Description + "</div> </td> </tr>", u += '<tr class="cookie-class"><td style="text-align: right;"> <span style="font-size: 12px;"> ' + sp.bannerFields.expiryText + ': </span> <span style="font-weight: 700;font-size: 12px;margin-right: 10px;"> ' + sp.getBannerValueByKeyword(o.cookies[y].Expires) + ' </span></td><td style="width: 50px"></td> <td> <span class="font-size: 12px;"> ' + sp.bannerFields.typeText + ": </span> ", o.cookies[y].FirstParty ? u += '<span style="font-weight: 700;font-size: 12px;">' + sp.bannerFields.firstPartyText + " </span> " : u += '<span style="font-weight: 700;font-size: 12px;">' + sp.bannerFields.thirdPartyText + " </span> ", u += "</td> <td></td></tr>";
+                    u += "</table></td></div>", d[0].innerHTML = u
+                }
+            }
+    }
+
+    function a() {
+        if (sp.settingsPage.PrivacyCenter)
+            for (var e = sp.allBanners.CategoryDetails, t = 0; t < e.length; t++)
+                for (var n = e[t].PluginList, a = 0; a < n.length; a++) {
+                    var o = n[a],
+                        i = sp.getCategoryKeyword(e[t].CategoyId),
+                        s = sp.cookieList.filter(function(e) {
+                            return e.Plugin === o.ComplianceType && e.Category === i
+                        }).filter(function(t, e, n) {
+                            return n.findIndex(function(e) {
+                                return e.Name == t.Name
+                            }) === e
+                        });
+                    o.cookies = s;
+                    var r = "plugin-" + o.ComplianceTypeID,
+                        p = "clsAccorShowCookieBanner-" + e[t].CategoyId + r,
+                        c = document.getElementById("ifrmPrivacyBanner").contentWindow.document.getElementsByClassName(p);
+                    null != c && 0 < c.length && (c[0].innerText = sp.bannerFields.showCookiesText + " (" + s.length + ")");
+                    var l = "eleAccorBodyCookies_" + e[t].CategoyId + r,
+                        d = document.getElementById("ifrmPrivacyBanner").contentWindow.document.getElementsByClassName(l);
+                    if (null != d && 0 < d.length) {
+                        for (var u = "<td colspan='4'><div id='elmAccorBodyCookies_" + e[t].CategoyId + r + "' class='clsAccorBodyCookies-" + e[t].CategoyId + r + "' style='display:none;'><table style='width:100%;margin-top: 0px;'>", y = 0; y < o.cookies.length; y++) u += '<tr><td colspan="4"> <hr class="margin-bottom-10"/> <div class="cookie-name-section" style="font-size: 12px;" > ' + o.cookies[y].Name + ' </div> <div class="cookie-description-section" style="font-size: 12px;"> ' + o.cookies[y].Description + "</div> </td> </tr>", u += '<tr class="cookie-class"> <td style="text-align: right;"> <span style="font-size: 12px;"> ' + sp.bannerFields.expiryText + ': </span> <span style="font-weight: 700;font-size: 12px;"> ' + sp.getBannerValueByKeyword(o.cookies[y].Expires) + ' </span> <td>&nbsp;</td> </td> <td> <span style="font-size: 12px;"> ' + sp.bannerFields.typeText + ": </span> ", o.cookies[y].FirstParty ? u += '<span style="font-weight: 700;font-size: 12px;"> ' + sp.bannerFields.firstPartyText + " </span> " : u += '<span style="font-weight: 700;font-size: 12px;"> ' + sp.bannerFields.thirdPartyText + " </span> ", u += "</td> <td></td></tr>";
+                        u += "</table></td></div>", d[0].innerHTML = u
+                    }
+                }
+    }
+    t.onload = function() {
+        if (200 <= this.status && this.status < 400) {
+            try {
+                var e = JSON.parse(this.response);
+                sp.supportedLanguages = e
+            } catch (e) {}
+            if (window.BigCommerce && window.parent && -1 < window.parent.location.href.indexOf("manage/page-builder")) return;
+            (t = sp.prepareHttp("api/adminsettings/displaypage/visitor?ApiKey=" + securePrivacy.apiKey + "&Domain=" + sp.targetDomain + "&v=" + sp.versionNumber)).onload = function() {
+                if (200 <= this.status && this.status < 400) {
+                    var e = JSON.parse(this.response);
+                    sp.allComplainceDisplay = e.displaySettings, sp.allComplainceDashboard = e.settingsPage, sp.domainGroup = e.domainGroup, sp.whitelist = e.whitelist, sp.doNotStoreConsent = !!e.DoNotStoreConsent && e.DoNotStoreConsent, e.displaySettings[0].FontFamily && e.displaySettings[0].FontSource && (sp.fontFamily = e.displaySettings[0].FontFamily, sp.fontSource = e.displaySettings[0].FontSource), sp.pbcCSS = sp.pbcCSS.replaceAll("##font-family##", "'" + sp.fontFamily + "'"), "Google" === sp.fontSource ? sp.pbc = "@import url(" + sp.assetLink + "assets/fonts/google/" + sp.fontFamily + ".css);" + sp.pbcCSS : sp.pbc = sp.pbcCSS;
+                    try {
+                        sp.subscriptionDescription = JSON.parse(e.subscriptionDescription)
+                    } catch (e) {
+                        sp.subscriptionDescription = {
+                            supportedFeatures: 0,
+                            supportedProducts: {
+                                isGDPR: !0,
+                                isCCPA: !0,
+                                isLGPD: !0,
+                                isTHPDPA: !0,
+                                isPIPEDA: !0
+                            }
+                        }
+                    }
+                    sp.generateLanguageControl(sp.allComplainceDisplay[0].Extra),
+                        function() {
+                            document.querySelector("head").insertAdjacentHTML("beforeend", '<link rel="stylesheet" href="' + sp.assetLink + sp.bannerLink + "css/banners.css?v=" + Math.floor(999999999999 * Math.random()) + '" type="text/css" />');
+                            var e = sp.prepareHttp("api/bannerWithScanData/visitor?ComplianceLawType=&ApiKey=" + securePrivacy.apiKey + "&IncludeLastScanData=false&Domain=" + sp.targetDomain + "&v=" + sp.versionNumber);
+                            e.onload = function() {
+                                var t, e, n, a, o, i, s, r, p, c, l, d, u;
+                                200 <= this.status && this.status < 400 && ((e = t = JSON.parse(this.response)) && 0 < t.length ? JSON.parse(localStorage.getItem("sp_noblock")) ? (n = document.createElement("SCRIPT"), "5d9f0aac7df5d20c0c90dbf3" === window.securePrivacy.appId ? n.src = sp.assetLink + sp.bannerLink + "5d9f0aac7df5d20c0c90dbf3-unblock.js?v=" + Math.random() : n.src = sp.assetLink + sp.bannerLink + "unblock.js?v=" + Math.random(), n.type = "text/javascript", document.getElementsByTagName("head")[0].appendChild(n), n.onload = function() {
+                                    sp.allBanners = t[0], sp.activeDomainBanner = sp.allBanners, sp.widgetDisplaySettings = sp.allComplainceDisplay[0], sp.settingsPage = sp.allComplainceDashboard[0], sp.displayOptions = sp.widgetDisplaySettings.Options, sp.log("All blocking is overriden"), sp.nonEuVisitorHandler()
+                                }, a = new CustomEvent("sp_init", {
+                                    detail: {
+                                        init: !0,
+                                        complianceType: sp.complianceLawType
+                                    }
+                                }), window.dispatchEvent(a)) : 0 === sp.subscriptionDescription.supportedFeatures ? (function(e) {
+                                    sp.allBanners = e[0], sp.activeDomainBanner = sp.allBanners, sp.widgetDisplaySettings = sp.allComplainceDisplay[0], sp.settingsPage = sp.allComplainceDashboard[0], sp.displayOptions = sp.widgetDisplaySettings.Options, void 0 !== sp.settingsPage && "000000000000000000000000" !== sp.settingsPage.Id || (sp.settingsPage = {}, sp.settingsPage.PrivacyBanner = !0, sp.settingsPage.PrivacyCenter = !0, sp.settingsPage.TrustSeal = !0);
+                                    sp.widgetDisplaySettings.ComplianceLawType && (sp.complianceLawType = sp.widgetDisplaySettings.ComplianceLawType);
+                                    var t = sp.prepareHttp("api/translation/domain/visitor?ApiKey=" + securePrivacy.apiKey + "&Domain=" + sp.targetDomain + "&languageCode=" + sp.selctedLanguage.value + "&ComplianceLawType=" + sp.complianceLawType);
+                                    t.onload = function() {
+                                        var e;
+                                        200 <= this.status && this.status < 400 && (e = JSON.parse(this.response), sessionStorage.setItem("translation-" + sp.targetDomain, JSON.stringify(e)), sp.translations = e, sp.setTranslationsText(), sp.generateClientId(), sp.createCCPABanners())
+                                    }, t.send()
+                                }(e), sp.nonEuVisitorHandler()) : (o = {
+                                    showGDPR: !["AL", "AD", "AT", "BY", "BE", "BA", "BG", "HR", "CY", "CZ", "DK", "EE", "FO", "FI", "FR", "DE", "GI", "GR", "HU", "IS", "IE", "IM", "IT", "RS", "LV", "LI", "LT", "LU", "MK", "MT", "MD", "MC", "ME", "NL", "NO", "PL", "PT", "RO", "RU", "SM", "RS", "SK", "SI", "ES", "SE", "CH", "UA", "GB", "VA", "RS"],
+                                    showLGPD: !1,
+                                    showCCPA: !1,
+                                    showTHPDPA: !1,
+                                    showPIPEDA: !1
+                                }, sp.subscriptionDescription.supportedProducts.isGDPR && (void 0 === (l = sp.allComplainceDisplay.filter(function(e) {
+                                    return "GDPR" === e.ComplianceLawType
+                                })[0]) || ("all" === (i = l.Options.showBannerCountries) || "eu" === i && -1 < ["AL", "AD", "AT", "BY", "BE", "BA", "BG", "HR", "CY", "CZ", "DK", "EE", "FO", "FI", "FR", "DE", "GI", "GR", "HU", "IS", "IE", "IM", "IT", "RS", "LV", "LI", "LT", "LU", "MK", "MT", "MD", "MC", "ME", "NL", "NO", "PL", "PT", "RO", "RU", "SM", "RS", "SK", "SI", "ES", "SE", "CH", "UA", "GB", "VA", "RS"].indexOf(sp.visitorCountry)) && (o.showGDPR = !0)), sp.subscriptionDescription.supportedProducts.isLGPD && (void 0 === (l = sp.allComplainceDisplay.filter(function(e) {
+                                    return "LGPD" === e.ComplianceLawType
+                                })[0]) || ("all" === (s = l.Options.showLGPDCountries) || "br" === s && "BR" === sp.visitorCountry) && (o.showLGPD = !0)), sp.subscriptionDescription.supportedProducts.isCCPA && (void 0 === (l = sp.allComplainceDisplay.filter(function(e) {
+                                    return "CCPA" === e.ComplianceLawType
+                                })[0]) || ("all" === (r = l.Options.showCCPACountries) || -1 < r.indexOf(sp.visitorRegion.toLowerCase())) && (o.showCCPA = !0)), "6c7162308dd44060ac0478877e8639888421f0dddd9d44778290641ec420423c90d8ef687f4c4ee9af57ea3716d34bb5" === securePrivacy.apiKey && (void 0 === (l = sp.allComplainceDisplay.filter(function(e) {
+                                    return "US" === e.ComplianceLawType
+                                })[0]) || (p = l.Options.showUSCountries) && -1 < p.split(",").indexOf("us-" + sp.visitorRegion.toLowerCase()) && (o.showUS = !0)), sp.subscriptionDescription.supportedProducts.isTHPDPA && (void 0 === (l = sp.allComplainceDisplay.filter(function(e) {
+                                    return "THPDPA" === e.ComplianceLawType
+                                })[0]) || ("all" === (c = l.Options.showBannerCountries) || "th" === c && "TH" === sp.visitorCountry) && (o.showTHPDPA = !0)), sp.subscriptionDescription.supportedProducts.isPIPEDA && (void 0 === (l = sp.allComplainceDisplay.filter(function(e) {
+                                    return "PIPEDA" === e.ComplianceLawType
+                                })[0]) || ("all" === (d = l.Options.showBannerCountries) || "ca" === d && "CA" === sp.visitorCountry) && (o.showPIPEDA = !0)), -1 < window.location.href.indexOf("gtm_debug") && (sp.allBanners = t[0], sp.complianceLawType = "", sp.nonEuVisitorHandler()), o.showGDPR || o.showLGPD || o.showCCPA || o.showUS || o.showTHPDPA || o.showPIPEDA ? o.showGDPR && o.showLGPD ? (sp.log("Secure Privacy is enabled for both GDPR and LGPD. Default banner showing is GDPR"), sp.complianceLawType = "GDPR") : o.showGDPR && o.showCCPA ? (sp.log("Secure Privacy is enabled for both GDPR and CCPA. Default banner showing is GDPR"), sp.complianceLawType = "GDPR") : o.showLGPD && o.showCCPA ? (sp.log("Secure Privacy is enabled for both LGPD and CCPA. Default banner showing is CCPA"), sp.complianceLawType = "CCPA") : !o.showLGPD || o.showCCPA || o.showGDPR ? o.showLGPD || o.showCCPA || !o.showGDPR ? o.showLGPD || !o.showCCPA || o.showGDPR ? o.showUS ? (sp.complianceLawType = "US", sp.log("Secure Privacy US")) : o.showTHPDPA ? (sp.complianceLawType = "THPDPA", sp.log("Secure Privacy THPDPA")) : o.showPIPEDA && (sp.complianceLawType = "PIPEDA", sp.log("Secure Privacy PIPEDA")) : (sp.complianceLawType = "CCPA", sp.log("Secure Privacy CCPA")) : (sp.complianceLawType = "GDPR", sp.log("Secure Privacy GDPR")) : (sp.log("Secure Privacy LGPD"), sp.complianceLawType = "LGPD") : (sp.log("Secure Privacy is not enabled"), sp.allBanners = t[0], sp.complianceLawType = "", JSON.parse(localStorage.getItem("sp_noblock")) && sp.nonEuVisitorHandler(), g()), "" !== sp.complianceLawType && ((u = sp.prepareHttp("api/translation/domain/visitor?ApiKey=" + securePrivacy.apiKey + "&Domain=" + sp.targetDomain + "&languageCode=" + sp.selctedLanguage.value + "&ComplianceLawType=" + sp.complianceLawType)).onload = function() {
+                                    var e;
+                                    200 <= this.status && this.status < 400 && (e = JSON.parse(this.response), sessionStorage.setItem("translation-" + sp.targetDomain, JSON.stringify(e)), sp.translations = e, sp.setTranslationsText(), sp.allBanners = t.filter(function(e) {
+                                        return e.ComplianceLawType === sp.complianceLawType
+                                    })[0], sp.activeDomainBanner = sp.allBanners, sp.activeDomainBanner && sp.activeDomainBanner.EnableIab && sp.nonEuVisitorHandler(), sp.widgetDisplaySettings = sp.allComplainceDisplay.filter(function(e) {
+                                        return e.ComplianceLawType === sp.complianceLawType
+                                    })[0], sp.settingsPage = sp.allComplainceDashboard.filter(function(e) {
+                                        return e.ComplianceLawType === sp.complianceLawType
+                                    })[0], sp.displayOptions = sp.widgetDisplaySettings.Options, void 0 !== sp.settingsPage && "000000000000000000000000" !== sp.settingsPage.Id || (sp.settingsPage = {}, sp.settingsPage.PrivacyBanner = !0, sp.settingsPage.PrivacyCenter = !0, sp.settingsPage.TrustSeal = !0), (o.showLGPD || o.showGDPR || o.showCCPA || o.showUS || o.showTHPDPA || o.showPIPEDA) && (sp.generateClientId(), sp.createCCPABanners()))
+                                }, u.send())) : sp.log("Banners is not enabled. Please login and check your Banners."))
+                            }, e.send()
+                        }()
+                }
+            }, t.send()
+        }
+        var t
+    }, t.send(), window.onclick = function(e) {
+        if (void 0 !== e.target.matches && !e.target.matches(".dropbtn"))
+            for (var t = document.getElementsByClassName("dropdown-content"), n = 0; n < t.length; n++) {
+                var a = t[n];
+                a.classList.contains("show") && a.classList.remove("show")
+            }
+    }, sp.log = function(e) {
+        -1 < window.location.href.indexOf("sp-debug") && console.log(e)
+    }, sp.checkConsent = function(e) {
+        if (sp.allGivenConsents && 0 < sp.allGivenConsents.length)
+            for (var t = 0; t < sp.allGivenConsents.length; t++)
+                for (var n = JSON.parse(sp.allGivenConsents[t].PluginPreferences), a = 0; a < n.length; a++)
+                    if (n[a].ComplianceType === e) return !n[a].IsBlockEnabled;
+        return !1
+    }, sp.toggleDropDown = function(e) {
+        var t = document.getElementById("ifrmPrivacyBanner").contentWindow.document;
+        e ? t.getElementById("tab-options").classList.remove("show") : t.getElementById("tab-options").classList.toggle("show");
+        var n = t.querySelector(".btn-primary").innerHTML;
+        t.querySelector(".active-menu").innerHTML = n
+    }, sp.generateClientId = function() {
+        var e, t, n = '<div sp-widget-holder="trust-badge"></div>';
+        500 <= window.innerWidth ? document.querySelector("html").insertAdjacentHTML("beforeend", n) : document.querySelector("body").insertAdjacentHTML("beforeend", n), document.querySelector("html").insertAdjacentHTML("beforeend", '<div class="sp-overlay" style="display:none;"></div><div style="display:none;" sp-widget-holder="privacy-policy-popup"></div><div style="display:none;" id="main-privacy-banner" sp-widget-holder="privacy-banner"></div><div style="display:none;" id="main-cookie-banner" sp-widget-holder="cookie-banner"></div><div style="display:none;" class="chrm-ext-fix"></div>'), window.localStorage.getItem("s_e_c_u_r_e_k_e_y") && 0 < window.localStorage.getItem("s_e_c_u_r_e_k_e_y").length ? (sp.autoClientId = window.localStorage.getItem("s_e_c_u_r_e_k_e_y"), sp.getAllConsents()) : (e = Math.random(), sp.domainGroup && sp.domainGroup.DomainGroupName && (e = sp.domainGroup.DomainGroupName), (t = sp.prepareHttp("api/devicefingerprint?DeviceId=" + e + "&v=" + sp.versionNumber)).onload = function() {
+            var e;
+            200 <= this.status && this.status < 400 && (e = JSON.parse(this.response), window.localStorage.setItem("s_e_c_u_r_e_k_e_y", e.FingerPrint), sp.autoClientId = e.FingerPrint, sp.getAllConsents())
+        }, t.send()), sp.domainGroup && sp.domainGroup && sp.domainGroup.DomainGroupName && (sp.isGroupedConsent = !0)
+    }, sp.setTranslationsText = function() {
+        sp.bannerFields.textForSettings = sp.getBannerValueByKeyword("textForSettings"), sp.bannerFields.iabPartners = sp.getBannerValueByKeyword("iabPartners"), sp.bannerFields.textforPrivacyPolicy = sp.getBannerValueByKeyword("textforPrivacyPolicy"), sp.bannerFields.textForCookiesDeclaration = sp.getBannerValueByKeyword("textForCookiesDeclaration"), sp.bannerFields.textForDataRequestForm = sp.getBannerValueByKeyword("textForDataRequestForm"), sp.bannerFields.privacyReminderText = sp.getBannerValueByKeyword("Privacy reminder from"), sp.bannerFields.bannerIntroduction = sp.getBannerValueByKeyword("bannerIntroduction"), sp.bannerFields.dpoOfficerText = sp.getBannerValueByKeyword("dpo at"), sp.bannerFields.noOptOut = sp.getBannerValueByKeyword("No Opt Out"), sp.bannerFields.goToSite = sp.getBannerValueByKeyword("Go to site"), sp.bannerFields.saveButtonText = sp.getBannerValueByKeyword("Save"), sp.bannerFields.cancelButtonText = sp.getBannerValueByKeyword("Cancel"), sp.bannerFields.textForTrustBadge = sp.getBannerValueByKeyword("textForTrustBadge"), sp.bannerFields.settingsButtonText = sp.getBannerValueByKeyword("Settings"), sp.bannerFields.acceptButtonText = sp.getBannerValueByKeyword("Accept"), sp.bannerFields.rejectButtonText = sp.getBannerValueByKeyword("Cancel"), sp.bannerFields.hide = sp.getBannerValueByKeyword("hide"), sp.bannerFields.blockText = sp.getBannerValueByKeyword("Block/Enable"), sp.bannerFields.textForConsentMessage = sp.getBannerValueByKeyword("textForConsentMessage"), sp.bannerFields.textForConsentButton = sp.getBannerValueByKeyword("textForConsentButton"), sp.bannerFields.declineButtonText = sp.getBannerValueByKeyword("declineButtonText", !0) ? sp.getBannerValueByKeyword("declineButtonText") : sp.getBannerValueByKeyword("Decline"), sp.bannerFields.customizeButtonText = sp.getBannerValueByKeyword("customizeButtonText", !0) ? sp.getBannerValueByKeyword("customizeButtonText") : sp.getBannerValueByKeyword("Customize"), sp.bannerFields.privacyText = sp.getBannerValueByKeyword("Privacy"), sp.bannerFields.pluginText = sp.getBannerValueByKeyword("Plugin"), sp.bannerFields.servicesText = sp.getBannerValueByKeyword("Services"), sp.bannerFields.showCookiesText = sp.getBannerValueByKeyword("ShowCookies"), sp.bannerFields.expiryText = sp.getBannerValueByKeyword("Expiry"), sp.bannerFields.typeText = sp.getBannerValueByKeyword("Type"), sp.bannerFields.firstPartyText = sp.getBannerValueByKeyword("FirstParty"), sp.bannerFields.thirdPartyText = sp.getBannerValueByKeyword("Thirdparty")
+    }, sp.getCategoryKeyword = function(e) {
+        switch (e) {
+            case 11:
+                return "advertising";
+            case 12:
+                return "social_media";
+            case 13:
+                return "site_analytics";
+            case 14:
+                return "customer_interaction";
+            case 15:
+                return "comments";
+            case 16:
+                return "audio_video_player";
+            case 17:
+                return "essential";
+            case 19:
+                return "preferences";
+            default:
+                return "NA"
+        }
+    }, sp.getCategoryTextKeyword = function(e) {
+        switch (e) {
+            case 11:
+                return "Advertising Category Text";
+            case 12:
+                return "Social Media Category Text";
+            case 13:
+                return "Analytics Category Text";
+            case 14:
+                return "Customer Interaction Category Text";
+            case 15:
+                return "Comments Category Text";
+            case 16:
+                return "Media Player Category Text";
+            case 17:
+                return "Essential Category Text";
+            case 19:
+                return "Preferences Category Text";
+            default:
+                return "cookieBanner"
+        }
+    }, sp.getBannerValueByKeyword = function(t, e) {
+        return sp.translations.Banner.find(function(e) {
+            return e.Keyword.toLowerCase() === t.toLowerCase()
+        }) ? sp.translations.Banner.find(function(e) {
+            return e.Keyword.toLowerCase() === t.toLowerCase()
+        }).Text : e ? "" : t
+    }, sp.generateLanguageControl = function(e) {
+        var t;
+        sp.sp_localization = [];
+        var n = sp.supportedLanguages && sp.supportedLanguages.Languages ? sp.supportedLanguages.Languages : ["en"]; - 1 < n.indexOf("en") && (t = !0);
+        for (var a = 0; a < sp.allLanguagesJSON.length; a++) {
+            var o = sp.allLanguagesJSON[a]; - 1 < n.indexOf(o.code) && sp.sp_localization.push({
+                value: o.code,
+                display: o.name
+            })
+        }
+        sp.supportedLanguages && sp.supportedLanguages.DefaultLanguage && (sp.selctedLanguage = sp.sp_localization.find(function(e) {
+            return e.value === sp.supportedLanguages.DefaultLanguage
+        })), sp.selctedLanguage = t ? {
+            value: "en",
+            display: "English"
+        } : sp.sp_localization[0], sp.sp_localization.forEach(function(e) {
+            navigator.language && e.value === navigator.language.split("-")[0] && (sp.selctedLanguage = e)
+        })
+    }, sp.getAllConsents = function() {
+        var e, t = !1,
+            n = window.localStorage.getItem("sp_consent");
+        n && 0 < n.length && JSON.parse(n).Domain === window.securePrivacy.appId && (t = !0), t ? setTimeout(function() {
+            sp.getAllConsentsSuccess(JSON.parse(n).AllConsents)
+        }, 2e3) : ((e = sp.prepareHttp("api/consent/" + sp.autoClientId + "?Domain=" + sp.targetDomain + "&ApiKey=" + securePrivacy.apiKey + "&v=" + sp.versionNumber)).onload = function() {
+            var e;
+            200 <= this.status && this.status < 400 && (e = JSON.parse(this.response), sp.getAllConsentsSuccess(e))
+        }, e.send())
+    }, sp.getAllConsentsSuccess = function(e) {
+        if ((sp.allGivenConsents = e, sp.isGroupedConsent && 0 < sp.allGivenConsents.length) && 0 === sp.allGivenConsents.filter(function(e) {
+                return !1 === e.ConsentGiven
+            }).length) {
+            console.log(sp.allBanners), sp.allGivenConsents = [];
+            for (var t = 0; t < sp.allBanners.ComplianceLocalizedLists.length; t++) {
+                var n = sp.allBanners.ComplianceLocalizedLists[t];
+                if (0 !== n.CategoyId) {
+                    for (var a = [], o = 0; o < n.PluginList.length; o++) {
+                        var i = n.PluginList[o];
+                        a.push({
+                            ComplianceType: i.ComplianceType,
+                            ComplianceTypeID: i.ComplianceTypeID,
+                            IsBlockEnabled: !1
+                        })
+                    }
+                    sp.allGivenConsents.push({
+                        ComplianceType: n.CategoyHeading,
+                        ComplianceTypeID: n.CategoyId.toString(),
+                        ConsentGiven: !0,
+                        PluginPreferences: JSON.stringify(a)
+                    })
+                }
+            }
+        }
+        try {
+            for (var s = 0; s < sp.allGivenConsents.length; s++)
+                for (var r = sp.allGivenConsents[s], a = JSON.parse(r.PluginPreferences), p = 0; p < a.length; p++) {
+                    var c = a[p];
+                    sp.runScripts(c, c), sp.runSrcTags("img", c, c), sp.runSrcTags("iframe", c, c)
+                }
+            l("iframe"), l("video")
+        } catch (e) {}
+        sp.createBanners(!1, null), sp.whiteListServices()
+    }, String.prototype.sp_replaceAll = function(e, t, n) {
+        return this.replace(new RegExp(e.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g, "\\$&"), n ? "gi" : "g"), "string" == typeof t ? t.replace(/\$/g, "$$$$") : t)
+    }, sp.updateIFrameLink = function(e) {
+        var t = sp.getPlans();
+        "privacy" === e ? (document.getElementById("privacy-policy-popup-btn").classList.add("btn-primary"), document.getElementById("cookie-declaration-popup-btn").classList.remove("btn-primary"), document.querySelector("#ifrmPrivacyPolicyPopup").setAttribute("src", sp.assetLink + "ext/#/policies/privacy-and-cookie-policy/" + securePrivacy.apiKey + "/" + sp.targetDomain + "/" + t + "/" + sp.selctedLanguage.value + "/p")) : (document.getElementById("privacy-policy-popup-btn").classList.remove("btn-primary"), document.getElementById("cookie-declaration-popup-btn").classList.add("btn-primary"), document.querySelector("#ifrmPrivacyPolicyPopup").setAttribute("src", sp.assetLink + "ext/#/policies/privacy-and-cookie-policy/" + securePrivacy.apiKey + "/" + sp.targetDomain + "/" + t + "/" + sp.selctedLanguage.value + "/c"))
+    }, sp.getPlans = function() {
+        var e = [];
+        return sp.subscriptionDescription.supportedProducts.isGDPR && e.push("GDPR"), sp.subscriptionDescription.supportedProducts.isCCPA && e.push("CCPA"), sp.subscriptionDescription.supportedProducts.isLGPD && e.push("LGPD"), sp.subscriptionDescription.supportedProducts.isTHPDPA && e.push("THPDPA"), sp.subscriptionDescription.supportedProducts.isPIPEDA && e.push("PIPEDA"), e
+    }, sp.createBanners = function(e, t) {
+        var n, a = sp.advancedPrivacyCenter(sp.allBanners);
+        sp.getEnabledMenus(sp.targetDomain), sp.settingsPage.PrivacyCenter && ((n = document.createElement("iframe")).setAttribute("id", "ifrmPrivacyBanner"), n.setAttribute("aria-label", "Preference center"), n.setAttribute("title", "Preference center"), n.setAttribute("tabindex", "0"), document.querySelector("[sp-widget-holder='privacy-banner']").append(n), document.querySelector("[sp-widget-holder='privacy-banner']").classList.add("sp-privacy-banner-middle"), document.getElementById("ifrmPrivacyBanner").frameBorder = 0, document.getElementById("ifrmPrivacyBanner").scrolling = "no", -1 < navigator.userAgent.toLowerCase().indexOf("firefox") ? (n.contentWindow.document.open(), n.contentWindow.document.write(a), n.contentWindow.document.close()) : document.getElementById("ifrmPrivacyBanner").contentWindow.document.body.innerHTML = a, sp.displayOptions.ReplacePrivacyCenterCSS || (sp.pbc = sp.pbc.sp_replaceAll("##background-color##", sp.widgetDisplaySettings.BackgroundColor), sp.pbc = sp.pbc.sp_replaceAll("##font-color##", sp.widgetDisplaySettings.FontColor), document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector("head").insertAdjacentHTML("beforeend", '<style type="text/css">' + sp.pbc + "</style>")), document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector("head").insertAdjacentHTML("beforeend", '<style type="text/css">' + sp.displayOptions.PrivacyCenterCSS + "</style>"), sp.allBanners.EnableIab && "GDPR" == sp.complianceLawType ? document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector("#tab-settings").innerHTML = "" : document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector(".normal-footer").style.display = "initial");
+        for (var o = "", i = 0; i < sp.allBanners.CategoryDetails.length; i++) {
+            var s, r = sp.allBanners.CategoryDetails[i];
+            0 === r.CategoyId && (o += '<div role="main"  class="sp-banner-show ' + sp.displayOptions.cookieBannerPosition + '" id="banner-' + r.CategoyId + '">', o += '<div  id="grouped-pageload-Banner">', o += '<div  style="overflow: auto; background-color:' + sp.widgetDisplaySettings.BackgroundColor + "; color: " + sp.widgetDisplaySettings.FontColor + ';">', o += '<div class="sp-introduction-banner"  style="margin:0 auto;overflow:auto;padding: 10px 0px;">', o += '<div class="group-content-text">', o += '<div class="sp-cookie-banner-1" >', s = "", s = "black" === sp.displayOptions.logoColor ? sp.assetLink + "assets/images/secureprivacy-01-black.png" : sp.assetLink + "assets/images/logoWhite.png", r.CategoyText = sp.translations.Banner.find(function(e) {
+                return "cookieBanner" === e.Keyword
+            }) ? sp.translations.Banner.find(function(e) {
+                return "cookieBanner" === e.Keyword
+            }).Text : "Cookie Banner", r.CategoyText = r.CategoyText.replace('class="trust-widget-open"', 'class="trust-widget-open evSpOpenWidget" tabindex="0" '), r.CategoyText = r.CategoyText.sp_replaceAll("[sp-reject]", '<a href="javascript:void(0);" target="_self" tabindex="0" class="evSpRejectBtn" >').sp_replaceAll("[/sp-reject]", "</a>"), r.CategoyText = r.CategoyText.sp_replaceAll("[sp-accept]", '<a href="javascript:void(0);" target="_self" tabindex="0" class="evSpAcceptBtn" >').sp_replaceAll("[/sp-accept]", "</a>"), r.CategoyText = r.CategoyText.sp_replaceAll("[sp-pc]", '<a href="javascript:void(0);" target="_self" tabindex="0" class="evSpOpenWidget" >').sp_replaceAll("[/sp-pc]", "</a>"), sp.widgetDisplaySettings.Logo && 0 < sp.widgetDisplaySettings.Logo.length ? o += '<img alt="Privacy reminder" src="' + sp.widgetDisplaySettings.Logo + '" style="width:43px">' : o += '<img alt="Privacy reminder" id="evOpenSP" src="' + s + '" style="cursor:pointer;height:48px">', o += '</div><div role="navigation" class="sp-cookie-banner-2" tabindex="0" style="line-height:25px;color:#ffffff;font-size: 16px;color:' + sp.widgetDisplaySettings.FontColor + '"><h1>' + r.CategoyText + "</h1></div>", o += '<div class="sp-cookie-banner-3" >', "button" === sp.widgetDisplaySettings.CustomizeButtonStyle ? o += '<button class="intro-banner-btn evSpOpenWidget" tabindex="0" style="margin-left:15px;background-color: ' + sp.widgetDisplaySettings.CustomizeButtonColor + "; color:" + sp.widgetDisplaySettings.FontColor + '">' + sp.bannerFields.customizeButtonText + "</button>" : "link" === sp.widgetDisplaySettings.CustomizeButtonStyle && (o += '<button class="intro-banner-link evSpOpenWidget" tabindex="0" style="margin-right:15px; background-color: transparent; color:' + sp.widgetDisplaySettings.FontColor + '">' + sp.bannerFields.customizeButtonText + "</button>"), o += '<button class="intro-banner-btn save-consents evSpAcceptBtn" tabindex="0"  style="background-color: ' + sp.widgetDisplaySettings.SaveButtonColor + "; color:" + sp.widgetDisplaySettings.FontColor + '">' + sp.bannerFields.acceptButtonText + "</button>", "US" !== sp.complianceLawType && "THPDPA" !== sp.complianceLawType && "PIPEDA" !== sp.complianceLawType && ("button" !== sp.widgetDisplaySettings.DeclineButtonStyle && "crossAndButton" !== sp.widgetDisplaySettings.DeclineButtonStyle || (o += '<button class="intro-banner-btn evSpRejectBtn" tabindex="0"  style="background-color: ' + sp.widgetDisplaySettings.CancelButtonColor + "; color:" + sp.widgetDisplaySettings.FontColor + '">' + sp.bannerFields.declineButtonText + "</button>"), "cross" === sp.widgetDisplaySettings.DeclineButtonStyle && (o += '<button class="sp-close-button evSpRejectBtn" tabindex="0"> <img alt="Reject" style="width:26px;" src="' + sp.assetLink + 'assets/images/silver-close-button.png"/></button>'), "crossAndButton" === sp.widgetDisplaySettings.DeclineButtonStyle && (o += '<button class="sp-close-button evSpRejectBtn dismiss-button" tabindex="0"> <img alt="Reject" style="width:26px;" src="' + sp.assetLink + 'assets/images/silver-close-button.png"/></button>')), o += "</div>", o += "</div>", o += "</div>", o += "</div>", o += "</div>", sp.bannerFields.details && "" !== sp.bannerFields.details || (sp.bannerFields.details = "Details"), sp.bannerFields.hide && "" !== sp.bannerFields.hide || (sp.bannerFields.hide = "Hide"), sp.displayOptions.enableAdvancedCookieBanner ? o += '<div id="spDetailedContainer" class="sp_privacy_banner_detailed">' : o += '<div id="spDetailedContainer" style="display:none;" class="sp_privacy_banner_detailed">', o += sp.advancedCBB(sp.allBanners), o += "</div>", sp.allBanners.EnableIab && "GDPR" == sp.complianceLawType && ((u = document.createElement("SCRIPT")).src = "https://secureprivacy.mgr.consensu.org/cmp/cmp-v2.js", u.type = "text/javascript", document.getElementsByTagName("head")[0].appendChild(u)))
+        }
+        var p, c, l, d, u, y, g, m, b, v, f, h = "@media only screen and (max-width:767px){.sp-cookie-banner-2{max-height:145px;overflow-y:scroll;}.iab-buttons{line-height: 25px !important;margin: 0px 10px;font-size: 10px;} .details-cookie{margin: 5px 0 5px calc(50% - 45px) !important;}}";
+        sp.settingsPage.PrivacyBanner && (c = "", p = (p = '.sp-cookie-banner-2 h1{font-size: inherit; margin: 0px; font-weight: inherit; font-family: inherit;} .trust-widget-open:focus, button:focus{outline: 1px solid !important;}.cookie-consent-group{height: 30px;width:100%;cursor:pointer;display: block;margin: 0px 10px 15px 0px;padding: 5px 15px;background: #ffffff;border: solid 1px #eae9e9;border-radius: 3px;font-family: ##font-family##!important;font-size: 14px;}.count-badge {margin-right: 10px;background: #eae9e9;padding: 5px;border-radius: 50%;font-size: 11px;line-height: 10px;width: 11px;display: inline-block;text-align: center;float:right;}.lower,.upper{position:fixed}.intro-banner-btn,body{font-family:##font-family##!important}body{background:0 0;margin:0;padding:0}#sp-trust-badge{border:2px solid #fff!important;border-radius:4px!important;transition:transform .2s ease-in-out,background-color .2s ease-in-out!important;display:inline-block}.lower{bottom:0}.upper{top:0}a{color:inherit}.group-content-text{display:flex;}.group-content-text,.group-content-text p,.intro-banner-btn,.sp-cookie-banner-2{font-size:14px!important;margin:0}.sp-banner-show{width:100%;background:#fff}@media screen and (min-width:1200px){.pba .contents,.sp-introduction-banner{width: 1200px !important;}}.sp-introduction-banner{padding:25px!important}.sp-cookie-banner-1{display:flex!important;align-items:center!important;margin:0 25px 0 0;justify-content:center!important}.sp-cookie-banner-1, .sp-cookie-banner-1 img{padding:0}.sp-cookie-banner-2{width:calc(100% - 360px)!important;float:left!important}.sp-cookie-banner-3{width:360px!important;float:right!important;display:flex!important;align-items:center!important;justify-content:center!important;}.intro-banner-link{margin-left:15px; background-color: transparent;color: #ffffff;border: none;text-decoration: underline;cursor: pointer;}.intro-banner-btn{margin:0px 15px 0px 0px !important;padding:16px 14px!important;float:right!important;cursor:pointer!important;line-height:16px!important;font-weight:600;width:130px!important;border:none!important;text-shadow:none;background-image:none;transition:transform .2s ease-in-out,background-color .2s ease-in-out;-webkit-box-shadow:0 0 10px 0 rgba(0,0,0,.3);-moz-box-shadow:0 0 10px 0 rgba(0,0,0,.3);box-shadow:0 0 10px 0 rgba(0,0,0,.3)}.dismiss-button{position: absolute;top: 10px;right: 10px;}.sp-close-button{border-radius:50%;border:0;color:#525151;cursor:pointer;font-size:26px;font-weight:600;height:26px;line-height:1px;outline:0;padding:0;text-align:center;transition:transform .1s ease-in-out,background-color .1s ease-in-out;width:26px;z-index:1;margin:0;background:0 0}.sp-close-button img{margin:0}@media screen and (min-device-width:320px) and (max-device-width:500px){.sp-cookie-banner-2 p{display:inline}.group-content-text{display:inline !important;}.count-badge{display:none;}.sp-introduction-banner{padding:20px!important;width:calc(100% - 40px)!important}.sp-cookie-banner-1{display:none!important}.details-cookie{margin:0 auto !important;position:initial!important;box-shadow:none!important}.sp-cookie-banner-3{padding:0px !important; width:100%!important;float:right!important;display:flex!important;align-items:center!important;justify-content:center!important;margin-top:15px}.sp-cookie-banner-2>a{color:inherit!important;text-decoration:none!important;border-bottom:solid 1px!important}.sp-cookie-banner-2{width:100%!important;float:left!important}.footer_buttons button{width:auto!important;float:left!important;min-width:130px}.pba .contents{width:calc(100% - 40px)!important}.privacy_banner_advanced_header{padding:0 20px!important}.pba{max-height:41vh!important}}.trust-widget-open{border-bottom:solid 1px;border-color:inherit;cursor:pointer}.sp_privacy_banner_detailed{margin:0 auto;background:#fff}.privacy_banner_advanced_header{overflow:auto;margin:0 auto;text-align:center;padding:5px 0}@media screen and (min-width:1200px){.pba .contents{width:860px}.privacy_banner_advanced_header{width:860px!important}}@media screen and (min-width:1024px) and (max-width:1024px){.privacy_banner_advanced_header{padding:5px 20px;width:800px}.pba{padding:25px 20px!important}.sp-introduction-banner{padding:25px 19px!important;width:900px}}.privacy_banner_advanced_header .checboxes{padding:4px 0px;font-size:13px}.privacy_banner_advanced_header label{text-transform:capitalize;margin-right:25px;cursor:pointer}.details-cookie{text-transform: capitalize;cursor: pointer;background: #f5f5f5;min-width: 87px!important;font-weight: 400;border-radius: 4px;font-family: inherit;font-size: 14px;line-height: 28px;border: solid 1px #eae9e9;}.details-cookie span{border:solid #9e9e9e;border-width:0 2px 2px 0;display:inline-block;padding:4px;vertical-align:text-top;margin-left:5px}.content_body .div_category_item,.pba{display:none}.details-cookie span.down{transform:rotate(45deg);-webkit-transform:rotate(45deg)}.details-cookie span.up{transform:rotate(-135deg);-webkit-transform:rotate(-135deg);vertical-align:text-bottom}.pba{font-size:14px;background:#f5f5f5;padding:25px 0;max-height:65vh;overflow-x:auto}.pba .footer_buttons{margin-top:25px}.pba .contents{margin:0 auto;width:800px}.contents p{margin:0}.contents .content-intro-1{font-size:14px;line-height:23px;margin:0 0 15px}.pba .contents ul{list-style-type:none;padding:0;margin:0px;width:25%;float:left;background:#fff}ul li{text-transform:capitalize;padding:10px;cursor:pointer;background:#f5f5f5;border-bottom: solid 1px #eae9e9;}ul li.active{text-transform:capitalize;background:#fff;}.content_body{font-size:14px;line-height:23px;float:left;background:#fff;width:75%; height:220px; overflow-y: auto;}.content_body .div_category_item.active{display:block;padding:10px}.content_body table{margin:15px 0;text-align:left;width:100%}.content_body table tr td,.content_body table tr th{padding:5px 0;font-size:14px;line-height:23px}.footer_buttons button{float:none!important;margin:0 20px 0 0!important}.sp-slider-switch a{color:#45413e;text-decoration:none;line-height:16px;border-bottom:solid 1px rgba(69,65,62,.59)}.sp-slider-switch .switch-secure{position:relative;display:inline-block;width:45px;height:15px}.sp-slider-switch .switch-secure input{display:none}.sp-slider-switch .switch{position:relative;display:inline-block;width:45px;height:15px}.sp-slider-switch .switch input{display:none}.sp-slider-switch .slider{overflow:inherit;position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background-color:#ccc;-webkit-transition:.4s;transition:.4s}.sp-slider-switch .slider:before{position:absolute;height:20px;width:20px;left:0;bottom:-2px;background-color:#fff;-webkit-transition:.4s;transition:.4s;box-shadow:0 1px 3px 0 rgba(0,0,0,.4)}.sp-slider-switch input:checked+.slider{background-color:rgba(4, 166, 0, 0.42)}.sp-slider-switch input:focus+.slider{box-shadow:0 0 1px #04a600}.sp-slider-switch input:checked+.slider:before{-webkit-transform:translateX(26px);-ms-transform:translateX(26px);transform:translateX(26px);background:#04a600}.sp-slider-switch .slider.sp-round{border-radius:34px}.sp-slider-switch .slider.sp-round:before{border-radius:50%}.sp-loader:before,.sp-slider-switch .slider:before,.sp-slider:before{content:""}.sp-banner-footer{background:#fff;overflow:auto;padding:15px 30px;border-top:solid .5px #ccc;font-family:##font-family##!important}.plugins-wrapper{overflow: hidden;background: #f5f5f5;border: solid 1px #eae9e9;border-radius: 3px;}.container{position:relative;padding-left:20px;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.container input{position:absolute;opacity:0;cursor:pointer;height:0;width:0}.checkmark{position:absolute;top:-1;left:0;height:18px;width:18px;background-color:#eee;border-radius:4px;}.container:hover input~.checkmark{background-color:#ccc}.container input:checked~.checkmark{background-color:#04a600}.checkmark:after{content:"";position:absolute;display:none}.container input:checked~.checkmark:after{display:block}.container .checkmark:after{left:6px;top:2px;width:3px;height:8px;border:solid #fff;border-width:0 3px 3px 0;-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg)}.disabled:after{border-color:rgba(255, 255, 255, 0.44) !important;}.iab-buttons {cursor:pointer;line-height: 30px;margin:0px 15px;text-decoration: underline;font-size: 14px;color: #000;}@media only screen and (max-width:767px){.checboxes label{margin-right:20px; margin-top:10px;margin-bottom:10px;display:inline-block}.privacy_banner_advanced_header{text-align:inherit}}.ql-size-small { font-size: 0.75em; } .ql-size-large { font-size: 1.5em; } .ql-size-huge { font-size: 2.5em; }').replaceAll("##font-family##", "'" + sp.fontFamily + "'"), c = "Google" === sp.fontSource ? "@import url(" + sp.assetLink + "assets/fonts/google/" + sp.fontFamily + ".css);" + p : p, c += h, (l = document.createElement("iframe")).setAttribute("id", "ifrmCookieBanner"), l.setAttribute("aria-label", "Cookie Banner"), l.setAttribute("tabindex", "0"), document.querySelector("[sp-widget-holder='cookie-banner']").append(l), document.querySelector("[sp-widget-holder='cookie-banner']").classList.add(sp.displayOptions.cookieBannerPosition + "-cookie-banner"), document.querySelector("[sp-widget-holder='cookie-banner']").classList.add("sp-banner-show"), (d = document.getElementById("ifrmCookieBanner")).frameBorder = 0, d.scrolling = "no", d.title = "Cookie Banner", d.style.height = "100%", sp.allBanners.EnableIab && "GDPR" == sp.complianceLawType || (l.contentWindow.document.open(), l.contentWindow.document.write(o), l.contentWindow.document.close(), sp.displayOptions.ReplaceCookieBannerCSS || document.getElementById("ifrmCookieBanner").contentWindow.document.querySelector("head").insertAdjacentHTML("beforeend", '<style type="text/css">' + c + "</style>"), document.getElementById("ifrmCookieBanner").contentWindow.document.querySelector("head").insertAdjacentHTML("beforeend", '<style type="text/css">' + sp.displayOptions.CookieBannerCSS + "</style>"))), sp.allBanners.EnableIab && "GDPR" == sp.complianceLawType && ("settings" == sp.selectedTab && (sp.selectedTab = "settings-iab"), "undefined" != typeof iab_sp ? (iab_sp.iabPrivacyBannerCSS = iab_sp.iabPrivacyBannerCSS.sp_replaceAll("##background-color##", sp.widgetDisplaySettings.BackgroundColor).sp_replaceAll("##font-color##", sp.widgetDisplaySettings.FontColor), document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector("head").insertAdjacentHTML("beforeend", '<style type="text/css">' + iab_sp.iabPrivacyBannerCSS + "</style>"), document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector("#sp_iab_container").innerHTML = iab_sp.createBannerText(sp.selctedLanguage.value, sp.translations), iab_sp.changeLanguage(sp.selctedLanguage.value), iab_sp.resetButtons(), sp.toggleTabs(sp.selectedTab)) : ((u = document.createElement("SCRIPT")).src = sp.assetLink + sp.bannerLink + "iab/iab-v2.js", u.type = "text/javascript", document.getElementsByTagName("head")[0].appendChild(u), u.onload = function() {
+            var e;
+            window.parent.iab_sp ? (l && (e = (e = iab_sp.iabCookieBannerHTML).sp_replaceAll("{{iabAcceptAll}}", sp.getBannerValueByKeyword("iabAcceptAll")).sp_replaceAll("{{iabRejectAll}}", sp.getBannerValueByKeyword("iabRejectAll")).sp_replaceAll("{{iabCustomise}}", sp.getBannerValueByKeyword("iabCustomise")), l.contentWindow.document.open(), l.contentWindow.document.write(e), l.contentWindow.document.close(), document.getElementById("ifrmCookieBanner").contentWindow.document.querySelector("head").insertAdjacentHTML("beforeend", '<style type="text/css">' + iab_sp.iabCookieBannerCSS + " " + h + "</style>"), iab_sp.initIAB(sp.selctedLanguage.value, sp.translations)), iab_sp.iabPrivacyBannerCSS = iab_sp.iabPrivacyBannerCSS.sp_replaceAll("##background-color##", sp.widgetDisplaySettings.BackgroundColor).sp_replaceAll("##font-color##", sp.widgetDisplaySettings.FontColor), document.getElementById("ifrmPrivacyBanner") && (document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector("head").insertAdjacentHTML("beforeend", '<style type="text/css">' + window.parent.iab_sp.iabPrivacyBannerCSS + "</style>"), document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector("#sp_iab_container").innerHTML = window.parent.iab_sp.createBannerText(sp.selctedLanguage.value, sp.translations)), iab_sp.changeLanguage(sp.selctedLanguage.value), iab_sp.resetButtons(), document.getElementById("ifrmPrivacyBanner") && sp.toggleTabs(sp.selectedTab)) : (document.querySelector(".sp-overlay").style.display = "none", sp.hideCookieBanner())
+        })), !0 === sp.isTrustBadgeEnabled() && sp.settingsPage.TrustSeal && (y = ".widget-text h1{font-size: inherit; margin: 0px; font-weight: inherit; font-family: inherit;} .top-right,.lower-right{float:right} .top-left{float:left}body {background: transparent;margin: 0px;padding: 0px;font-family:##font-family##!important;}@media only screen and (max-device-width:600px){body{display: flex;align-items: center;justify-content: center;}}#sp-trust-badge {border: 2px solid #fff!important;border-radius: 4px!important;transition: transform .2s ease-in-out,background-color .2s ease-in-out!important;display: inline-block;margin-left: 10px;}#sp-trust-badge:hover {-webkit-box-shadow: 4px 4px 13px rgba(0,0,0,.3)!important;-moz-box-shadow: 4px 4px 13px rgba(0,0,0,.3)!important;box-shadow: 4px 4px 13px rgba(0,0,0,.3)!important;}", g = "", y = (y += ".logo-black{width: 36px;height: 36px;display: inline-block;background-size: contain;background-repeat: no-repeat;background-position: center;background-image:url(" + sp.assetLink + "assets/images/secureprivacy-01-black.png)} .logo-white {background-image: url(" + sp.assetLink + "assets/images/logoWhite.png);width: 36px;height: 36px;display: inline-block;background-size: contain;background-repeat: no-repeat;background-position: center;}.data-privacy-prefernces {cursor:pointer;font-weight: 400;font-size: 14px;margin-bottom: 0;padding: 2px 3px;line-height: 40px;min-width: 80px;display: inline-block;}.widget-text {display: inline-block;height: 34px;float: right;line-height: 34px;padding-left: 5px;padding-right: 5px;}").replaceAll("##font-family##", "'" + sp.fontFamily + "'"), g = "Google" === sp.fontSource ? "@import url(" + sp.assetLink + "assets/fonts/google/" + sp.fontFamily + ".css);" + y : y, m = "", m += '<div role="main" id="sp-trust-badge" class="' + sp.displayOptions.trustBadgePosition + '" style="background-color:' + sp.widgetDisplaySettings.BackgroundColor + ";color:" + sp.widgetDisplaySettings.FontColor + ';">', m += '<label class="data-privacy-prefernces notranslate">', sp.widgetDisplaySettings.Logo && 0 < sp.widgetDisplaySettings.Logo.length ? m += '<span style="background-image:url(' + sp.widgetDisplaySettings.Logo + ')" class="widget-logo logo-' + sp.displayOptions.logoColor + '"> </span>' : m += '<span class="widget-logo logo-' + sp.displayOptions.logoColor + '"> </span>', sp.bannerFields.privacyText && 0 < sp.bannerFields.privacyText.length && (m += '<span style="color:' + sp.widgetDisplaySettings.FontColor + '" class="widget-text"><h1>' + sp.bannerFields.privacyText + "</h1></span>"), m += "</label></div>", document.getElementById("ifrmTrustBadge") || ((b = document.createElement("iframe")).setAttribute("id", "ifrmTrustBadge"), b.setAttribute("tabindex", "0"), b.setAttribute("aria-label", "Manage Preferences"), b.setAttribute("title", "Manage Preferences"), document.querySelector("[sp-widget-holder='trust-badge']").appendChild(b), document.querySelector("[sp-widget-holder='trust-badge']").classList.add("secure-privacy-tb-" + sp.displayOptions.trustBadgePosition), document.getElementById("ifrmTrustBadge").frameBorder = 0, document.getElementById("ifrmTrustBadge").scrolling = "no", b.contentWindow.document.open(), b.contentWindow.document.write(m), b.contentWindow.document.close(), v = document.createElement("style"), sp.displayOptions.showFloatingWidgetOnMobile ? v.innerHTML = "@media screen and (max-width:500px) and (min-width:319px)  {[sp-widget-holder~=trust-badge] { position: fixed !important; }}" : v.innerHTML = "@media screen and (max-width:500px) and (min-width:319px)  {[sp-widget-holder~=trust-badge] { position: initial !important; }}", document.getElementsByTagName("head")[0].appendChild(v), sp.displayOptions.ReplaceTrustBadgeCSS || document.getElementById("ifrmTrustBadge").contentWindow.document.querySelector("head").insertAdjacentHTML("beforeend", '<style type="text/css">' + g + "</style>"), document.getElementById("ifrmTrustBadge").contentWindow.document.querySelector("head").insertAdjacentHTML("beforeend", '<style type="text/css">' + sp.displayOptions.TrustBadgeCSS + "</style>"))), e && "cookieBanner" === t ? sp.showCookieBanner() : e && "privacy-banner" === t ? document.querySelector("#banner-" + t).style.display = "block" : sp.initBannersDisplay(), sp.isInitialized = !0, e || (f = new CustomEvent("sp_init", {
+            detail: {
+                init: !0,
+                complianceType: sp.complianceLawType
+            }
+        }), window.dispatchEvent(f))
+    }, sp.loadPrivacyCenter = function(a) {
+        var o = sp.activeDomainBanner.Domain;
+        sp.captureConsentPreferences(o, "privacyBanner", !0, sp.activeDomainBanner), document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector(".content-right-panel").style.opacity = "0.3";
+        var e = sp.prepareHttp("api/consent/" + sp.autoClientId + "?Domain=" + a + "&ApiKey=" + securePrivacy.apiKey + "&v=" + sp.versionNumber);
+        e.onload = function() {
+            var n, e;
+            200 <= this.status && this.status < 400 && (n = JSON.parse(this.response), sp.activeDomainConsentPref = n, (e = sp.prepareHttp("api/adminsettings/displaypage/visitor?ApiKey=" + securePrivacy.apiKey + "&Domain=" + a + "&v=" + sp.versionNumber)).onload = function() {
+                var e, t;
+                200 <= this.status && this.status < 400 && (e = JSON.parse(this.response), sp.getEnabledMenus(a), sp.targetDomain = a, 0 < e.displaySettings.length ? (sp.activeWidgetDisplaySettings = e.displaySettings[0], sp.generateLanguageControl(e.displaySettings[0].Extra)) : sp.log("Domain display settings error."), (t = sp.prepareHttp("api/bannerWithScanData/visitor?ApiKey=" + securePrivacy.apiKey + "&IncludeLastScanData=false&Domain=" + a + "&v=" + sp.versionNumber)).onload = function() {
+                    var e, t;
+                    200 <= this.status && this.status < 400 && ((e = JSON.parse(this.response)) && 0 < e.length ? (document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector("#banner-privacy-banner").innerHTML = "", sp.activeDomainBanner = e.filter(function(e) {
+                        return e.ComplianceLawType === sp.complianceLawType
+                    })[0], sp.allBanners = sp.activeDomainBanner, t = sp.advancedPrivacyCenter(sp.activeDomainBanner, n, null, sp.activeWidgetDisplaySettings), document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector("#banner-privacy-banner").innerHTML = t, sp.enabledLinks.privacy && document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelectorAll("[data-tab='privacy-policy']").forEach(function(e) {
+                        e.style.display = "flex"
+                    }), sp.enabledLinks.cookie && document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelectorAll("[data-tab='cookie-policy']").forEach(function(e) {
+                        e.style.display = "flex"
+                    }), sp.enabledLinks.dataRequest && document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelectorAll('[data-tab="data-req-form"]').forEach(function(e) {
+                        e.style.display = "flex"
+                    }), (sp.subscriptionDescription.supportedProducts.isLGPD || sp.subscriptionDescription.supportedProducts.isCCPA || sp.subscriptionDescription.supportedProducts.isGDPR) && window.ccpa_sp && window.sp.dataReqForm && window.sp.dataReqForm.IsActive && (document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector('[data-tab="data-req-form"]').style.display = "block", ccpa_sp.initCCPA(sp.selctedLanguage.value, !1, !1)), sp.allBanners.EnableIab && "GDPR" == sp.complianceLawType ? document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector("#tab-settings").innerHTML = "" : document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector(".normal-footer").style.display = "initial", document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector("#btn_" + o).removeAttribute("selected"), document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector("#btn_" + a).setAttribute("selected", "selected"), sp.getCookieListForPreferenceCenter(), r()) : console.log("Banners is not enabled. Please login and check your Banners."))
+                }, t.send())
+            }, e.send())
+        }, e.send()
+    }, sp.savePluginConsent = function(e) {
+        var t = document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelectorAll("[data-tracker-name='" + e + "']")[0];
+        t && (t.checked = !0), sp.unblockIframeFromConsents(e, "iframe"), sp.unblockIframeFromConsents(e, "video"), sp.saveAllConsents("privacyBanner", !0)
+    }, sp.expandCollapseOnEnterKey = function(e, t) {
+        "Enter" == e.key && window.parent.sp.expandCollapse(t)
+    }, sp.setAttributeEnterKey = function(e, t) {
+        "Enter" != e.key && " " != e.key || (null != document.querySelector(t).querySelector("input")[0].getAttribute("checked") ? (document.querySelector(t).querySelector("input")[0].setAttribute("checked", !1), document.querySelector(t).querySelector("input")[0].removeAttribute("checked")) : document.querySelector(t).querySelector("input")[0].setAttribute("checked", !0), e.preventDefault())
+    }, sp.unblockIframeFromConsents = function(e, t) {
+        var n = document.querySelectorAll(t);
+        for (i = 0; i < n.length; i++) {
+            var a = n[i];
+            sp.hasAttr(a, "sp-consent") && sp.hasAttr(a, "data-src") && a.getAttribute("sp-consent").toLowerCase().trim() === e.toLowerCase().trim() && (a.setAttribute("src", a.getAttribute("data-src")), a.style.display = "initial")
+        }
+        var o = document.querySelectorAll("." + u(e));
+        for (i = 0; i < o.length; i++) {
+            o[i].style.display = "none"
+        }
+    }, sp.unblockPixelsFromConsents = function(e) {
+        var t = document.querySelectorAll("img");
+        for (i = 0; i < t.length; i++) {
+            var n = t[i];
+            sp.hasAttr(n, "sp-consent") && sp.hasAttr(n, "data-src") && n.getAttribute("sp-consent").toLowerCase().trim() === e.toLowerCase().trim() && n.setAttribute("src", n.getAttribute("data-src"))
+        }
+    }, sp.advancedPrivacyCenter = function(e, t, n, a) {
+        var o;
+        t = t || sp.allGivenConsents, n = n || sp.selctedLanguage.value, o = (a = a || sp.widgetDisplaySettings).Logo && 0 < a.Logo.length ? a.Logo : "black" === sp.displayOptions.logoColor ? sp.assetLink + "assets/images/logo-black.png" : sp.assetLink + "assets/images/logo-small.png";
+        var i = "";
+        sp.cookieList = e.Cookies || [];
+        for (var s = 0; s < e.CategoryDetails.length; s++) {
+            var r = e.CategoryDetails[s];
+            if (0 < r.CategoyId && 18 !== r.CategoyId) {
+                var p = {
+                    categoryHeading: sp.getBannerValueByKeyword(sp.getCategoryKeyword(r.CategoyId)),
+                    categoryText: sp.getBannerValueByKeyword(sp.getCategoryTextKeyword(r.CategoyId))
+                };
+                i += '<div  tabindex="0" class="custom-ac-head"  onkeydown="window.parent.sp.expandCollapseOnEnterKey(event,' + r.CategoyId + ')" data-categoryId="' + r.CategoyId + '">', i += '<div class="heading allAccordianHead accorHead-' + r.CategoyId + '">', i += "<h1>" + p.categoryHeading, r.PluginList && 0 < r.PluginList.length && (i += '<span class="sp-accor-plugin-count">' + r.PluginList.length + "</span>"), 18 === r.CategoyId && (p.categoryText = ""), i += "</h1>", i += "</div>", i += '<span class="caret-down allAccordianImg accorImg-' + r.CategoyId + '">', i += '<img alt="Down" style="width:20px;" src="' + sp.assetLink + 'assets/images/chevron-down.svg" />', i += "</span>", i += "</div>", i += '<div alt="Up" style="display:none;" class="custom-ac-body closed-accordion allAccordianBody accorBody-' + r.CategoyId + '">', i += "<div>", i += '<div tabindex="0" class="CategoyText">', i += p.categoryText, i += "</div>", i += '<table class="plugins-table mt-20">', i += "<tr>", "hr" === sp.selctedLanguage.value ? i += "<th>Dodatak</th>" : i += "<th>Plugins</th>", sp.bannerFields.blockText && "" !== sp.bannerFields.blockText || (sp.bannerFields.blockText = "Block/Enable"), i += "<th>##blcText##</th><th></th>", i += "</tr>";
+                for (var c = !1, l = 0; l < r.PluginList.length; l++) {
+                    var d, u, y = r.PluginList[l],
+                        g = sp.getCategoryKeyword(r.CategoyId),
+                        m = sp.cookieList.filter(function(e) {
+                            return e.Plugin === y.ComplianceType && e.Category === g
+                        }).filter(function(t, e, n) {
+                            return n.findIndex(function(e) {
+                                return e.Name == t.Name
+                            }) === e
+                        });
+                    y.cookies = m, y.cookies.isOpened = !1, i += "<tr>", i += '<td tabindex="0" style="width:30%;">' + y.ComplianceType + "</td>", i += '<td tabindex="0" style="width:150px;" class="sp-slider-switch" onkeydown="window.parent.sp.setAttributeEnterKey(event, this);">', y.cName && "" !== y.cName && "both" !== y.cName && "switch" !== y.cName || (c = !0, d = B(r.CategoyId, y.ComplianceType, t), 17 !== r.CategoyId ? (c = !0, u = "", t.length < 1 && (u = r.IsMandatory ? "checked='true'" : ""), !1 === d && (u = "checked='true'"), i += '<label for="tracker-' + y.ComplianceTypeID + '" class="switch-secure">', i += "<input " + u + " data-ComplianceTypeID='" + r.CategoyId + "' class='tracker-compliance'   data-ComplianceType='" + p.categoryHeading + "' id='tracker-" + y.ComplianceTypeID + "' data-tracker-name='" + y.ComplianceType + "'type='checkbox' name='tracker-" + y.ComplianceTypeID + "' >", i += '<span class="slider sp-round"></span>', i += "</label>") : 17 === r.CategoyId && (i += sp.bannerFields.noOptOut)), i = c ? i.replace("##blcText##", sp.bannerFields.blockText) : i.replace("##blcText##", ""), i += "</td>", i += '<td style="width:120px;">', ("both" === y.cName || "link" === y.cName) && y.optOutExternalLink && 0 < y.optOutExternalLink.length && (i += '<a class="cookie-privacy-policy" target="_blank" href="' + y.optOutExternalLink + '">' + sp.bannerFields.goToSite + "</a>"), i += "</td>";
+                    var b = "plugin-" + y.ComplianceTypeID;
+                    i += '<td> <div data-categoryId="' + r.CategoyId + '" data-pluginId="' + y.ComplianceTypeID + '" class="show-cookies">', i += '<span class="clsAccorShowCookieBanner-' + r.CategoyId + b + ' show-cookies">' + sp.bannerFields.showCookiesText + " (" + y.cookies.length + ")</span>", i += '<span class="caret-down allAccordianImg accorCookieImg-' + r.CategoyId + "plugin-" + y.ComplianceTypeID + '">', i += '<img alt="down" style="width:20px;" src="' + sp.assetLink + 'assets/images/carat-down.png" />', i += "</span>", i += "</div> </td>", i += "</tr>", i += '<tr class="accorBodyCookies-' + r.CategoyId + " eleAccorBodyCookies_" + r.CategoyId + b + '">', i += "</tr>"
+                }
+                i += "</table>", i += "</div>", i += "</div>"
+            }
+        }
+        var v = "";
+        sp.sp_localization.forEach(function(e) {
+            e.value === n ? v += '<option selected value="' + e.value + '" > ' + e.display + "</option>" : v += '<option value="' + e.value + '" > ' + e.display + "</option>"
+        });
+        var f = 'style="display:block;"';
+        sp.displayOptions.showDPO || (f = 'style="display:none;"');
+        var h = 'style="display:block;"';
+        sp.displayOptions.showPrivacyLink || (h = 'style="display:none;"');
+        var w = "";
+        if (sp.isGroupedConsent) {
+            var x = sp.domainGroup.Domains;
+            w += '<select class="privacy-consent-group" tabindex="0" aria-label="domains" title="domains" onchange="window.parent.sp.switchLanguageAndCallPrivacyCenter(this.value)">';
+            for (var C = 0; C < x.length; C++) {
+                var k = "";
+                x[C].DomainId === sp.allBanners.Domain && (k += 'selected="selected"'), w += '<option  id="btn_' + x[C].DomainId + '" ' + k + " value='" + x[C].DomainId + "'>" + x[C].Url + "</option>"
+            }
+            w += "</select>", w += "<div style='clear:both;float:none;'></div>", w += "<div style='clear:both;float:none;'></div>"
+        }
+        sp.subscriptionDescription.supportedProducts.isCCPA && sp.displayOptions.showPrivacyLink ? sp.sp_privacyBannerMarkup = sp.sp_privacyBannerMarkup.sp_replaceAll("##privacy-policy-class##", "privacy-policy-small") : sp.sp_privacyBannerMarkup = sp.sp_privacyBannerMarkup.sp_replaceAll("##privacy-policy-class##", "privacy-policy"), sp.widgetDisplaySettings.Logo && 0 < sp.widgetDisplaySettings.Logo.length ? sp.sp_privacyBannerMarkup = sp.sp_privacyBannerMarkup.sp_replaceAll("{{spBannerHref}}", "") : sp.sp_privacyBannerMarkup = sp.sp_privacyBannerMarkup.sp_replaceAll("{{spBannerHref}}", "href='https://secureprivacy.ai'");
+        return sp.displayOptions.hidePoweredByText ? sp.sp_privacyBannerMarkup = sp.sp_privacyBannerMarkup.sp_replaceAll("##poweredby##", "") : sp.sp_privacyBannerMarkup = sp.sp_privacyBannerMarkup.sp_replaceAll("##poweredby##", '<div class="powered-by"><span class="secure-privacy-logo-top"><a target="_blank" href="https://secureprivacy.ai">Powered by Secureprivacy</a></span></div>'), sp.sp_privacyBannerMarkup.sp_replaceAll("{{backgroundColor}}", a.BackgroundColor).sp_replaceAll("{{cross-domain-privacy-center}}", w).sp_replaceAll("{{fontColor}}", a.FontColor).sp_replaceAll("{{fontsize}}", a.FontSize).sp_replaceAll("{{spLogo}}", o).sp_replaceAll("{{bannerHeading}}", sp.bannerFields.privacyReminderText).sp_replaceAll("{{bannerIntroduction}}", sp.bannerFields.bannerIntroduction).sp_replaceAll("{{dpoName}}", sp.displayOptions.dpoOfficer).sp_replaceAll("{{dpoText}}", sp.bannerFields.dpoOfficerText).sp_replaceAll("{{accordian}}", i).sp_replaceAll("{{languageControl}}", v).sp_replaceAll("{{saveButtonColor}}", a.SaveButtonColor).sp_replaceAll("{{privacypolicyHref}}", sp.displayOptions.privacyPolicyHref).sp_replaceAll("{{privacypolicyLink}}", sp.bannerFields.textforPrivacyPolicy).sp_replaceAll("{{saveButtonText}}", sp.bannerFields.saveButtonText).sp_replaceAll("{{cancelButtonColor}}", a.CancelButtonColor).sp_replaceAll("##PrivacyPolicy##", sp.bannerFields.textforPrivacyPolicy || "Privacy policy").sp_replaceAll("##CookiePolicy##", sp.bannerFields.textForCookiesDeclaration || "Cookie declaration").sp_replaceAll("##DataRequestForm##", sp.bannerFields.textForDataRequestForm || "Data request form").sp_replaceAll("##SettingsText##", sp.bannerFields.textForSettings || "Settings").sp_replaceAll("##PartnersText##", sp.bannerFields.iabPartners || "Partners").sp_replaceAll("{{categoryID}}", "privacy-banner").sp_replaceAll("{{doNotSellText}}", sp.bannerFields.textForDataRequestForm).sp_replaceAll("##dpoIntroductioStyle##", f).sp_replaceAll("##privacyStyle##", h).sp_replaceAll("{{cancelButtonText}}", sp.bannerFields.cancelButtonText).sp_replaceAll("{{positiveCallAction}}", "window.parent.sp.saveAllConsents('privacyBanner', true);").sp_replaceAll("{{negativeCallAction}}", "window.parent.sp.hidePrivacyBanner();")
+    }, sp.loadConsents = function(i) {
+        var s = sp.activeDomainBanner.Domain;
+        sp.captureConsentPreferences(s, "cookieBanner", !0, sp.activeDomainBanner), document.getElementById("ifrmCookieBanner").contentWindow.document.querySelector(".plugins-wrapper").style.opacity = "0.5";
+        var e = sp.prepareHttp("api/consent/" + sp.autoClientId + "?Domain=" + i + "&ApiKey=" + securePrivacy.apiKey + "&v=" + sp.versionNumber);
+        e.onload = function() {
+            var o, e;
+            200 <= this.status && this.status < 400 && (o = JSON.parse(this.response), (e = sp.prepareHttp("api/adminsettings/displaypage/visitor?ApiKey=" + securePrivacy.apiKey + "&Domain=" + i + "&v=" + sp.versionNumber)).onload = function() {
+                var e, t;
+                200 <= this.status && this.status < 400 && (e = JSON.parse(this.response), sp.generateLanguageControl(e.displaySettings.Extra), (t = sp.prepareHttp("api/bannerWithScanData/visitor?ApiKey=" + securePrivacy.apiKey + "&IncludeLastScanData=false&Domain=" + i + "&v=" + sp.versionNumber)).onload = function() {
+                    var e, t, n, a;
+                    200 <= this.status && this.status < 400 && ((e = JSON.parse(this.response)) && 0 < e.length ? (document.getElementById("ifrmCookieBanner").contentWindow.document.querySelector("#spDetailedContainer").innerHTML = "", sp.activeDomainBanner = e[0], sp.allBanners = sp.activeDomainBanner, t = sp.advancedCBB(e[0], o), document.getElementById("ifrmCookieBanner").contentWindow.document.querySelector("#spDetailedContainer").innerHTML = t, document.getElementById("ifrmCookieBanner").contentWindow.document.querySelector(".pba").style.display = "block", document.getElementById("ifrmCookieBanner").contentWindow.document.querySelector("#btn_" + s).removeAttribute("selected"), document.getElementById("ifrmCookieBanner").contentWindow.document.querySelector("#btn_" + i).setAttribute("selected", "selected"), document.getElementById("ifrmCookieBanner").contentWindow.document.querySelector(".details-cookie span").setAttribute("class", "up"), document.getElementById("ifrmCookieBanner").contentWindow.document.querySelector(".details-cookie .d-text").innerHTML = sp.bannerFields.hide, (n = JSON.parse(sessionStorage.getItem("cookieList-" + i))) && sp.allBanners.Cookies ? (sp.allBanners.Cookies = n, sp.cookieList = n, p(), r()) : ((a = sp.prepareHttp("api/plugins/website/cookielist/visitor?ApiKey=" + securePrivacy.apiKey + "&Domain=" + i)).onload = function() {
+                        var e;
+                        200 <= this.status && this.status < 400 && ((e = JSON.parse(this.response)) && 0 < e.length && (sp.activeDomainBanner.Cookies = e, sessionStorage.setItem("cookieList-" + i, JSON.stringify(e)), sp.allBanners.Cookies = e, sp.cookieList = e, p(), r()))
+                    }, a.send())) : console.log("Banners is not enabled. Please login and check your Banners."))
+                }, t.send())
+            }, e.send())
+        }, e.send()
+    }, sp.advancedCBB = function(e, t) {
+        t = t || sp.allGivenConsents;
+        var n = "";
+        n += '<div class="privacy_banner_advanced_header">', n += '<div class="checboxes"> {{Checkboxes}} <button id="evDetailedCookieBanner" class="details-cookie"><text class="d-text"> ' + sp.bannerFields.details + ' </text> <span class="down" ></span> </button></div>', n += "</div>", n += '<div class="pba"><div class="contents"><div class="content-intro-1" tabindex="0">' + sp.bannerFields.bannerIntroduction + '</div> {{cross_domain_cookie_consent}} <div class="plugins-wrapper"><ul class="content_buttons">{{li_content_buttons}}</ul><div class="content_body">{{category_content_body}}</div></div><div class="footer_buttons">', n += " </div></div>", n += "</div>";
+        var a = "",
+            o = "",
+            i = "",
+            s = "",
+            r = "";
+        sp.cookieList = e.Cookies || [];
+        for (var p = 0; p < e.CategoryDetails.length; p++) {
+            var c = e.CategoryDetails[p];
+            if (0 < c.CategoyId && 18 !== c.CategoyId) {
+                var l, d = {
+                        categoryHeading: sp.getBannerValueByKeyword(sp.getCategoryKeyword(c.CategoyId)),
+                        categoryText: sp.getBannerValueByKeyword(sp.getCategoryTextKeyword(c.CategoyId))
+                    },
+                    i = "" == o ? "active" : "",
+                    u = '<label  class="container" tabindex="0"> <input id="select_all_' + d.categoryHeading.replaceAll(" ", "_") + '" data-categoryHeading="' + d.categoryHeading + '" class="evSelectAllCheckbox" type="checkbox" {{checkbox_disabled}} {{checkbox_checked}} />' + d.categoryHeading + '<span class="checkmark {{span_disabled}}"></span></label>';
+                c.ExtraSettings && 0 < c.ExtraSettings.length && 17 !== c.CategoyId ? (l = "", c.IsMandatory && (l = "checked"), a += u.sp_replaceAll("{{checkbox_disabled}}", "").sp_replaceAll("{{checkbox_checked}}", l).sp_replaceAll("{{span_disabled}}", "")) : 17 === c.CategoyId ? a += u.sp_replaceAll("{{checkbox_disabled}}", "disabled").sp_replaceAll("{{checkbox_checked}}", "checked").sp_replaceAll("{{span_disabled}}", "disabled") : a += u.sp_replaceAll("{{checkbox_disabled}}", "").sp_replaceAll("{{checkbox_checked}}", "checked").sp_replaceAll("{{span_disabled}}", ""), o += '<li tabindex="0"  id="li_category_' + d.categoryHeading.replaceAll(" ", "_") + '" class="evAdvancedCategory ' + i + '" >' + d.categoryHeading + '<span class="count-badge">' + c.PluginList.length + "</span></li>", 18 === c.CategoyId && (d.categoyText = ""), s += '<div id="div_category_' + d.categoryHeading.replaceAll(" ", "_") + '" class="div_category_item ' + i + '"><div tabindex="0" class="CategoyText">' + d.categoryText + "</div>", s += '<table class="plugins-table">', s += "<tr>", s += '<th  tabindex="0">Plugins</th>', sp.bannerFields.blockText && "" !== sp.bannerFields.blockText || (sp.bannerFields.blockText = "Block/Enable"), s += '<th  tabindex="0">##block_text##</th><th></th>', s += "</tr>";
+                for (var y = !1, g = 0; g < c.PluginList.length; g++) {
+                    var m, b, v = c.PluginList[g],
+                        f = sp.getCategoryKeyword(c.CategoyId),
+                        h = sp.cookieList.filter(function(e) {
+                            return e.Plugin === v.ComplianceType && e.Category === f
+                        }).filter(function(t, e, n) {
+                            return n.findIndex(function(e) {
+                                return e.Name == t.Name
+                            }) === e
+                        });
+                    v.cookies = h, s += "<tr>", s += '<td  tabindex="0" style="width:35%;">' + v.ComplianceType + "</td>", s += '<td  tabindex="0" class="sp-slider-switch" onkeydown="window.parent.sp.setAttributeEnterKey(event, this);">', v.cName && "" !== v.cName && "both" !== v.cName && "switch" !== v.cName || (m = B(c.CategoyId, v.ComplianceType, t), y = !0, 17 !== c.CategoyId ? (b = "", c.ExtraSettings && 0 < c.ExtraSettings.length && 17 !== c.CategoyId ? b = c.IsMandatory ? "checked='true'" : "" : (!1 === m || t.length < 1) && (b = "checked='true'"), s += '<label for="tracker-' + v.ComplianceTypeID + '" class="switch-secure">', s += "<input " + b + " data-ComplianceTypeID='" + c.CategoyId + "' class='tracker-compliance' data-ComplianceType='" + d.categoryHeading + "' id='tracker-" + v.ComplianceTypeID + "' data-tracker-name='" + v.ComplianceType + "'type='checkbox' name='tracker-" + v.ComplianceTypeID + "' >", s += '<span class="slider sp-round"></span>', s += "</label>") : 17 === c.CategoyId && (s += sp.bannerFields.noOptOut)), s = y ? s.replace("##block_text##", sp.bannerFields.blockText) : s.replace("##block_text##", ""), s += "</td>", s += "<td>", ("both" === v.cName || "link" === v.cName) && v.optOutExternalLink && 0 < v.optOutExternalLink.length && (s += '<a class="cookie-privacy-policy" target="_blank" href="' + v.optOutExternalLink + '">' + sp.bannerFields.goToSite + "</a>"), s += "</td>";
+                    var w = "SPCookieSectionPlugin-" + v.ComplianceTypeID;
+                    s += '<td> <div style="width:140px" data-categoryId="' + c.CategoyId + '" data-complianceId="' + v.ComplianceTypeID + '"  class="evExpandCollapseAdvanceCookieSection show-cookies">', s += '<span class="clsShowCookieBanner-' + c.CategoyId + w + '">' + sp.bannerFields.showCookiesText + " (" + v.cookies.length + ")</span>", s += '<span class="caret-down allAccordianImg advanceCookieBannerAccorCookieImg-' + c.CategoyId + "SPCookieSectionPlugin-" + v.ComplianceTypeID + '" style="float: right;">', s += '<img alt="down" style="width:20px;" src="' + sp.assetLink + 'assets/images/carat-down.png" />', s += "</span>", s += "</div> </td>", s += "</tr>", s += '<tr class="advanceCookieBannerBodyCookies-' + c.CategoyId + " eleCookieBannerBodyCookies_" + c.CategoyId + w + '">', s += "</tr>"
+                }
+                s += "</table>", s += "</div>"
+            }
+        }
+        if (sp.domainGroup && sp.domainGroup.DomainGroupName && sp.domainGroup.Domains) {
+            var x = sp.domainGroup.Domains;
+            r += '<select class="cookie-consent-group" onchange="window.parent.sp.loadConsents(this.value)">';
+            for (var C = 0; C < x.length; C++) {
+                var k = "";
+                x[C].DomainId === sp.allBanners.Domain && (k += 'selected="selected"'), r += '<option  id="btn_' + x[C].DomainId + '" ' + k + " value='" + x[C].DomainId + "'>" + x[C].Url + "</option>"
+            }
+            r += "</select>", r += "<div style='clear:both;float:none;'></div>"
+        }
+        return n = (n = (n = (n = n.sp_replaceAll("{{Checkboxes}}", a)).sp_replaceAll("{{li_content_buttons}}", o)).sp_replaceAll("{{category_content_body}}", s)).sp_replaceAll("{{cross_domain_cookie_consent}}", r)
+    }, sp.initBannersDisplay = function() {
+        var e = !1; - 1 < window.location.href.indexOf("sp_open_privacyCenter") ? (sp.showPrivacyBanner(), e = !0) : sp.allGivenConsents.length < 1 && sp.settingsPage.PrivacyBanner && (sp.showCookieBanner(), e = !0), e ? document.querySelector("[sp-widget-holder='trust-badge']").style.display = "none" : sp.showTrustWidget(!1), g(), r()
+    }, sp.openTrustWidget = function() {
+        sp.settingsPage.PrivacyCenter && sp.getCookieListForPreferenceCenter()
+    }, sp.cookieBannerVisible = function() {
+        return "visible" === document.querySelector("#main-cookie-banner").style.visibility
+    }, sp.getEnabledMenus = function(e) {
+        var t, n, a;
+        sp.widgetDisplaySettings.PlanName && -1 === sp.widgetDisplaySettings.PlanName.toLowerCase().indexOf("basic") && -1 === sp.widgetDisplaySettings.PlanName.toLowerCase().indexOf("standard") && ((t = sp.prepareHttp("api/privacypolicy/visitor?ApiKey=" + securePrivacy.apiKey + "&Domain=" + e + "&v=" + sp.versionNumber)).onload = function() {
+            var e;
+            200 <= this.status && this.status < 400 && (e = JSON.parse(this.response), JSON.parse(e.UserPreferences).userPref.isEnabled ? (sp.enabledLinks.privacy = !0, document.querySelector("#ifrmPrivacyBanner") && document.querySelector("#ifrmPrivacyBanner").contentWindow.document.querySelectorAll("[data-tab='privacy-policy']").forEach(function(e) {
+                e.style.display = "flex"
+            }), sp.privacyPolicySettings = JSON.parse(e.UserPreferences)) : (sp.enabledLinks.privacy = !1, document.querySelector("#ifrmPrivacyBanner") && document.querySelector("#ifrmPrivacyBanner").contentWindow.document.querySelectorAll("[data-tab='privacy-policy']").forEach(function(e) {
+                e.style.display = "none"
+            })))
+        }, t.send(), (n = sp.prepareHttp("api/cookiedeclaration/visitor?ApiKey=" + securePrivacy.apiKey + "&Domain=" + e + "&v=" + sp.versionNumber)).onload = function() {
+            var e;
+            200 <= this.status && this.status < 400 && (e = JSON.parse(this.response), JSON.parse(e.UserPreferences).isEnabled ? (sp.enabledLinks.cookie = !0, document.querySelector("#ifrmPrivacyBanner") && document.querySelector("#ifrmPrivacyBanner").contentWindow.document.querySelectorAll("[data-tab='cookie-policy']").forEach(function(e) {
+                e.style.display = "flex"
+            })) : (sp.enabledLinks.cookie = !1, document.querySelector("#ifrmPrivacyBanner") && document.querySelector("#ifrmPrivacyBanner").contentWindow.document.querySelectorAll("[data-tab='cookie-policy']").forEach(function(e) {
+                e.style.display = "none"
+            })))
+        }, n.send()), !sp.widgetDisplaySettings.PlanName || -1 === sp.widgetDisplaySettings.PlanName.toLowerCase().indexOf("enterprise") && -1 === sp.widgetDisplaySettings.PlanName.toLowerCase().indexOf("business") || ((a = sp.prepareHttp("api/datarequest/visitor?ApiKey=" + window.securePrivacy.apiKey + "&Domain=" + e + "&ComplianceLawType=" + sp.complianceLawType + "&v=" + sp.versionNumber)).onload = function() {
+            200 <= this.status && this.status < 400 && (window.sp.dataReqForm = JSON.parse(this.response), window.sp.dataReqForm.IsActive ? (sp.enabledLinks.dataRequest = !0, document.querySelector("#ifrmPrivacyBanner") && document.querySelector("#ifrmPrivacyBanner").contentWindow.document.querySelectorAll("[data-tab='data-req-form']").forEach(function(e) {
+                e.style.display = "flex"
+            })) : (sp.enabledLinks.dataRequest = !1, document.querySelector("#ifrmPrivacyBanner") && document.querySelector("#ifrmPrivacyBanner").contentWindow.document.querySelectorAll("[data-tab='data-req-form']").forEach(function(e) {
+                e.style.display = "none"
+            })))
+        }, a.send())
+    }, sp.checkBoxAllConsent = function(n, e) {
+        document.querySelector("#ifrmCookieBanner").contentWindow.document.querySelector(".intro-banner-btn").innerHTML = sp.bannerFields.saveButtonText, e = e.replace(" ", "_"), document.querySelector("#ifrmCookieBanner").contentWindow.document.querySelectorAll("#div_category_" + e + " .tracker-compliance").forEach(function(e) {
+            var t = e.getAttribute("id");
+            n.checked ? document.getElementById("ifrmCookieBanner").contentWindow.document.getElementById(t).checked = !0 : document.getElementById("ifrmCookieBanner").contentWindow.document.getElementById(t).checked = !1
+        })
+    }, sp.openSP = function() {
+        window.open("https://secureprivacy.ai", "_blank")
+    }, sp.pbResSet = function() {
+        var e;
+        window.innerWidth < 426 && ((e = document.querySelector("#ifrmPrivacyBanner").contentWindow.document) && (e.querySelector(".group-banner-btn").style.padding = "10px", e.querySelector(".custom-ac-body").style.padding = "15px"))
+    }, sp.showPrivacyBanner = function() {
+        var e, t;
+        sp.settingsPage.PrivacyCenter && (e = new CustomEvent("sp_privacy_banner_shown", {
+            detail: !0
+        }), window.dispatchEvent(e), sp.displayOptions.showOverlay ? document.querySelector(".sp-overlay").style.display = "block" : document.querySelector(".sp-overlay").style.display = "none", document.querySelector("#main-privacy-banner").style.display = "block", window.clientHeight <= 480 && (document.querySelector("#main-privacy-banner").style.marginTop = "15px", document.querySelector("#ifrmPrivacyBanner").contentWindow.document.querySelector("head").insertAdjacentHTML("beforeend", '<style type="text/css">.sp-white-box{max-height: 38vh!important;}.group-banner-btn{min-width: 135px;}.sp-white-box .tabs-content .sp-heading-panel {margin-top: 0!important;}</style>')), 500 < window.innerWidth && window.setTimeout(function() {
+            document.querySelector("[sp-widget-holder='privacy-banner']").style.height = "70vh", document.querySelector("#ifrmPrivacyBanner").style.height = "70vh"
+        }, 1), sp.pbResSet(), document.querySelector("[sp-widget-holder='trust-badge']").style.display = "none", document.querySelector("[sp-widget-holder='privacy-policy-popup']").style.display = "none", !sp.widgetDisplaySettings.PlanName || -1 === sp.widgetDisplaySettings.PlanName.toLowerCase().indexOf("enterprise") && -1 === sp.widgetDisplaySettings.PlanName.toLowerCase().indexOf("business") || ("undefined" == typeof ccpa_sp ? t = setInterval(function() {
+            "undefined" != typeof ccpa_sp && (clearInterval(t), ccpa_sp.initCCPA(sp.selctedLanguage.value, !1, !1))
+        }, 1e3) : ccpa_sp.initCCPA(sp.selctedLanguage.value, !1, !1)))
+    }, sp.createCCPABanners = function() {
+        var e;
+        !sp.widgetDisplaySettings.PlanName || -1 === sp.widgetDisplaySettings.PlanName.toLowerCase().indexOf("enterprise") && -1 === sp.widgetDisplaySettings.PlanName.toLowerCase().indexOf("business") || ((e = document.createElement("SCRIPT")).src = sp.assetLink + sp.bannerLink + "ccpa/ccpa.js?v=" + Math.random(), e.type = "text/javascript", document.getElementsByTagName("head")[0].appendChild(e), e.onload = function() {
+            ccpa_sp.initCCPA(sp.selctedLanguage.value, !1, !1)
+        })
+    }, sp.isTrustBadgeEnabled = function() {
+        var e = !0;
+        if (sp.displayOptions.hideOption && "hide" === sp.displayOptions.hideOption && sp.displayOptions.hideTrustWidget && 1 < sp.displayOptions.hideTrustWidget.length)
+            for (var t = sp.displayOptions.hideTrustWidget.split(","), n = 0; n < t.length; n++) {
+                if ("*" === t[n]) {
+                    e = !1;
+                    break
+                }
+                if (window.location.href === t[n]) {
+                    e = !1;
+                    break
+                }
+            } else if (sp.displayOptions.hideOption && "show" === sp.displayOptions.hideOption && sp.displayOptions.showTrustWidget && 1 < sp.displayOptions.showTrustWidget.length) {
+                e = !1;
+                for (t = sp.displayOptions.showTrustWidget.split(","), n = 0; n < t.length; n++)
+                    if (window.location.href === t[n]) {
+                        e = !0;
+                        break
+                    }
+            } else sp.displayOptions.hideOption && "any" === sp.displayOptions.hideOption && (e = !0);
+        return "floating" !== sp.displayOptions.widgetType && (e = !1), e
+    }, sp.showTrustWidget = function(e) {
+        var t, n;
+        (!0 === sp.isTrustBadgeEnabled() && sp.settingsPage.TrustSeal || !0 === e) && (t = new CustomEvent("sp_trust_badge_shown", {
+            detail: !0
+        }), window.dispatchEvent(t), document.querySelector("[sp-widget-holder='trust-badge']").style.display = "block", document.querySelector(".sp-tb-embed-widget") && (document.querySelector(".sp-tb-embed-widget").style.display = "block"), n = document.querySelector("#ifrmTrustBadge").contentWindow.document.querySelector("#sp-trust-badge").innerWidth, document.querySelector("#ifrmTrustBadge").contentWindow.document.querySelector("#sp-trust-badge").innerWidth = n + 20)
+    }, sp.hideTrustWidget = function() {
+        document.querySelector("[sp-widget-holder='trust-badge']").style.display = "none";
+        var e = new CustomEvent("sp_trust_badge_shown", {
+            detail: !1
+        });
+        window.dispatchEvent(e)
+    }, sp.showCookieBanner = function() {
+        var e = new CustomEvent("sp_cookie_banner_shown", {
+            detail: !0
+        });
+        window.dispatchEvent(e), sp.displayOptions.showOverlay ? document.querySelector(".sp-overlay").style.display = "block" : document.querySelector(".sp-overlay").style.display = "none", document.querySelector("#main-cookie-banner").style.display = "block", document.querySelector("#main-cookie-banner").style.visibility = "hidden";
+        var n = window.setInterval(function() {
+            var e, t;
+            document.querySelector("#ifrmCookieBanner").style.height = "100%", document.querySelector("#main-cookie-banner").style.height = "100%", 0 < document.querySelector("#main-cookie-banner").clientHeight && (t = "100px", null !== (e = document.getElementById("ifrmCookieBanner").contentWindow.document.getElementById("banner-0")) && (t = e.clientHeight + "px"), document.querySelector("#ifrmCookieBanner").style.height = t, document.querySelector("#main-cookie-banner").style.height = t, clearInterval(n), document.querySelector("#main-cookie-banner").style.visibility = "visible")
+        }, 500);
+        "CCPA" !== sp.complianceLawType && "US" !== sp.complianceLawType || sp.nonEuVisitorHandler()
+    }, sp.hideCookieBanner = function() {
+        var e;
+        document.querySelector(".sp-overlay").style.display = "none", document.querySelector("#main-cookie-banner").style.display = "none", sp.allBanners.EnableIab && "GDPR" == sp.complianceLawType || (e = new CustomEvent("sp_cookie_banner_shown", {
+            detail: !1
+        }), window.dispatchEvent(e))
+    }, sp.hidePrivacyBanner = function() {
+        document.querySelector(".sp-overlay").style.display = "none", document.querySelector("[sp-widget-holder='privacy-banner']").style.display = "none", sp.showTrustWidget(!1);
+        var e = new CustomEvent("sp_privacy_banner_shown", {
+            detail: !1
+        });
+        window.dispatchEvent(e)
+    }, sp.removeConsent = function() {
+        window.localStorage.removeItem("s_e_c_u_r_e_k_e_y")
+    }, sp.captureConsentPreferences = function(e, t, n, a) {
+        var o = {
+                ApiKey: securePrivacy.apiKey,
+                ClientId: sp.autoClientId,
+                ScreenshotTitle: "Banner on Privacy Page",
+                Base64: "",
+                Domain: e,
+                PageURL: window.location.href,
+                AllConsents: []
+            },
+            i = "";
+        if ("privacyBanner" === t ? (i = "#ifrmPrivacyBanner", localStorage.setItem("secure_privacy_save_event", JSON.stringify({
+                type: "sp_privacy_banner_save",
+                value: n
+            }))) : "cookieBanner" === t && (i = "#ifrmCookieBanner", localStorage.setItem("secure_privacy_save_event", JSON.stringify({
+                type: "sp_cookie_banner_save",
+                value: n
+            }))), !a.EnableIab || "GDPR" != sp.complianceLawType)
+            for (var s = a.CategoryDetails, r = 0; r < s.length; r++) {
+                var p = s[r];
+                if (0 !== p.CategoyId && 18 !== p.CategoyId) {
+                    for (var c = {
+                            categoryHeading: sp.getBannerValueByKeyword(sp.getCategoryKeyword(p.CategoyId)),
+                            categoryText: sp.getBannerValueByKeyword(sp.getCategoryTextKeyword(p.CategoyId))
+                        }, l = [], d = 0, u = 0; u < p.PluginList.length; u++) {
+                        var y = p.PluginList[u];
+                        17 === p.CategoyId ? l.push({
+                            ComplianceType: y.ComplianceType,
+                            ComplianceTypeID: y.ComplianceTypeID,
+                            IsBlockEnabled: !1
+                        }) : document.querySelector(i).contentWindow.document.querySelectorAll(".tracker-compliance").forEach(function(e) {
+                            e.getAttribute("id") == "tracker-" + y.ComplianceTypeID && (document.querySelector("#ifrmPrivacyBanner") && (e.checked ? document.querySelector("#ifrmPrivacyBanner").contentWindow.document.querySelector("#tracker-" + y.ComplianceTypeID).setAttribute("checked", e.checked) : document.querySelector("#ifrmPrivacyBanner").contentWindow.document.querySelector("#tracker-" + y.ComplianceTypeID).removeAttribute("checked")), l.push({
+                                ComplianceType: y.ComplianceType,
+                                ComplianceTypeID: y.ComplianceTypeID,
+                                IsBlockEnabled: !e.checked
+                            }), e.checked && d++)
+                        })
+                    }
+                    var g = !1,
+                        m = !1;
+                    if (document.querySelector("#ifrmCookieBanner") && (m = document.querySelector("#ifrmCookieBanner").contentWindow.document.querySelector(".intro-banner-btn").innerHTML === sp.bannerFields.saveButtonText), "cookieBanner" === t && !0 === n && !m && 17 !== p.CategoyId) {
+                        for (var b = 0; b < l.length; b++) l[b].IsBlockEnabled = !1, document.querySelector("#ifrmPrivacyBanner") && document.querySelector("#ifrmPrivacyBanner").contentWindow.document.querySelector("#tracker-" + l[b].ComplianceTypeID).setAttribute("checked", !0);
+                        g = !0
+                    }
+                    if ("cookieBanner" === t && !1 === n && 17 !== p.CategoyId) {
+                        for (b = 0; b < l.length; b++) l[b].IsBlockEnabled = !0, document.querySelector("#ifrmPrivacyBanner") && document.querySelector("#ifrmPrivacyBanner").contentWindow.document.querySelector("#tracker-" + l[b].ComplianceTypeID).removeAttribute("checked");
+                        g = !1
+                    }(17 === p.CategoyId || 17 !== p.CategoyId && d === l.length) && (g = !0), o.AllConsents.push({
+                        ComplianceType: c.categoryHeading,
+                        LastUpdated: new Date,
+                        ComplianceTypeID: p.CategoyId.toString(),
+                        ConsentGiven: g,
+                        PluginPreferences: JSON.stringify(l)
+                    })
+                }
+            }
+        return a.EnableIab && "GDPR" == sp.complianceLawType && o.AllConsents.push({
+                ComplianceType: "IAB",
+                LastUpdated: new Date,
+                ComplianceTypeID: 777,
+                ConsentGiven: iab_sp.action
+            }), 0 === o.AllConsents.length && o.AllConsents.push({
+                ComplianceType: "Cookies",
+                LastUpdated: new Date,
+                ComplianceTypeID: 0,
+                ConsentGiven: n,
+                PluginPreferences: ""
+            }), localStorage.setItem("secure_privacy_consents", JSON.stringify(o)), sp.allGivenConsents = o.AllConsents,
+            function() {
+                var e = localStorage.getItem("secure_privacy_consents");
+                localStorage.setItem("sp_consent", e);
+                var t = sp.widgetDisplaySettings.PlanName.toLowerCase(); {
+                    var n;
+                    !sp.doNotStoreConsent && (-1 < t.indexOf("business") || -1 < t.indexOf("enterprise") || -1 < t.indexOf("premium")) && ((n = new XMLHttpRequest).open("POST", sp.apiLink + "api/consent", !0), n.setRequestHeader("Content-Type", "application/json; charset=UTF-8"), n.onload = function() {
+                        var e, t;
+                        200 <= this.status && this.status < 400 && ((e = JSON.parse(localStorage.getItem("secure_privacy_save_event"))) && (t = new CustomEvent(e.type, {
+                            detail: e.value ? "accept" : "reject"
+                        }), window.dispatchEvent(t)), localStorage.removeItem("secure_privacy_consents"), localStorage.removeItem("secure_privacy_save_event"))
+                    }, n.send(e))
+                }
+            }(), o
+    }, sp.saveAllConsents = function(e, t) {
+        var n, a = "",
+            a = "privacyBanner" !== e && "cookieBanner" !== e || !sp.isGroupedConsent ? sp.targetDomain : sp.activeDomainBanner.Domain;
+        "cookieBanner" === e && (n = new CustomEvent("sp_cookie_banner_click", {
+            detail: t ? "accept" : "reject"
+        }), window.dispatchEvent(n)), "privacyBanner" === e && (n = new CustomEvent("sp_privacy_banner_click", {
+            detail: t ? "accept" : "reject"
+        }), window.dispatchEvent(n)), sp.hidePrivacyBanner(), sp.hideCookieBanner(), sp.showTrustWidget(!1);
+        var o = sp.captureConsentPreferences(a, e, t, sp.activeDomainBanner);
+        sp.targetDomain === a && sp.blockPlugins(o)
+    }, sp.toggleTabs = function(e) {
+        var t;
+        "privacy-policy" === e && sp.privacyPolicySettings && sp.privacyPolicySettings.websiteQuestions && "true" === sp.privacyPolicySettings.websiteQuestions.isPrivacyPolicyExist ? window.open(sp.privacyPolicySettings.websiteQuestions.privacyPolicyPageURL, "_blank") : (document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector("#sp_iab_container").style.display = "none", -1 < ["settings-iab", "partners"].indexOf(e) ? (document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector("#sp_iab_container").style.display = "block", "partners" == e && window.parent.iab_sp.showVendors()) : "undefined" != typeof iab_sp && window.parent.iab_sp.goback(), sp.selectedTab = e, document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelectorAll("[data-tab]").forEach(function(e) {
+            var t = e.getAttribute("data-tab");
+            if (t) {
+                try {
+                    document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector("#tab-" + t).style.display = "none"
+                } catch (e) {}
+                e.querySelector("a").classList.remove("btn-primary")
+            }
+        }), document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelectorAll('[data-tab="' + e + '"] a').forEach(function(e) {
+            e.classList.add("btn-primary")
+        }), document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector("#tab-" + e).style.display = "block", "data-req-form" === e ? (document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector("#sp-handle-Allpopup-consent").style.display = "none", document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector("#sp-handle-Allpopup-consent-iab").style.display = "none", document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector("#sp-handle-Allpopup-save").style.display = "none", document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector(".ccpa-submit-btn").style.display = "initial", document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector(".data-req-cancel").style.display = "initial") : (document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector("#sp-handle-Allpopup-consent").style.display = "initial", document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector("#sp-handle-Allpopup-consent-iab").style.display = "block", document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector("#sp-handle-Allpopup-save").style.display = "block", document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector(".ccpa-submit-btn").style.display = "none", document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector(".data-req-cancel").style.display = "none"), t = [], sp.subscriptionDescription.supportedProducts.isGDPR && t.push("GDPR"), sp.subscriptionDescription.supportedProducts.isCCPA && t.push("CCPA"), sp.subscriptionDescription.supportedProducts.isLGPD && t.push("LGPD"), t = t.join(","), "flex" == document.querySelector("#ifrmPrivacyBanner").contentWindow.document.querySelector("[data-tab='privacy-policy']").style.display && "privacy-policy" === sp.selectedTab && document.querySelector("#ifrmPrivacyBanner").contentWindow.document.querySelector("#privacy-iframe").setAttribute("src", sp.assetLink + "ext/#/policies/privacy-and-cookie-policy/" + securePrivacy.apiKey + "/" + sp.targetDomain + "/" + t + "/" + sp.selctedLanguage.value + "/p"), "flex" == document.querySelector("#ifrmPrivacyBanner").contentWindow.document.querySelector("[data-tab='cookie-policy']").style.display && "cookie-policy" === sp.selectedTab && document.querySelector("#ifrmPrivacyBanner").contentWindow.document.querySelector("#cookie-iframe").setAttribute("src", sp.assetLink + "ext/#/policies/privacy-and-cookie-policy/" + securePrivacy.apiKey + "/" + sp.targetDomain + "/" + t + "/" + sp.selctedLanguage.value + "/c"), sp.toggleDropDown(!0))
+    }, sp.hasAttr = function(e, t) {
+        return e.hasAttribute ? e.hasAttribute(t) : !!e.getAttribute(t)
+    }, sp.nonEuVisitorHandler = function() {
+        for (var e = sp.allBanners.CategoryDetails, t = 0; t < e.length; t++) {
+            var n = e[t];
+            if (0 !== n.CategoyId && 18 !== n.CategoyId)
+                for (var a = 0; a < n.PluginList.length; a++) {
+                    var o = n.PluginList[a],
+                        s = {
+                            ComplianceType: o.ComplianceType,
+                            ComplianceTypeID: o.ComplianceTypeID,
+                            IsBlockEnabled: !1
+                        };
+                    sp.runScripts(s, s), sp.runSrcTags("img", s, s), sp.runSrcTags("iframe", s, s)
+                }
+        }
+        var r = new CustomEvent("sp_spab_unblockall", {
+            detail: {
+                pluginName: "all"
+            }
+        });
+        window.dispatchEvent(r), window.sptt && window.sptt.unblock(), sp.log("nonEuVisitorHandler : Unblock all scripts Fired");
+        var p = document.querySelectorAll("iframe");
+        for (i = 0; i < p.length; i++) {
+            var c = p[i];
+            sp.hasAttr(c, "sp-consent") && sp.hasAttr(c, "data-src") && (c.setAttribute("src", c.getAttribute("data-src")), c.style.display = "initial")
+        }
+        window.setTimeout(function() {
+            sp.unblockingComplete = !0
+        }, 2e3)
+    }, sp.runScripts = function(e, t) {
+        var n;
+        "function" == typeof y && ("google analytics" === (n = t.ComplianceType.toLowerCase().trim()) ? (y("consent", "update", {
+            analytics_storage: !1 === e.IsBlockEnabled ? "granted" : "denied"
+        }), y("consent", "update", {
+            functionality_storage: !1 === e.IsBlockEnabled ? "granted" : "denied"
+        }), y("consent", "update", {
+            personalization_storage: !1 === e.IsBlockEnabled ? "granted" : "denied"
+        }), y("consent", "update", {
+            security_storage: !1 === e.IsBlockEnabled ? "granted" : "denied"
+        })) : "google adsense" !== n && "google ads" !== n && "floodlight" !== n && "conversion linker" !== n && "doubleclick" !== n || (y("consent", "update", {
+            ad_storage: !1 === e.IsBlockEnabled ? "granted" : "denied"
+        }), y("consent", "update", {
+            functionality_storage: !1 === e.IsBlockEnabled ? "granted" : "denied"
+        }), y("consent", "update", {
+            personalization_storage: !1 === e.IsBlockEnabled ? "granted" : "denied"
+        }), y("consent", "update", {
+            security_storage: !1 === e.IsBlockEnabled ? "granted" : "denied"
+        })));
+        var a = null,
+            o = document.getElementsByTagName("script");
+        if (!1 === e.IsBlockEnabled) {
+            for (i = 0; i < o.length; i++) {
+                var s = o[i];
+                if (sp.hasAttr(s, "sp-consent") && sp.hasAttr(s, "type") && s.getAttribute("sp-consent").toLowerCase().trim() === t.ComplianceType.toLowerCase().trim() && "text/plain" === s.getAttribute("type").toLowerCase().trim()) {
+                    for (var r = (a = s).parentNode, p = a.nextElementSibling, c = document.createElement("script"), l = 0; l < a.attributes.length; l++) void 0 !== a.attributes[l].value && "" != a.attributes[l].value && c.setAttribute(a.attributes[l].name, a.attributes[l].value);
+                    c.text = a.text, c.setAttribute("type", "text/javascript"), a.getAttribute("src") && c.setAttribute("src", a.getAttribute("src")), r && r.removeChild(a), -1 < c.innerHTML.indexOf("document.write") ? (c.innerHTML.replace("document.write", "document.getElementsByTagName('head')[0].appendChild"), c.innerText.replace("document.write", "document.getElementsByTagName('head')[0].appendChild")) : r.insertBefore(c, p || null)
+                }
+            }
+            window.dataLayer && window.dataLayer.map(function(e) {
+                return e.event
+            }).join(",").indexOf(t.ComplianceType) < 0 && window.dataLayer.push({
+                event: 'sp-consent="' + t.ComplianceType + '"'
+            });
+            var d = new CustomEvent("sp_spab_unblock", {
+                    detail: {
+                        pluginName: t.ComplianceType
+                    }
+                }),
+                u = new CustomEvent("sp_unblock_" + t.ComplianceType.sp_replaceAll(" ", "_"), {
+                    detail: {
+                        pluginName: t.ComplianceType
+                    }
+                });
+            window.dispatchEvent(u), sp.log(t.ComplianceType + " unblock fired"), window.dispatchEvent(d)
+        }
+    }, sp.runSrcTags = function(e, t, n) {
+        var a, o = null,
+            s = document.getElementsByTagName(e);
+        if (!1 === t.IsBlockEnabled) {
+            for (i = 0; i < s.length; i++) {
+                var r = s[i];
+                if (sp.hasAttr(r, "sp-consent") && sp.hasAttr(r, "data-src") && r.getAttribute("sp-consent").toLowerCase().trim() === n.ComplianceType.toLowerCase().trim()) {
+                    o = r;
+                    break
+                }
+            }!o || "iframe" !== e && "video" !== e || (a = o.getAttribute("sp-consent"), sp.unblockIframeFromConsents(a, "iframe"), sp.unblockIframeFromConsents(a, "video")), o && "img" === e && (a = o.getAttribute("sp-consent"), sp.unblockPixelsFromConsents(a))
+        }
+    }, sp.blockPlugins = function(e) {
+        for (var t = sp.allBanners.CategoryDetails, n = 0; n < t.length; n++)
+            for (var a = t[n], o = 0; o < e.AllConsents.length; o++) {
+                var i = e.AllConsents[o];
+                if (String(i.ComplianceTypeID) === String(a.CategoyId) && i.PluginPreferences)
+                    for (var s = JSON.parse(i.PluginPreferences), r = 0; r < s.length; r++)
+                        for (var p = s[r], c = 0; c < a.PluginList.length; c++) {
+                            var l = a.PluginList[c];
+                            l.ComplianceType === p.ComplianceType && (sp.runScripts(p, l), sp.runSrcTags("img", p, l), sp.runSrcTags("iframe", p, l))
+                        }
+            }
+    }, sp.switchCookieBannerLang = function(t, n) {
+        sp.sp_localization.forEach(function(e) {
+            e.value === t && (sp.selctedLanguage = e, document.querySelector("[sp-widget-holder='privacy-banner']").innerHTML = "", document.querySelector("#main-cookie-banner").innerHTML = "", sp.createBanners(!0, n))
+        })
+    }, sp.switchLanguage = function(n, a, o) {
+        var e = new CustomEvent("sp_switch_lang", {
+            detail: {
+                useLang: n,
+                category: a
+            }
+        });
+        window.dispatchEvent(e), sp.sp_localization.forEach(function(e) {
+            e.value === n && (sp.selctedLanguage = e)
+        });
+        var t = sp.prepareHttp("api/translation/domain/visitor?ApiKey=" + securePrivacy.apiKey + "&Domain=" + sp.targetDomain + "&languageCode=" + sp.selctedLanguage.value + "&ComplianceLawType=" + sp.complianceLawType);
+        t.onload = function() {
+            var e, t;
+            200 <= this.status && this.status < 400 && (e = JSON.parse(this.response), sp.translations = e, sessionStorage.setItem("translation-" + sp.targetDomain, JSON.stringify(sp.translations)), sp.setTranslationsText(), "visible" == document.querySelector("#main-cookie-banner").visibility || "cookieBanner" === a ? sp.switchCookieBannerLang(n, a) : (t = sp.advancedPrivacyCenter(sp.activeDomainBanner, sp.activeDomainConsentPref, n, sp.activeWidgetDisplaySettings), document.querySelector("#ifrmPrivacyBanner").contentWindow.document.querySelector("#banner-privacy-banner").innerHTML = t, "undefined" != typeof iab_sp && (iab_sp.iabPrivacyBannerCSS = iab_sp.iabPrivacyBannerCSS.sp_replaceAll("##background-color##", sp.widgetDisplaySettings.BackgroundColor).sp_replaceAll("##font-color##", sp.widgetDisplaySettings.FontColor), document.querySelector("#ifrmPrivacyBanner").contentWindow.document.querySelector("head").insertAdjacentHTML("beforeend", '<style type="text/css">' + iab_sp.iabPrivacyBannerCSS + "</style>"), document.querySelector("#ifrmPrivacyBanner").contentWindow.document.querySelector("#sp_iab_container").innerHTML = iab_sp.createBannerText(sp.selctedLanguage.value, sp.translations), iab_sp.changeLanguage(sp.selctedLanguage.value), iab_sp.resetButtons(), sp.toggleTabs(sp.selectedTab)), sp.enabledLinks.privacy && document.querySelector("#ifrmPrivacyBanner").contentWindow.document.querySelectorAll("[data-tab='privacy-policy']").forEach(function(e) {
+                e.style.display = "flex"
+            }), sp.enabledLinks.cookie && document.querySelector("#ifrmPrivacyBanner").contentWindow.document.querySelectorAll("[data-tab='cookie-policy']").forEach(function(e) {
+                e.style.display = "flex"
+            }), sp.enabledLinks.dataRequest && document.querySelector("#ifrmPrivacyBanner").contentWindow.document.querySelectorAll("[data-tab='data-req-form']").forEach(function(e) {
+                e.style.display = "flex"
+            }), sp.allBanners.EnableIab && "GDPR" == sp.complianceLawType ? document.querySelector("#ifrmPrivacyBanner").contentWindow.document.querySelector("#tab-settings").innerHTML = "" : document.querySelector("#ifrmPrivacyBanner").contentWindow.document.querySelector(".normal-footer").style.display = "initial", o && sp.getCookieListForPreferenceCenter()), r(), sp.pbResSet(), (sp.subscriptionDescription.supportedProducts.isLGPD || sp.subscriptionDescription.supportedProducts.isCCPA || sp.subscriptionDescription.supportedProducts.isGDPR) && window.ccpa_sp && window.sp.dataReqForm && window.sp.dataReqForm.IsActive && (document.querySelector("#ifrmPrivacyBanner").contentWindow.document.querySelector("[data-tab='data-req-form']").style.display = "block", ccpa_sp.initCCPA(sp.selctedLanguage.value, !1, !1)), sp.toggleTabs(sp.selectedTab))
+        }, t.send()
+    }, sp.switchLanguageAndCallPrivacyCenter = function(n) {
+        sp.targetDomain = n;
+        var e = sp.prepareHttp("api/translation/domain/supportedLanguages/visitor?ApiKey=" + securePrivacy.apiKey + "&Domain=" + sp.targetDomain);
+        e.onload = function() {
+            if (200 <= this.status && this.status < 400) try {
+                var e = JSON.parse(this.response);
+                sp.supportedLanguages = e, sp.generateLanguageControl();
+                var t = sp.prepareHttp("api/translation/domain/visitor?ApiKey=" + securePrivacy.apiKey + "&Domain=" + sp.targetDomain + "&languageCode=" + sp.selctedLanguage.value + "&ComplianceLawType=" + sp.complianceLawType);
+                t.onload = function() {
+                    var e;
+                    200 <= this.status && this.status < 400 && (e = JSON.parse(this.response), sp.translations = e, sessionStorage.setItem("translation-" + sp.targetDomain, JSON.stringify(sp.translations)), sp.setTranslationsText(), sp.loadPrivacyCenter(n))
+                }, t.send()
+            } catch (e) {}
+        }, e.send()
+    }, sp.expandCollapse = function(e) {
+        var t = document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector(".accorImg-" + e + " img"),
+            n = document.getElementById("ifrmPrivacyBanner").contentWindow.document.getElementsByClassName("accorBody-" + e);
+        t.src === sp.assetLink + "assets/images/chevron-up.svg" ? (n[0].style.display = "none", t.src = sp.assetLink + "assets/images/chevron-down.svg") : (n[0].style.display = "block", t.src = sp.assetLink + "assets/images/chevron-up.svg")
+    }, sp.expandCollapseCookieSection = function(e, t) {
+        var n = document.getElementById("ifrmPrivacyBanner").contentWindow.document.querySelector(".accorCookieImg-" + e + t + " img"),
+            a = document.getElementById("ifrmPrivacyBanner").contentWindow.document.getElementsByClassName("clsAccorBodyCookies-" + e + t);
+        if (n)
+            if (n.src === sp.assetLink + "assets/images/carat-up.png") {
+                for (var o = 0; o < a.length; o++) a[o].style.display = "none";
+                n.src = sp.assetLink + "assets/images/carat-down.png"
+            } else {
+                for (o = 0; o < a.length; o++) a[o].style.display = "block";
+                n.src = sp.assetLink + "assets/images/carat-up.png"
+            }
+    }, sp.expandCollapseAdvanceCookieSection = function(e, t) {
+        var n = document.getElementById("ifrmCookieBanner").contentWindow.document.querySelector(".advanceCookieBannerAccorCookieImg-" + e + t + " img"),
+            a = document.getElementById("ifrmCookieBanner").contentWindow.document.getElementsByClassName("advanceCookieBannerBodyCookies-" + e + t);
+        if (n.src === sp.assetLink + "assets/images/carat-up.png") {
+            for (var o = 0; o < a.length; o++) a[o].style.display = "none";
+            n.src = sp.assetLink + "assets/images/carat-down.png"
+        } else {
+            for (o = 0; o < a.length; o++) a[o].style.display = "block";
+            n.src = sp.assetLink + "assets/images/carat-up.png"
+        }
+    }, sp.openPrivacyPolicy = function() {
+        sp.displayOptions.showOverlay ? document.querySelector(".sp-overlay").style.display = "block" : document.querySelector(".sp-overlay").style.display = "none", document.querySelector("[sp-widget-holder='privacy-policy-popup']").style.display = "block", document.querySelector("[sp-widget-holder='privacy-banner']").style.display = "none"
+    }, sp.closePrivacyPopup = function() {
+        document.querySelector(".sp-overlay").style.display = "none", document.querySelector("[sp-widget-holder='privacy-policy-popup']").style.display = "none"
+    }, sp.hidePrivacyPolicy = function() {
+        sp.closePrivacyPopup()
+    }, sp.showPrivacyPolicy = function() {
+        sp.openPrivacyPolicy()
+    }, sp.toggleAdvancedBanner = function(e) {
+        var t, n, a, o = e.getElementsByTagName("span")[0].getAttribute("class"); - 1 != o.indexOf("down") && ((t = JSON.parse(sessionStorage.getItem("cookieList-" + sp.targetDomain))) && sp.allBanners.Cookies ? (sp.allBanners.Cookies = t, sp.cookieList = t, p()) : ((n = sp.prepareHttp("api/plugins/website/cookielist/visitor?ApiKey=" + securePrivacy.apiKey + "&Domain=" + sp.targetDomain)).onload = function() {
+            var e;
+            200 <= this.status && this.status < 400 && ((e = JSON.parse(this.response)) && 0 < e.length && (sp.activeDomainBanner.Cookies = e, sessionStorage.setItem("cookieList-" + sp.targetDomain, JSON.stringify(e)), sp.allBanners.Cookies = e, sp.cookieList = e, p()))
+        }, n.send())), document.querySelector("#ifrmCookieBanner").contentWindow.document.querySelector(".save-consents").innerHTML = sp.bannerFields.saveButtonText, -1 != o.indexOf("down") ? (document.querySelector("#ifrmCookieBanner").style.height = "100%", document.querySelector("#main-cookie-banner").style.height = "100%", e.getElementsByTagName("span")[0].setAttribute("class", "up"), e.querySelector(".d-text").html = sp.bannerFields.hide) : (a = document.getElementById("ifrmCookieBanner").contentWindow.document.getElementById("banner-0").clientHeight, document.querySelector("#ifrmCookieBanner").style.height = a, document.querySelector("#main-cookie-banner").style.height = a, e.querySelector("span").setAttribute("class", "down"), e.querySelector(".d-text").innerHTML = sp.bannerFields.details);
+        var i = document.getElementById("ifrmCookieBanner").contentWindow.document.querySelector(".pba");
+        "" === i.style.display || "none" === i.style.display ? i.style.display = "block" : i.style.display = "none"
+    }, sp.getCookieListForPreferenceCenter = function() {
+        var e, t = JSON.parse(sessionStorage.getItem("cookieList-" + sp.targetDomain));
+        t && sp.allBanners.Cookies ? (sp.allBanners.Cookies = t, sp.cookieList = t, a(), sp.showPrivacyBanner(), document.querySelector("#main-cookie-banner").style.display = "none") : ((e = sp.prepareHttp("api/plugins/website/cookielist/visitor?ApiKey=" + securePrivacy.apiKey + "&Domain=" + sp.targetDomain)).onload = function() {
+            var e;
+            200 <= this.status && this.status < 400 && (e = JSON.parse(this.response), sp.activeDomainBanner.Cookies = e || [], sessionStorage.setItem("cookieList-" + sp.targetDomain, JSON.stringify(e)), sp.allBanners.Cookies = e, sp.cookieList = e, a(), sp.showPrivacyBanner(), document.querySelector("#main-cookie-banner").style.display = "none")
+        }, e.send())
+    }, sp.whiteListServices = function(e) {
+        for (var t = window.location.href, n = 0; n < sp.whitelist.length; n++) {
+            var a = !1,
+                i = sp.whitelist[n];
+            "on_all_pages" === i.WhitelistCondition ? a = !0 : "page_url_matches_regex_pattern" === i.WhitelistCondition ? a = new RegExp(i.RegExPattern).test(t) : "url_matches_query_string" === i.WhitelistCondition ? null !== new URLSearchParams(window.location.search).get(i.RegExPattern) && (a = !0) : "url_contains_text_string" === i.WhitelistCondition && -1 < t.indexOf(i.RegExPattern) && (a = !0), window.sptt ? a && (o = new CustomEvent("sp_spab_unblock", {
+                detail: {
+                    pluginName: i.ServiceName
+                }
+            }), window.dispatchEvent(o), window.sptt.unblock(i.ScriptSource)) : sp.log("Auto block config file is not found")
+        }
+    }, sp.changeCategoryTab = function(e) {
+        for (var t = e.getAttribute("id").sp_replaceAll("li_", "div_"), n = e.parentNode.querySelectorAll("li"), a = 0; a < n.length; a++) n[a].classList.remove("active");
+        e.setAttribute("class", "active");
+        for (var o = document.getElementById("ifrmCookieBanner").contentWindow.document.querySelectorAll(".div_category_item"), i = 0; i < o.length; i++) {
+            var s = o[i];
+            s.classList.remove("active"), s.getAttribute("id") == t && s.classList.add("active")
+        }
+    }, window.addEventListener("popstate", function(e) {
+        sp.whiteListServices()
+    }), setTimeout(function() {
+        var e = document.getElementById("ifrmPrivacyBanner");
+        e && e.contentDocument.body.addEventListener("keydown", function(e) {
+            "Escape" === e.key && (sp.hidePrivacyBanner(), sp.closePrivacyPopup())
+        })
+    }, 7e3)
+}
+initialize_secure_privacy(),
+    function() {
+        function e(e, t) {
+            t = t || {
+                bubbles: !1,
+                cancelable: !1,
+                detail: void 0
+            };
+            var n = document.createEvent("CustomEvent");
+            return n.initCustomEvent(e, t.bubbles, t.cancelable, t.detail), n
+        }
+        "function" != typeof window.CustomEvent && (e.prototype = window.Event.prototype, window.CustomEvent = e)
+    }();
+  </script>
  
 </body>
 </html>
