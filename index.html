@@ -20,7 +20,7 @@
 <script>
 const myTimeout = setTimeout(function(){
 try{ 
-   if (sp.activeDomainBanner !== undefined);{
+   if (sp.checkConsent('Google Analytics') !== undefined);{
     _satellite.track('pageTransition');
          clearTimeout(myTimeout);
    }
