@@ -8,7 +8,7 @@ To create a data layer, you need to add JavaScript code to your website or web a
     <title>My Website</title>
     <script>
       // Create digitalData layer object
-      window.dataLayer = window.dataLayer || [];
+      window.digitalData = window.digitalData || {};
       
       // Populate digitalData layer with information
       digitalData = {
