@@ -7,15 +7,15 @@ To create a data layer, you need to add JavaScript code to your website or web a
   <head>
     <title>My Website</title>
     <script>
-      // Create data layer object
+      // Create digitalData layer object
       window.dataLayer = window.dataLayer || [];
       
       // Populate digitalData layer with information
-      dataLayer.push({
-        'applicationName' : "Carbon Planner - Customer Portal",
-        'brandName': "NatWest",
-        'userId': '12345'
-      });
+      digitalData = {
+        applicationName : "Carbon Planner - Customer Portal",
+        brandName: "NatWest",
+        userId : '12345'
+      };
     </script>
   </head>
   <body>
