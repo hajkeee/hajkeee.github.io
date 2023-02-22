@@ -10,10 +10,10 @@ To create a data layer, you need to add JavaScript code to your website or web a
       // Create data layer object
       window.dataLayer = window.dataLayer || [];
       
-      // Populate data layer with information
+      // Populate digitalData layer with information
       dataLayer.push({
-        'pageCategory': 'Home',
-        'pageTitle': 'My Website Home Page',
+        'applicationName' : "Carbon Planner - Customer Portal",
+        'brandName': "NatWest",
         'userId': '12345'
       });
     </script>
