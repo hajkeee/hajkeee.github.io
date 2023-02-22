@@ -14,6 +14,9 @@ To create a data layer, you need to add JavaScript code to your website or web a
       digitalData = {
         applicationName : "Carbon Planner - Customer Portal",
         brandName: "NatWest",
+        stepName : "Overwiev",
+        sectionName: "Data Target",
+        subSectionName : "Water",
         userId : '12345'
       };
     </script>
