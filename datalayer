@@ -1,3 +1,43 @@
+<script>
+  document.addEventListener('click', function(event) {
+    if (event.target.tagName === 'A') {
+      var clickUrl = event.target.href;
+      var clickText = event.target.textContent;
+      
+      dataLayer.push({
+        'event': 'Link_click',
+        'Click URL': clickUrl,
+        'Click text': clickText
+      });
+    }
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 A data layer is a JavaScript object that contains information about a website or web application that can be used by third-party tools for analytics, marketing, and other purposes. It typically includes information such as page URLs, user IDs, product information, and other data that can be used to track user behavior and provide insights into how visitors interact with a site.
 
 To create a data layer, you need to add JavaScript code to your website or web application that defines the data layer object and populates it with relevant information. Here's an example of how you might create a simple data layer object:
