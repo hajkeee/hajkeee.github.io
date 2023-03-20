@@ -15,29 +15,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 A data layer is a JavaScript object that contains information about a website or web application that can be used by third-party tools for analytics, marketing, and other purposes. It typically includes information such as page URLs, user IDs, product information, and other data that can be used to track user behavior and provide insights into how visitors interact with a site.
 
 To create a data layer, you need to add JavaScript code to your website or web application that defines the data layer object and populates it with relevant information. Here's an example of how you might create a simple data layer object:
@@ -68,3 +45,10 @@ To create a data layer, you need to add JavaScript code to your website or web a
 
 
 In this example, we create a data layer object using the window.dataLayer global variable. We then populate the data layer with information about the page category, page title, and user ID using the dataLayer.push() method. This information can then be accessed by third-party tools for analytics, marketing, and other purposes.
+
+
+
+
+Q1:
+During the first quarter, my primary focus was on utilizing Carbon Planner as the main tool for tagging. In order to streamline the process, I created extensive documentation for the development team, providing clear instructions on how to set up and implement Analytics tracking from scratch, as well as validating correct implementation. Furthermore, I took the initiative to prepare an updated version of the tagging matrix specifically for tracking popup customer journeys, ensuring that our tracking methods remain up-to-date and accurate.
+Completing those tasks has helped me to enhance my skills in creating documentation. Through the process, I was able to gain valuable experience in organizing and presenting information in a clear and concise manner, which is essential for effective documentation. By documenting the steps for setting up Analytics tracking from scratch and creating an updated tagging matrix, I was able to sharpen my ability to explain complex technical concepts in a user-friendly manner. Overall, these tasks have been instrumental in honing my documentation creation skills, enabling me to produce high-quality documentation that is both informative and accessible to all stakeholders.
