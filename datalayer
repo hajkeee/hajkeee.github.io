@@ -1,3 +1,32 @@
+(()=>{
+    const nodes = document.querySelectorAll('[data-cy="l-card"]')
+    const viewItemList = []
+    nodes.forEach((dupa)=>{
+        viewItemList.push({
+            imgSrc: dupa.getElementsByTagName('img')[0].currentSrc
+        })
+    })
+    window.dataLayer.push({
+        event: 'listing',
+        viewItemList
+    })
+})()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Today we have released tags on our products, so you should be receiving information in Adobe Analytics. However, we still haven't gained access and the ability to fully track the customer journey due to the lack of access to third-party integration services.
 
 <script>
