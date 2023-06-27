@@ -20,6 +20,7 @@
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
  'event': 'Pageview',
+ 'last_work_exp' : document.querySelector("body > div.resume-wrapper > article > div > section:nth-child(4) > div > div.content-text.work-listing > p:nth-child(1) > b").innerText,
  'pagePath': window.location.pathname,
  'rang': 123,
  'pageTitle': document.querySelector("head > title").innerText,
