@@ -19,12 +19,22 @@
   <script>
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
- 'event': 'Pageview',
- 'last_work_exp' : document.querySelector("body > div.resume-wrapper > article > div > section:nth-child(4) > div > div.content-text.work-listing > p:nth-child(1) > b").innerText,
- 'pagePath': window.location.pathname,
- 'rang': 123,
- 'pageTitle': document.querySelector("head > title").innerText,
- 'content_type_author': 'hajkeee'
+   "event":  "add_to_cart",
+   "ecommerce":  {
+    "currency": "USD",
+    "value": 16,
+    "items": [{
+      "item_id": "b55da",
+      "item_name": "Flexigen T-Shirt",
+      "price": "16.00",
+      "quantity": 1,
+      "item_brand": "Flexigen",
+      "item_category": "T-Shirts",
+      "item_variant": "red",
+      "index": 0,
+      "size": "M"
+    }]
+  }
 });
 </script> 
   
