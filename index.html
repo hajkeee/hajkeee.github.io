@@ -22,8 +22,7 @@
 const dataLayer = window.dataLayer;
 
 (function uniquePageview() {
-
-  const cookie = Cookies.withAttributes({ path: '/', domain: location.hostname, secure: true, expires: 30 })
+  const cookie = Cookies.withAttributes({ path: '/', domain: location.hostname, secure: true, expires: 30 });
 
   // Record unique pageviews in an array
   let uniquePageviews = cookie.get("unique-pageviews");
@@ -41,7 +40,7 @@ const dataLayer = window.dataLayer;
   // Track a pageview for a newly visited URL in this session
   uniquePageviews.push(location.href);
   uniquePageviews = JSON.stringify(uniquePageviews);
-  cookies.set("unique-pageviews", uniquePageviews);
+  cookie.set("unique-pageviews", uniquePageviews);
 
   // Send "unique_page_view" event to GA4
   const properties = {
