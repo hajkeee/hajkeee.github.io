@@ -18,42 +18,11 @@
 
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0/dist/js.cookie.min.js"></script>  
 
-<script>
-const dataLayer = window.dataLayer;
-
-(function uniquePageview() {
-  const cookie = Cookies.withAttributes({ path: '/', domain: location.hostname, secure: true, expires: 30 });
-
-  // Record unique pageviews in an array
-  let uniquePageviews = cookie.get("unique-pageviews");
-  if (uniquePageviews) {
-    uniquePageviews = JSON.parse(uniquePageviews);
-  } else {
-    uniquePageviews = [];
-  }
-
-  // Don't continue if the current page has already been viewed in this session
-  if (uniquePageviews.indexOf(location.href) !== -1) {
-    return;
-  }
-
-  // Track a pageview for a newly visited URL in this session
-  uniquePageviews.push(location.href);
-  uniquePageviews = JSON.stringify(uniquePageviews);
-  cookie.set("unique-pageviews", uniquePageviews);
-
-  // Send "unique_page_view" event to GA4
-  const properties = {
-    event: "unique_page_view",
-    page_location: location.href,
-    page_referrer: document.referrer,
-  };
-  dataLayer.push(properties);
-
-  // Debug helper (optional)
-  console.log(`"unique_page_view" tracked in GA4`, properties);
-})();
-</script>
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+  'event' : 'login',
+  'userId' : '1234567' 
+})
   
 <!-- <script type="text/javascript" src="https://frontend-staging.secureprivacy.ai/script/63ca3e0ffb324f122033e599.js" defer></script> -->
 <script>
