@@ -107,3 +107,25 @@ function main() {
     }
   }
 }
+
+
+
+function () {
+  try {
+    var pagePath = {{Page Path}};
+    
+    if (!pagePath.includes("/s/")) {
+      return pagePath;
+    }
+
+    pagePath = document.location.hash;
+    pagePath = pagePath.split('/');
+    pagePath.splice(0, 2);
+    pagePath = pagePath.join('/');
+    
+  } catch (e) {
+    console.log('CJ - Page Path Store Pages - ' + e.message);
+  }
+
+  return pagePath;
+}
