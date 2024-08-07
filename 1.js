@@ -27,3 +27,13 @@
     }
 })();
 </script>
+
+
+
+
+function setCookie(name, value, minutes) {
+        var date = new Date();
+        date.setTime(date.getTime() + (minutes * 60 * 1000));
+        var expires = "expires=" + date.toUTCString();
+        document.cookie = name + "=" + value + ";" + expires + ";path=/";
+    }
