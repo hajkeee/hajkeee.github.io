@@ -1,3 +1,4 @@
+<script>
 (function() {
     // Функція для створення кукі
     function setCookie(name, value, minutes) {
@@ -9,10 +10,15 @@
 
     // Перевірка наявності змінної dataLayer
     if (window.dataLayer) {
-        // Витягуємо значення змінної з dataLayer
-        var pageLabel = window.dataLayer.find(function(item) {
-            return item.page_label !== undefined;
-        })?.page_label;
+        var pageLabel;
+
+        // Перебираємо всі об'єкти в dataLayer, щоб знайти потрібне значення
+        for (var i = 0; i < window.dataLayer.length; i++) {
+            if (window.dataLayer[i].page_label !== undefined) {
+                pageLabel = window.dataLayer[i].page_label;
+                break;
+            }
+        }
 
         if (pageLabel) {
             // Створюємо або оновлюємо кукі на 30 хвилин
@@ -20,3 +26,4 @@
         }
     }
 })();
+</script>
