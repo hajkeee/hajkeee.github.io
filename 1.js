@@ -31,9 +31,18 @@
 
 
 
-function setCookie(name, value, minutes) {
+<script>
+(function() {
+    // Функція для створення кукі
+    function setCookie(name, value, minutes) {
         var date = new Date();
         date.setTime(date.getTime() + (minutes * 60 * 1000));
         var expires = "expires=" + date.toUTCString();
         document.cookie = name + "=" + value + ";" + expires + ";path=/";
     }
+
+    // Припускаємо, що змінна pageLabel вже визначена в GTM
+    setCookie('page_label', {{PageLabel}}, 30);
+
+})();
+</script>
