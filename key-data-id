@@ -1,0 +1,74 @@
+function getPageId() {
+  var urlPatterns = {
+    
+    'https://www.isaca.org/training-and-events/conferences/isaca-europe-conference' : 16879,
+    'https://www.isaca.org/training-and-events/conferences/grc-conference' : 16879,
+    'https://www.isaca.org/training-and-events/conferences': 16879,
+    'https://www.isaca.org/credentialing/certifications': 16876,
+    'https://www.isaca.org/membership': 16877,
+    'https://www.isaca.org/enterprise/voluntary-improvement-program': 16878,
+    'https://www.isaca.org/resources/white-papers/five-ways-to-improve-the-quality-mindset-of-your-organization' : 16878,
+    'https://www.isaca.org/isaca-digital-videos/enterprise-performance/the-value-of-internal-appraisal-team-members-atms-in-mddap' : 16878,
+    'https://www.isaca.org/isaca-digital-videos/enterprise-performance/case-study-how-innovize-was-able-to-generate-higher-quality-outputs-more-reliably' : 16878,
+    'https://www.isaca.org/isaca-digital-videos/enterprise-performance/what-is-mddap' : 16878,
+    'https://www.isaca.org/resources/case-studies/fisher-and-paykel-healthcare': 16878,
+    'https://www.isaca.org/resources/videos/delivering-higher-quality-products-to-patients-faster-through-the-voluntary-improvement-program': 16878,
+    'https://www.isaca.org/resources/news-and-trends/isaca-now-blog/2022/how-mddap-improves-product-quality': 16878,
+    'https://www.isaca.org/resources/news-and-trends/isaca-now-blog/2022/mddap-helps-achieve-fast-sustainable-solutions-for-medical-device-quality': 16878,
+    'https://www.isaca.org/resources/case-studies/edwards-case-study': 16878,
+    'https://www.isaca.org/resources/news-and-trends/isaca-now-blog/2021/driving-sustainable-improvement-for-medical-device-quality' : 16878,
+    'https://www.isaca.org/resources/white-papers/case-for-quality-voluntary-manufacturing-and-product-quality-pilot-program' : 16878,
+    'https://www.isaca.org/isaca-digital-videos/videos-on-pages/case-for-quality-collaborative' : 16878,
+    'https://www.isaca.org/resources/ebook/navigating-supply-chain-struggles' : 16878,
+    'https://www.isaca.org/resources/ebook/nine-reasons-your-medical-device-company-needs-vip' : 16878,
+    'https://www.isaca.org/resources/news-and-trends/isaca-now-blog/2023/the-exciting-benefits-of-isacas-mddap-vip-portal' : 16878,
+    'https://www.isaca.org/resources/ebook/how-medical-device-companies-can-move-beyond-compliance-and-toward-quality' :  16878,
+    'https://www.isaca.org/resources/ebook/mddap-use-case': 16878,
+    'https://www.isaca.org/about-us/newsroom/press-releases/2023/fda-announces-formal-support-for-voluntary-improvement-program': 16878,
+    'https://www.isaca.org/enterprise/cmmi-performance-solutions': 17003,
+    'https://www.isaca.org/enterprise/training-and-credentialing': 17322,
+    'https://www.isaca.org/resources/white-papers/how-to-be-a-leader-people-dont-want-to-leave': 17322,
+    'https://www.isaca.org/isaca-digital-videos/enterprise-performance/enterprise-direct-series': 17322,
+    'https://www.isaca.org/isaca-digital-videos/enterprise-performance/value-of-isaca-enterprise-solutions' : 17322,
+    'https://www.isaca.org/isaca-digital-videos/enterprise-performance/mark-thomas-benefits-of-enterprise-team-training' : 17322,
+    'https://www.isaca.org/enterprise' : 17322,
+    'https://www.isaca.org/enterprise/upskill-your-team': 17322,
+    'https://www.isaca.org/enterprise/empower-your-team': 17322,
+    'https://www.isaca.org/enterprise/training-and-credentialing/audiences-and-needs' : 17322,
+    'https://www.isaca.org/resources/isaca-journal/issues/2017/volume-4/enterprise-security-architecturea-top-down-approach': 17322,
+    'https://www.isaca.org/resources/isaca-journal/issues/2017/volume-2/enterprise-vulnerability-management': 17322,
+    'https://www.isaca.org/enterprise/performance-improvement-solutions': 17322,
+    'https://www.isaca.org/resources/isaca-journal/issues/2019/volume-2/enterprise-risk-monitoring-methodology-part-1': 17322,
+    'https://www.isaca.org/resources/isaca-journal/issues/2019/volume-2/enterprise-risk-monitoring-methodology-part-2': 17322,
+    'https://www.isaca.org/resources/isaca-journal/issues/2019/volume-6/enterprise-risk-monitoring-methodology-part-3': 17322,
+    'https://www.isaca.org/resources/isaca-journal/issues/2020/volume-3/enterprise-risk-monitoring-methodology-part-4': 17322,
+    'https://www.isaca.org/isaca-digital-videos/enterprise-performance/academic-and-workforce-development-partnership-program': 17322,
+    'https://www.isaca.org/partnerships/become-a-training-partner': 17004,
+    'https://www.isaca.org/partnerships/find-an-accredited-training-organization/certification-training': 17004,
+    'https://www.isaca.org/partnerships/find-an-accredited-training-organization': 17004,
+    'https://www.isaca.org/resources/news-and-trends/isaca-now-blog/2023/the-business-benefits-of-becoming-an-isaca-ato': 17004,
+    'https://www.isaca.org/resources/news-and-trends/isaca-now-blog/2023/how-ato-and-chapter-training-can-help-you-pass-your-certification-exam': 17004,
+    'https://www.isaca.org/resources/news-and-trends/isaca-now-blog/2023/top-benefits-of-becoming-an-isaca-accredited-training-organization': 17004,
+    'https://www.isaca.org/resources/ebook/top-five-benefits-of-becoming-an-accredited-training-organization': 17004,
+    'https://www.isaca.org/resources/news-and-trends/isaca-now-blog/2022/five-quick-tips-for-taking-isaca-certification-exams': 17004,
+    'https://www.isaca.org/partnerships/find-an-accredited-training-organization/cobit-training': 17004,
+    'https://www.isaca.org/about-us/newsroom/press-releases/2017/isaca-introduces-accredited-training-program-for-cisa-cism-cgeit-and-crisc-certification-preparation': 17004,
+    'https://www.isaca.org/isaca-digital-videos/credentialing/learn-about-the-value-of-becoming-an-isaca-accredited-training-organization': 17004,
+    'https://www.isaca.org/resources/infographics/grow-your-business-as-an-isaca-accredited-training-organization': 17004,
+    'https://www.isaca.org/campaigns/advanced-membership': 16877
+  };
+
+  // current URL
+  var currentPageUrl = window.location.href;
+
+  
+  for (var pattern in urlPatterns) {
+    if (currentPageUrl.indexOf(pattern) !== -1) {
+     
+      return urlPatterns[pattern];
+    }
+  }
+
+  
+  return null;
+}
