@@ -1,0 +1,68 @@
+function getPageId() {
+  var urlPatterns = {
+
+    'https://www.isaca.org/training-and-events/conferences': 2418,
+    'https://www.isaca.org/credentialing/certifications': 2415,
+    'https://www.isaca.org/membership': 2416,
+    'https://www.isaca.org/enterprise/voluntary-improvement-program': 2417,
+    'https://www.isaca.org/enterprise/cmmi-performance-solutions': 2477,
+    'https://www.isaca.org/enterprise/cmmi-cybermaturity-platform' : 2477,
+    'https://www.isaca.org/training-and-events/conferences/cmmi-conference' : 2477,
+    'https://www.isaca.org/isaca-digital-videos/enterprise-performance/how-to-get-started-with-cmmi' : 2477,
+    'https://www.isaca.org/resources/news-and-trends/isaca-now-blog/2024/shaping-the-future-with-cmmi': 2477,
+    'https://www.isaca.org/about-us/newsroom/press-releases/2024/digital-trust-leaders-converge-for-isaca-2024-north-america-conference-and-cmmi-2024-conference' : 2477,
+    'https://www.isaca.org/resources/news-and-trends/newsletters/atisaca/2024/volume-3/us-congressman-visits-isaca-for-cmmi-update' : 2477,
+    'https://www.isaca.org/es-es/resources/isaca-journal/issues/2021/volume-6/building-a-maturity-model-for-cobit-2019-based-on-cmmi' : 2477,
+    'https://www.isaca.org/partnerships/become-a-training-partner': 2478,
+    'https://www.isaca.org/enterprise/training-and-credentialing': 2630,
+    'https://www.isaca.org/resources/white-papers/how-to-be-a-leader-people-dont-want-to-leave': 2630,
+    'https://www.isaca.org/isaca-digital-videos/enterprise-performance/enterprise-direct-series': 2630,
+    'https://www.isaca.org/isaca-digital-videos/enterprise-performance/value-of-isaca-enterprise-solutions' : 2630,
+    'https://www.isaca.org/isaca-digital-videos/enterprise-performance/mark-thomas-benefits-of-enterprise-team-training' : 2630,
+    'https://www.isaca.org/enterprise' : 2630,
+    'https://www.isaca.org/enterprise/upskill-your-team': 2630,
+    'https://www.isaca.org/enterprise/empower-your-team': 2630,
+    'https://www.isaca.org/enterprise/training-and-credentialing/audiences-and-needs' : 2630,
+    'https://www.isaca.org/resources/isaca-journal/issues/2017/volume-4/enterprise-security-architecturea-top-down-approach': 2630,
+    'https://www.isaca.org/resources/isaca-journal/issues/2017/volume-2/enterprise-vulnerability-management': 2630,
+    'https://www.isaca.org/enterprise/performance-improvement-solutions': 2630,
+    'https://www.isaca.org/resources/isaca-journal/issues/2019/volume-2/enterprise-risk-monitoring-methodology-part-1': 2630,
+    'https://www.isaca.org/resources/isaca-journal/issues/2019/volume-2/enterprise-risk-monitoring-methodology-part-2': 2630,
+    'https://www.isaca.org/resources/isaca-journal/issues/2019/volume-6/enterprise-risk-monitoring-methodology-part-3': 2630,
+    'https://www.isaca.org/resources/isaca-journal/issues/2020/volume-3/enterprise-risk-monitoring-methodology-part-4': 2630,
+    'https://www.isaca.org/partnerships/find-an-accredited-training-organization/certification-training': 2478,
+    'https://www.isaca.org/partnerships/find-an-accredited-training-organization': 2478,
+    'https://www.isaca.org/resources/news-and-trends/isaca-now-blog/2023/the-business-benefits-of-becoming-an-isaca-ato': 2478,
+    'https://www.isaca.org/resources/news-and-trends/isaca-now-blog/2023/how-ato-and-chapter-training-can-help-you-pass-your-certification-exam': 2478,
+    'https://www.isaca.org/resources/news-and-trends/isaca-now-blog/2023/top-benefits-of-becoming-an-isaca-accredited-training-organization': 2478,
+    'https://www.isaca.org/resources/ebook/top-five-benefits-of-becoming-an-accredited-training-organization': 2478,
+    'https://www.isaca.org/resources/news-and-trends/isaca-now-blog/2022/five-quick-tips-for-taking-isaca-certification-exams': 2478,
+    'https://www.isaca.org/partnerships/find-an-accredited-training-organization/cobit-training': 2478,
+    'https://www.isaca.org/about-us/newsroom/press-releases/2017/isaca-introduces-accredited-training-program-for-cisa-cism-cgeit-and-crisc-certification-preparation': 2478,
+    'https://www.isaca.org/isaca-digital-videos/credentialing/learn-about-the-value-of-becoming-an-isaca-accredited-training-organization': 2478,
+    'https://www.isaca.org/resources/infographics/grow-your-business-as-an-isaca-accredited-training-organization': 2478,
+    'https://www.isaca.org/resources/ebook/mddap-use-case': 2417,
+    'https://www.isaca.org/resources/case-studies/fisher-and-paykel-healthcare': 2417,
+    'https://www.isaca.org/resources/videos/delivering-higher-quality-products-to-patients-faster-through-the-voluntary-improvement-program': 2417,
+    'https://www.isaca.org/resources/news-and-trends/isaca-now-blog/2022/how-mddap-improves-product-quality': 2417,
+    'https://www.isaca.org/resources/news-and-trends/isaca-now-blog/2022/mddap-helps-achieve-fast-sustainable-solutions-for-medical-device-quality': 2417,
+    'https://www.isaca.org/training-and-events/conferences/grc-conference' : 2418,
+    'https://www.isaca.org/campaigns/half-year-half-price' : 2416,
+    'https://www.isaca.org/training-and-events/conferences/isaca-europe-conference' : 2418,
+    'https://www.isaca.org/campaigns/advanced-membership' : 2416
+  };
+
+  // current URL
+  var currentPageUrl = window.location.href;
+
+  
+  for (var pattern in urlPatterns) {
+    if (currentPageUrl.indexOf(pattern) !== -1) {
+     
+      return urlPatterns[pattern];
+    }
+  }
+
+  
+  return null;
+}
