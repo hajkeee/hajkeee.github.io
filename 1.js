@@ -37,3 +37,43 @@ v3 -----------------------------------------------------------------------------
 })();
 </script>
 
+
+
+//Local storage
+
+<script>
+(function() {
+    function setLocalStorage(name, value, minutes) {
+        var expirationTime = new Date().getTime() + (minutes * 60 * 1000);
+        var item = {
+            value: value,
+            expiration: expirationTime
+        };
+        localStorage.setItem(name, JSON.stringify(item));
+    }
+
+    function getLocalStorage(name) {
+        var item = localStorage.getItem(name);
+        if (!item) {
+            return null;
+        }
+
+        item = JSON.parse(item);
+        if (new Date().getTime() > item.expiration) {
+            localStorage.removeItem(name);
+            return null;
+        }
+
+        return item.value;
+    }
+
+    var pageLabelStorage = getLocalStorage('page_label');
+
+    if (pageLabelStorage) {
+        setLocalStorage('page_label', pageLabelStorage, 30);
+    } else {
+        setLocalStorage('page_label', {{PageLabel}}, 30);
+    }
+})();
+</script>
+
