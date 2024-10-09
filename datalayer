@@ -15,6 +15,41 @@
 
 
 
+function() {
+  var ecommerceData = {{DLV - Google Analytics - ecommerce}};
+
+  var olddatalayer_structure = [];
+
+  if (ecommerceData && ecommerceData.items) {
+    olddatalayer_structure = ecommerceData.items.map(function(item) {
+      return {
+        id: item.item_id || '', 
+        name: item.item_name || '', 
+        price: item.price || 0, 
+        category: item.item_brand || '', 
+        list: ecommerceData.item_list_name || '', 
+        position: item.index || 0, 
+        variant: item.item_variant || '' ,
+        quantity: item.quantity || 1
+      };
+    });
+  }
+
+
+  return olddatalayer_structure;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 кукіс
 <script>
 (function() {
