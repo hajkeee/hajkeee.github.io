@@ -1,3 +1,5 @@
+https://docs.google.com/spreadsheets/d/1DlU7jgX_mExAnMyZpS_3NSgT-6ucGtD0h8-OawEjJtE/edit?gid=0#gid=0
+
 (()=>{
     const nodes = document.querySelectorAll('[data-cy="l-card"]')
     const viewItemList = []
