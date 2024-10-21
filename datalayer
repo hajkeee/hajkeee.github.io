@@ -1,6 +1,11 @@
 https://docs.google.com/spreadsheets/d/1DlU7jgX_mExAnMyZpS_3NSgT-6ucGtD0h8-OawEjJtE/edit?gid=0#gid=0
 https://lookerstudio.google.com/reporting/183f0dc6-7101-4a9b-a417-51cd4a1229e1
 
+
+
+**regex for GPT
+.*gpt.*|.*chatgpt.*|.*openai.*|.*neeva.*|.*writesonic.*|.*nimble.*|.*outrider.*|.*perplexity.*|.*google.*bard.*|.*bard.*google.*|.*bard.*|.*edgeservices.*|.*gemini.*google.*
+
 (()=>{
     const nodes = document.querySelectorAll('[data-cy="l-card"]')
     const viewItemList = []
