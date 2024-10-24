@@ -1,0 +1,51 @@
+function() {
+    var ecommerce = {{DLV - Google Analytics - ecommerce}};
+    var ecommerceItems = ecommerce ? ecommerce.items : null;
+
+    var nodesList = document.querySelectorAll("esky-offer-block > div > div.middle > div > a > div > div > span");
+    var nodeName = document.querySelector("esky-hotel-expandable-section > div > div > div");
+    var names = nodesList && nodesList.length ? Array.from(nodesList).map(function(item) {
+        return item.innerText.trim();
+    }) : null;
+    var name = nodeName ? nodeName.innerText.trim() : null;
+
+    var products = []; 
+
+    if (ecommerce && ecommerceItems) {
+
+        products = ecommerceItems.map(function(item, i) {
+            return {
+                id: item.item_category3,
+                name: names && names.length > 0 ? names[i] : name || {{DLV - hotel name}},
+                price: item.price || 0,
+                category: item.item_brand || '',
+                list: '',
+                position: item.index || 0,
+                variant: item.item_variant || ''
+            };
+        });
+    }
+
+
+    var flightFrom_select = {{DLV - airport from}} || null;
+    var flightTo_select = {{DLV - airport destination}} || null;
+    var flightName_select = {{cJS - flight name}} || null;
+    var flightFrom_view = {{DLV - Flights.Departure.AirportName}} || 'error';
+    var flightTo_view = {{DLV - Flights.Arrival.AirportName}} || 'error';
+    var flightName_view = {{DLV - Flights.OfferDetails.AirlineNames}};
+
+
+    if (flightFrom_select && flightTo_select && flightName_select) {
+        products.push({ 
+            id: flightFrom_select + '|' + flightTo_select, 
+            name: flightName_select || '{{DLV - Flights.Departure.AirportName}}' + '|' + '{{DLV - Flights.Arrival.AirportName}}', 
+            price: 207.96, 
+            category: 'Flight', 
+            variant: {{cJS - variant airlines}} || flightName_view
+           
+        });
+    }
+
+
+    return products; 
+}
