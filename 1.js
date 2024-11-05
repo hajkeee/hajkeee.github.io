@@ -1,3 +1,118 @@
+function() {
+    var ecommerce = {{DLV - Google Analytics - ecommerce}};
+    var ecommerceItems = ecommerce ? ecommerce.items : null;
+
+    var nodesList = document.querySelectorAll("esky-offer-block > div > div.middle > div > a > div > div > span");
+    var nodeName = document.querySelector("esky-hotel-expandable-section > div > div > div");
+    var names = nodesList && nodesList.length ? Array.from(nodesList).map(function(item) {
+        return item.innerText.trim();
+    }) : null;
+    var name = nodeName ? nodeName.innerText.trim() : {{DLV - hotel name - add_to_cart}};
+    var flightFrom_select = {{DLV - airport from}} || 'error';
+    var flightTo_select = {{DLV - airport destination}} || 'error';
+    var flightName_select = {{cJS - flight name}} || "error";
+    var variant_airlines = {{cJS - variant airlines}} || "error";
+
+  
+    var products = []; 
+
+
+    if (ecommerce && ecommerceItems) {
+        products = ecommerceItems.map(function(item, i) {
+
+            if (item.item_brand !== "Flight") {
+                return {
+                    id: item.item_category3,
+                    name: names && names.length > 0 ? names[i] : name || {{DLV - hotel name - add_to_cart}}, 
+                    price: item.price,
+                    category: item.item_brand || '',
+                    list: '',
+                    position: item.index || 0,
+                    variant: item.item_variant || ''
+                };
+            }
+
+            if (item.item_brand === "Flight") {
+                return {
+                    id: flightFrom_select.toUpperCase() + '|' + flightTo_select.toUpperCase() || {{DLV - Flights.Departure.AirportCode}} + '|' + {{DLV - Flights.Arrival.AirportCode}},
+                    name: {{DLV - Flights.Departure.CityName}} +'|'+ {{DLV - Flights.Arrival.CityName}}, 
+                    price: item.price, 
+                    category: 'Flight', 
+                    list: '',
+                    position: item.index || 0,
+                    variant: {{DLV - Flights.OfferDetails.AirlineNames}} || "error" 
+                };
+            }
+
+            return null;
+        }).filter(Boolean); 
+    }
+
+
+    var hasFlight = products.some(function(product) {
+        return product && product.category === "Flight";
+    });
+
+
+    if (!hasFlight) {
+        
+
+
+        if (flightFrom_select && flightTo_select && flightName_select) {
+            products.push({
+                id: flightFrom_select.toUpperCase() + '|' + flightTo_select.toUpperCase(),
+                name: flightName_select,
+                price: 0, 
+                category: 'Flight', 
+                list: '',
+                position: products.length, 
+                variant: variant_airlines
+            });
+        }
+    }
+
+    return products;
+}
+/////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 v3 -----------------------------------------------------------------------------
