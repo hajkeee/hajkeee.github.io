@@ -136,6 +136,7 @@ function() {
 
 
 
+
 **regex for GPT
 .*gpt.*|.*chatgpt.*|.*openai.*|.*neeva.*|.*writesonic.*|.*nimble.*|.*outrider.*|.*perplexity.*|.*google.*bard.*|.*bard.*google.*|.*bard.*|.*edgeservices.*|.*gemini.*google.*
 
