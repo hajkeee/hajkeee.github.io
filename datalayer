@@ -21,6 +21,54 @@ _eas.push(
 );
 
 
+
+_eas = window['_eas'] || [];
+_eas.push([
+    'logEvent',
+    [
+        'PO_SR',
+        'FE',
+        [
+            ['SearchType', 'Fixed, Flex, Open_Search'],
+            ['DepartureCode', 'KRK'],
+            ['DepartureType', 'airport'],
+            ['DestinationCode', 'BRI'],
+            ['DestinationType', 'airport'],
+            [
+                'FlightsOffers',
+                [
+                    {
+                        'AvailableDepartureHours': '16:05|19:35',
+                        'NQS': '-8.06084987890665',
+                        'Price': 488,
+                        'TotalPrice': 659,
+                        'Provider': '6',
+                        'Stops': '0|0',
+                        'IsPricePerPax': false,
+                        'OfferId': '016c09cb-a97a-4b22-bc7e-9bd189143ccd',
+                        'CheckInDate': '2022-01-01',
+                        'CheckOutDate': '2022-01-23'
+                    },
+                    {
+                        'AvailableDepartureHours': '05:45|19:40',
+                        'NQS': '-7.84800342647558',
+                        'Price': 515,
+                        'TotalPrice': 657,
+                        'Provider': '103',
+                        'Stops': '0|0',
+                        'IsPricePerPax': false,
+                        'OfferId': 'ba76a7ce-354a-4046-825d-3b1a28a99f32',
+                        'CheckInDate': '2022-01-01',
+                        'CheckOutDate': '2022-01-23'
+                    }
+                ]
+            ]
+        ]
+    ]
+]);
+
+
+
 gtmData = [];
 
 var button = document.querySelector(".suite.suite-up-button.md-button.md-standard-theme.md-ink-ripple.layout-align-start-center.layout-row");
