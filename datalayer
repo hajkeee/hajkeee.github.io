@@ -1,6 +1,29 @@
 https://docs.google.com/spreadsheets/d/1DlU7jgX_mExAnMyZpS_3NSgT-6ucGtD0h8-OawEjJtE/edit?gid=0#gid=0
 https://lookerstudio.google.com/reporting/183f0dc6-7101-4a9b-a417-51cd4a1229e1
 
+
+
+let eventName, eecObjectProps;
+if (data.enhancedEcommerce) {
+  if (!ecommerce) return fail('Facebook Pixel: No valid "ecommerce" object found in dataLayer');
+  if (ecommerce.view_item) {
+    eventName = 'ViewContent'; // Подія для перегляду контенту
+  } else if (ecommerce.add_to_cart) {
+    eventName = 'AddToCart'; // Подія для додавання в кошик
+  } else if (ecommerce.begin_checkout) {
+    eventName = 'InitiateCheckout'; // Подія для початку оформлення замовлення
+  } else if (ecommerce.purchase) {
+    eventName = 'Purchase'; // Подія для завершення покупки
+  } else {
+    return fail('Facebook Pixel: Most recently pushed "ecommerce" object must be one of types "view_item", "add_to_cart", "begin_checkout" or "purchase".');
+  }
+}
+
+
+
+
+
+
 _eas = window['_eas'] || [];
 _eas.push(
     [
