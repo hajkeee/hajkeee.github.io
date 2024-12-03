@@ -3,6 +3,44 @@ https://lookerstudio.google.com/reporting/183f0dc6-7101-4a9b-a417-51cd4a1229e1
 
 
 
+ "QSFData": {
+        "SearchType": "Fixed",
+        "DepartureCode": "KRK",
+        "DepartureType": "airport",
+        "DestinationCode": "BRI",
+        "DestinationType": "airport",
+        "FlightsOffers": [
+            {
+                "AvailableDepartureHours": "16:05|19:35",
+                "NQS": "-8.06084987890665",
+                "Price": 488,
+                "TotalPrice": 659,
+                "Provider": "6",
+                "Stops": "0|0",
+                "IsPricePerPax": False,
+                "OfferId": "016c09cb-a97a-4b22-bc7e-9bd189143ccd",
+                "CheckInDate": "2022-01-01",
+                "CheckOutDate": "2022-01-23"
+            },
+            {
+                "AvailableDepartureHours": "05:45|19:40",
+                "NQS": "-7.84800342647558",
+                "Price": 515,
+                "TotalPrice": 657,
+                "Provider": "103",
+                "Stops": "0|0",
+                "IsPricePerPax": False,
+                "OfferId": "ba76a7ce-354a-4046-825d-3b1a28a99f32",
+                "CheckInDate": "2022-01-01",
+                "CheckOutDate": "2022-01-23"
+            }
+        ]
+    },
+
+
+
+
+
 let eventName, eecObjectProps;
 if (data.enhancedEcommerce) {
   if (!ecommerce) return fail('Facebook Pixel: No valid "ecommerce" object found in dataLayer');
