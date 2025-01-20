@@ -1,3 +1,13 @@
+///3+ of passengers, (preferably 2 adults, 1 child plus)
+
+5+ of nights,
+
+3+ of hotel pages visited
+
+is returning visitor? (how many days after last visit is the customer still a returning visitor?) - within 7 days
+
+Transaction Value £2,000+ (for checkout/hotel page)
+
 function() {
     var ecommerce = {{DLV - Google Analytics - ecommerce}};
     var ecommerceItems = ecommerce ? ecommerce.items : null;
