@@ -1,0 +1,101 @@
+cHTML - Track View Item Counter
+
+<script>
+(function() {
+
+    var viewItemCounterKey = 'viewItemCounter';
+
+
+    function incrementViewItemCounter() {
+        var currentCount = parseInt(sessionStorage.getItem(viewItemCounterKey), 10) || 0;
+        var newCount = currentCount + 1;
+        sessionStorage.setItem(viewItemCounterKey, newCount);
+    }
+
+
+    document.addEventListener('view_item', incrementViewItemCounter);
+
+
+    window.getViewItemCount = function() {
+        return parseInt(sessionStorage.getItem(viewItemCounterKey), 10) || 0;
+    };
+
+
+    document.dispatchEvent(new Event('view_item'));
+})();
+</script>
+
+function() {
+    return window.getViewItemCount ? window.getViewItemCount() : 0;
+}
+
+
+
+cHTML - Visitor Counter 7 days
+
+<script>
+(function() {
+
+    function setCookie(name, value, days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + date.toUTCString();
+        document.cookie = name + "=" + value + "; " + expires + "; path=/";
+    }
+
+
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var c = cookies[i].trim();
+            if (c.indexOf(nameEQ) === 0) {
+                return c.substring(nameEQ.length, c.length);
+            }
+        }
+        return null;
+    }
+
+
+    function isReturningUser() {
+        var returningUser = getCookie('returningUser');
+        if (!returningUser) {
+            setCookie('returningUser', 'true', 7);
+        }
+
+        window.isReturningUser = !!returningUser;
+    }
+
+
+    isReturningUser();
+})();
+</script>
+
+
+cJS - Returning User
+
+function() {
+    return window.isReturningUser || false;
+}
+
+
+
+DLV - price - view_item
+ecommerce.items.0.price
+
+
+cJS - trip nights
+function(){
+
+var text = document.querySelector("body > jan-app > esky-layout > div > esky-portfolio-variants > jan-basket > jan-portfolio-select-room > div.overview.overview-container > div > esky-hotel-summary-container > esky-hotel-price-summary > div > esky-hotel-travel-details > div > esky-icon-with-label:nth-child(1) > span").innerText;
+
+
+var nights = text.match(/(\d+)\s+nights/)[1];
+
+  
+return nights
+console.log(nights); 
+
+
+}
+
