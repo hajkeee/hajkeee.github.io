@@ -1,6 +1,5 @@
 ///3+ of passengers, (preferably 2 adults, 1 child plus)
-<script type="text/javascript" charset="utf-8">
-  (function (g, e, n, es, ys) {
+ (function (g, e, n, es, ys) {
     g['_genesysJs'] = e;
     g[e] = g[e] || function () {
       (g[e].q = g[e].q || []).push(arguments)
@@ -12,7 +11,38 @@
     environment: 'prod-euc1',
     deploymentId: '696e9c10-5a03-4b8b-a936-2becab42ec0a'
   });
-</script>
+  
+Genesys("subscribe", "Messenger.opened", function() {
+    dataLayer.push({
+        'event': 'Engage',
+        'event_type': 'GPEWM',
+        'event_name': 'Messenger opened'
+    });
+});
+
+Genesys("subscribe", "Conversations.started", function() {
+    dataLayer.push({
+        'event': 'Engage',
+        'event_type': 'GPEWM',
+        'event_name': 'Messenger Conversation started'
+    });
+});
+
+Genesys("subscribe", "Messenger.closed", function() {
+    dataLayer.push({
+        'event': 'Engage',
+        'event_type': 'GPEWM',
+        'event_name': 'Messenger Closed'
+    });
+});
+
+Genesys("subscribe", "Conversations.closed", function() {
+    dataLayer.push({
+        'event': 'Engage',
+        'event_type': 'GPEWM',
+        'event_name': 'Messenger Conversation closed'
+    });
+});
 5+ of nights,
 
 3+ of hotel pages visited
