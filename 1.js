@@ -49,6 +49,48 @@ Genesys("subscribe", "Conversations.closed", function() {
 
 is returning visitor? (how many days after last visit is the customer still a returning visitor?) - within 7 days
 
+
+<script>
+(function() {
+    function setCookie(name, value, days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + date.toUTCString();
+        document.cookie = name + "=" + value + "; " + expires + "; path=/";
+    }
+
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var c = cookies[i].trim();
+            if (c.indexOf(nameEQ) === 0) {
+                return c.substring(nameEQ.length, c.length);
+            }
+        }
+        return null;
+    }
+
+    function updateReturningUserCookie() {
+        setCookie('returningUser', 'true', 7); 
+        window.isReturningUser = true;
+    }
+
+    function isReturningUser() {
+        var returningUser = getCookie('returningUser');
+        if (!returningUser) {
+            window.isReturningUser = false; 
+        } else {
+            window.isReturningUser = true; 
+        }
+        updateReturningUserCookie(); 
+    }
+
+    isReturningUser();
+})();
+</script>
+
+
 Transaction Value £2,000+ (for checkout/hotel page)
 
 function() {
