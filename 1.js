@@ -1,5 +1,18 @@
 ///3+ of passengers, (preferably 2 adults, 1 child plus)
-
+<script type="text/javascript" charset="utf-8">
+  (function (g, e, n, es, ys) {
+    g['_genesysJs'] = e;
+    g[e] = g[e] || function () {
+      (g[e].q = g[e].q || []).push(arguments)
+    };
+    g[e].t = 1 * new Date();
+    g[e].c = es;
+    ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
+  })(window, 'Genesys', 'https://apps.mypurecloud.de/genesys-bootstrap/genesys.min.js', {
+    environment: 'prod-euc1',
+    deploymentId: '696e9c10-5a03-4b8b-a936-2becab42ec0a'
+  });
+</script>
 5+ of nights,
 
 3+ of hotel pages visited
