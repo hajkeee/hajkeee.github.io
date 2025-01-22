@@ -1,5 +1,61 @@
-cHTML - Track View Item Counter
+v2 cHTML - Track View Item Counter
 
+(function () {
+    var viewItemCounterKey = 'viewItemCounter';
+
+    // Ініціалізація значення в sessionStorage
+    if (sessionStorage.getItem(viewItemCounterKey) === null) {
+        sessionStorage.setItem(viewItemCounterKey, 0);
+    }
+
+    function incrementViewItemCounter() {
+        var currentCount = parseInt(sessionStorage.getItem(viewItemCounterKey), 10);
+        sessionStorage.setItem(viewItemCounterKey, currentCount + 1);
+    }
+
+    function checkViewItemEvent() {
+        // Перевірка, чи вже є подія view_item у dataLayer
+        var hasViewItem = window.dataLayer.some(function (event) {
+            return event.event === 'view_item';
+        });
+
+        // Якщо подія знайдена, інкрементуємо лічильник
+        if (hasViewItem) {
+            incrementViewItemCounter();
+        } else {
+            // Спостерігаємо за майбутніми подіями
+            var originalPush = window.dataLayer.push;
+            window.dataLayer.push = function () {
+                Array.prototype.forEach.call(arguments, function (event) {
+                    if (event.event === 'view_item') {
+                        incrementViewItemCounter();
+                    }
+                });
+                return originalPush.apply(this, arguments);
+            };
+        }
+    }
+
+    // Виконуємо перевірку наявності події
+    checkViewItemEvent();
+
+    // Функція для отримання значення лічильника
+    window.getViewItemCount = function () {
+        return parseInt(sessionStorage.getItem(viewItemCounterKey), 10);
+    };
+})();
+
+
+
+
+
+
+
+
+
+
+cHTML - Track View Item Counter
+v1
 <script>
 (function() {
     var viewItemCounterKey = 'viewItemCounter';
