@@ -14,16 +14,18 @@ v2 cHTML - Track View Item Counter
     }
 
     function checkViewItemEvent() {
-        // Перевірка, чи вже є подія view_item у dataLayer
-        var hasViewItem = window.dataLayer.some(function (event) {
-            return event.event === 'view_item';
-        });
+        if (window.dataLayer) {
+            // Перевіряємо наявність події view_item
+            var hasViewItem = window.dataLayer.some(function (event) {
+                return event.event === 'view_item';
+            });
 
-        // Якщо подія знайдена, інкрементуємо лічильник
-        if (hasViewItem) {
-            incrementViewItemCounter();
-        } else {
-            // Спостерігаємо за майбутніми подіями
+            // Якщо подія знайдена, інкрементуємо лічильник
+            if (hasViewItem) {
+                incrementViewItemCounter();
+            }
+
+            // Додаємо спостерігач для нових подій
             var originalPush = window.dataLayer.push;
             window.dataLayer.push = function () {
                 Array.prototype.forEach.call(arguments, function (event) {
@@ -36,14 +38,15 @@ v2 cHTML - Track View Item Counter
         }
     }
 
-    // Виконуємо перевірку наявності події
+    // Ініціалізація функції
     checkViewItemEvent();
 
-    // Функція для отримання значення лічильника
+    // Створення функції для доступу до лічильника
     window.getViewItemCount = function () {
         return parseInt(sessionStorage.getItem(viewItemCounterKey), 10);
     };
 })();
+
 
 
 
