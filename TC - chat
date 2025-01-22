@@ -2,26 +2,33 @@ cHTML - Track View Item Counter
 
 <script>
 (function() {
-
     var viewItemCounterKey = 'viewItemCounter';
 
-
-    function incrementViewItemCounter() {
-        var currentCount = parseInt(sessionStorage.getItem(viewItemCounterKey), 10) || 0;
-        var newCount = currentCount + 1;
-        sessionStorage.setItem(viewItemCounterKey, newCount);
+    if (sessionStorage.getItem(viewItemCounterKey) === null) {
+        sessionStorage.setItem(viewItemCounterKey, 0);
     }
 
+    function incrementViewItemCounter() {
+        var currentCount = parseInt(sessionStorage.getItem(viewItemCounterKey), 10);
+        var newCount = currentCount + 1;
+        sessionStorage.setItem(viewItemCounterKey, newCount); 
+    }
 
-    document.addEventListener('view_item', incrementViewItemCounter);
+    var hasViewItemEvent = false;  
 
+    window.dataLayer.push(function() {
+
+        if (!hasViewItemEvent) {
+            if (window.dataLayer.some(function(event) { return event.event === 'view_item'; })) {
+                incrementViewItemCounter();
+                hasViewItemEvent = true;  
+            }
+        }
+    });
 
     window.getViewItemCount = function() {
-        return parseInt(sessionStorage.getItem(viewItemCounterKey), 10) || 0;
+        return parseInt(sessionStorage.getItem(viewItemCounterKey), 10);
     };
-
-
-    document.dispatchEvent(new Event('view_item'));
 })();
 </script>
 
