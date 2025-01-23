@@ -1,3 +1,26 @@
+<script>
+  
+Genesys("subscribe", "Journey.ready", function() {
+    dataLayer.push({
+        'event': 'Engage',
+        'event_type': 'GPEWM',
+        'event_name': 'Messenger Conversation initialized',
+        'SessionID' : '{{CK - esky_TCSIS}}'
+    });
+});
+ Genesys("command", "Journey.record", {
+    eventName: "TC_Sales"
+ });
+});
+  
+</script>
+
+
+
+
+
+
+
 Genesys("subscribe", "Messenger.opened", function() {
     dataLayer.push({
         'event': 'Engage',
