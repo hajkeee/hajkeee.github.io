@@ -1,3 +1,63 @@
+v3
+(function () {
+    var viewItemCounterKey = 'viewItemCounter';
+
+    // Ініціалізація значення в sessionStorage
+    if (sessionStorage.getItem(viewItemCounterKey) === null) {
+        sessionStorage.setItem(viewItemCounterKey, 0);
+    }
+
+    function incrementViewItemCounter() {
+        var currentCount = parseInt(sessionStorage.getItem(viewItemCounterKey), 10);
+        sessionStorage.setItem(viewItemCounterKey, currentCount + 1);
+    }
+
+    function checkViewItemEvent() {
+        if (window.dataLayer) {
+            // Перевіряємо, чи подія view_item вже була
+            var hasViewItem = window.dataLayer.some(function (event) {
+                return event.event === 'view_item';
+            });
+
+            // Якщо подія знайдена, інкрементуємо лічильник
+            if (hasViewItem) {
+                incrementViewItemCounter();
+            }
+
+            // Додаємо спостерігач для нових подій, якщо ще не обгорнуто
+            if (!window.dataLayer._isPushWrapped) {
+                var originalPush = window.dataLayer.push;
+
+                window.dataLayer.push = function () {
+                    Array.prototype.forEach.call(arguments, function (event) {
+                        if (event.event === 'view_item') {
+                            incrementViewItemCounter();
+                        }
+                    });
+                    return originalPush.apply(this, arguments);
+                };
+
+                // Позначаємо, що push вже обгорнуто
+                window.dataLayer._isPushWrapped = true;
+            }
+        }
+    }
+
+    // Ініціалізація функції
+    checkViewItemEvent();
+
+    // Створення функції для доступу до лічильника
+    window.getViewItemCount = function () {
+        return parseInt(sessionStorage.getItem(viewItemCounterKey), 10);
+    };
+})();
+
+
+
+
+
+
+
 v2 cHTML - Track View Item Counter
 
 (function () {
