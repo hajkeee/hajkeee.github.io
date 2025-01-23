@@ -1,0 +1,55 @@
+Genesys("subscribe", "Messenger.opened", function() {
+    dataLayer.push({
+        'event': 'Engage',
+        'event_type': 'GPEWM',
+        'event_name': 'Messenger opened',
+        'SessionID' : '{{CK - esky_TCSI}}'
+    });
+});
+
+Genesys("subscribe", "Conversations.started", function() {
+    dataLayer.push({
+        'event': 'Engage',
+        'event_type': 'GPEWM',
+        'event_name': 'Messenger Conversation started',
+        'SessionID' : '{{CK - esky_TCSI}}'
+    });
+});
+
+Genesys("subscribe", "Messenger.closed", function() {
+    dataLayer.push({
+        'event': 'Engage',
+        'event_type': 'GPEWM',
+        'event_name': 'Messenger Closed',
+        'SessionID' : '{{CK - esky_TCSI}}'
+    });
+});
+
+Genesys("subscribe", "Conversations.closed", function() {
+    dataLayer.push({
+        'event': 'Engage',
+        'event_type': 'GPEWM',
+        'event_name': 'Messenger Conversation closed',
+        'SessionID' : '{{CK - esky_TCSI}}'
+    });
+});
+  
+Genesys("subscribe", "Conversations.ready", function() {
+    dataLayer.push({
+        'event': 'Engage',
+        'event_type': 'GPEWM',
+        'event_name': 'Messenger Conversation ready',
+        'SessionID' : '{{CK - esky_TCSI}}'
+    });
+});
+    
+Genesys("subscribe", "Conversations.error", function() {
+    dataLayer.push({
+        'event': 'Engage',
+        'event_type': 'GPEWM',
+        'event_name': 'Messenger Conversation error',
+        'SessionID' : '{{CK - esky_TCSI}}'
+    });
+});
+    
+});
