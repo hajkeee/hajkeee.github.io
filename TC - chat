@@ -14,43 +14,46 @@ v3
 
     function checkViewItemEvent() {
         if (window.dataLayer) {
-            // Перевіряємо, чи подія view_item вже була
-            var hasViewItem = window.dataLayer.some(function (event) {
-                return event.event === 'view_item';
+
+            window.dataLayer._processedEvents = window.dataLayer._processedEvents || new WeakSet();
+
+
+            window.dataLayer.forEach(function (event) {
+                if (event.event === 'view_item' && !window.dataLayer._processedEvents.has(event)) {
+                    incrementViewItemCounter();
+                    window.dataLayer._processedEvents.add(event); // Позначаємо подію як оброблену
+                }
             });
 
-            // Якщо подія знайдена, інкрементуємо лічильник
-            if (hasViewItem) {
-                incrementViewItemCounter();
-            }
 
-            // Додаємо спостерігач для нових подій, якщо ще не обгорнуто
             if (!window.dataLayer._isPushWrapped) {
                 var originalPush = window.dataLayer.push;
 
                 window.dataLayer.push = function () {
                     Array.prototype.forEach.call(arguments, function (event) {
-                        if (event.event === 'view_item') {
+                        if (event.event === 'view_item' && !window.dataLayer._processedEvents.has(event)) {
                             incrementViewItemCounter();
+                            window.dataLayer._processedEvents.add(event); // Позначаємо подію як оброблену
                         }
                     });
                     return originalPush.apply(this, arguments);
                 };
 
-                // Позначаємо, що push вже обгорнуто
+
                 window.dataLayer._isPushWrapped = true;
             }
         }
     }
 
-    // Ініціалізація функції
+
     checkViewItemEvent();
 
-    // Створення функції для доступу до лічильника
+
     window.getViewItemCount = function () {
         return parseInt(sessionStorage.getItem(viewItemCounterKey), 10);
     };
 })();
+
 
 
 
