@@ -1,16 +1,49 @@
-  zapisujesz do returningUser przy każdym odświeżeniu strony aktualny esky_TCSIs a skrypt przy każdym odświeżeniu sprawdza zanim to nadpiszesz czy esky_TCSIs jest równy returningUser
-1:27
-to moje rozwiązanie, przemyślmy przypadki.
-User wpada po raz pierwszy na stronę
-Skrypt sprawdza czy returningUser nie jest null i czy równa się esky_TCSIs  Okazuje się, że `returningUser  jest null bo wcześniej nie było wizyty więc traktuje usera jako NOWY po czym skrypt kopiuje wartość esky_TCSIs  do returningUser
-Użytkownik potem przechodzi na inną stronę ale w tej samej sesji i skrypt sprawdza czy returningUser nie jest null i czy równa się esky_TCSIs Okazuje się, że returningUser  = esky_TCSIs  więc user jest jako NOWY po czym skrypt kopiuje wartość esky_TCSIs  do returningUser  (czyli nadpisuje go taką samą wartością).
-W tym przypadku wygląda na to, że podczas pierwszej sesji wszystko jest OK i user jest jako NOWY.
-1:30
-User powraca na stronę po jakimś czasie
-Zmienia mu się esky_TCSIs bo to ma lifetime jako Session.
-Skrypt sprawdza czy returningUser nie jest null i czy równa się esky_TCSIs  Okazuje się, że `returningUser  nie jest null i że returningUser != esky_TCSIs  czyli jest POWRACAJĄCY.
-Myślę, że dla tego przypadku należy tutaj zatrzymać skrypt by nie skopiował esky_TCSIs  do returningUser  (bo wtedy będzie znowu jako NOWY) a dzięki temu tego usera cały czas skrypt będzie traktował jako POWRACAJĄCY.
-  
+(function () {
+    var returningUserKey = 'returningUser'; // Ключ для збереження в localStorage
+    var currentSessionKey = 'esky_TCSIs';  // Ключ для ідентифікації сесії
+
+    // Отримуємо значення поточної сесії
+    var currentSession = window[currentSessionKey] || null;
+
+    // Якщо currentSession недоступний, зупиняємо виконання
+    if (!currentSession) {
+        console.warn('Session key "esky_TCSIs" is missing. Script execution stopped.');
+        return;
+    }
+
+    // Отримуємо збережене значення returningUser з localStorage
+    var storedReturningUser = localStorage.getItem(returningUserKey);
+
+    // Перевірка стану користувача
+    if (storedReturningUser === null) {
+        // Якщо значення returningUser ще не існує, користувач вважається новим
+        dataLayer.push({
+            event: 'userStatus',
+            userType: 'NEW' // Позначаємо користувача як нового
+        });
+
+        // Зберігаємо поточну сесію як returningUser
+        localStorage.setItem(returningUserKey, currentSession);
+    } else if (storedReturningUser !== currentSession) {
+        // Якщо returningUser існує, але не збігається з поточною сесією, користувач повертається
+        dataLayer.push({
+            event: 'userStatus',
+            userType: 'RETURNING' // Позначаємо користувача як повертаючого
+        });
+
+        // Не оновлюємо returningUser, щоб зберегти статус "повертаючий"
+    } else {
+        // Якщо returningUser збігається з поточною сесією, це новий перехід у поточній сесії
+        dataLayer.push({
+            event: 'userStatus',
+            userType: 'NEW' // Позначаємо користувача як нового у цій сесії
+        });
+
+        // Оновлюємо returningUser (необов'язково, бо значення збігаються)
+        localStorage.setItem(returningUserKey, currentSession);
+    }
+})();
+
 
 
 
