@@ -1,6 +1,14 @@
+  _eas = window['_eas'] || [];
+        _eas.push(['logEvent', ['TC_{{DLV - event_name}}','FE',
+                                       
+              ['PageLabel', {{esky.page.label}}, 1]
+                                        
+          ]]);
+  
+
+
+
 v5
-
-
 (function () {
     var viewItemCounterKey = 'viewItemCounter';
 
@@ -8,7 +16,6 @@ v5
         sessionStorage.setItem(viewItemCounterKey, 0);
     }
 
-    // Флаг для перевірки, чи вже оброблено події на цій сторінці
     if (window._hasProcessedViewItemEvent) {
         return; 
     }
@@ -29,7 +36,6 @@ v5
             event.ecommerce &&
             Array.isArray(event.ecommerce.items)
         ) {
-            // Перебираємо всі items у масиві ecommerce.items
             event.ecommerce.items.forEach(function (item) {
                 if (item.item_id && !processedItemIds.has(item.item_id)) {
                     incrementViewItemCounter();
