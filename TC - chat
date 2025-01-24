@@ -8,14 +8,15 @@ v5
         sessionStorage.setItem(viewItemCounterKey, 0);
     }
 
-
+    // Флаг для перевірки, чи вже оброблено події на цій сторінці
     if (window._hasProcessedViewItemEvent) {
         return; 
     }
 
     window._hasProcessedViewItemEvent = true; 
 
-    var processedItems = new Set();
+    
+    var processedItemIds = new Set();
 
     function incrementViewItemCounter() {
         var currentCount = parseInt(sessionStorage.getItem(viewItemCounterKey), 10);
@@ -24,27 +25,27 @@ v5
 
     function processEvent(event) {
         if (
-            event.event === 'view_item' && 
-            event.item_id && 
-            !processedItems.has(event.item_id)
+            event.event === 'view_item' &&
+            event.ecommerce &&
+            Array.isArray(event.ecommerce.items)
         ) {
-            incrementViewItemCounter();
-            processedItems.add(event.item_id); 
-        } else if (
-            event.event === 'view_item' && 
-            event.item_name && 
-            !processedItems.has(event.item_name)
-        ) {
-            incrementViewItemCounter();
-            processedItems.add(event.item_name);
+            // Перебираємо всі items у масиві ecommerce.items
+            event.ecommerce.items.forEach(function (item) {
+                if (item.item_id && !processedItemIds.has(item.item_id)) {
+                    incrementViewItemCounter();
+                    processedItemIds.add(item.item_id); 
+                }
+            });
         }
     }
 
     function processViewItemEvents() {
         if (window.dataLayer) {
+   
             window.dataLayer.forEach(function (event) {
                 processEvent(event);
             });
+
 
             if (!window.dataLayer._isPushWrapped) {
                 var originalPush = window.dataLayer.push;
@@ -61,7 +62,9 @@ v5
         }
     }
 
+
     processViewItemEvents();
+
 
     window.getViewItemCount = function () {
         return parseInt(sessionStorage.getItem(viewItemCounterKey), 10);
