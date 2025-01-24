@@ -1,3 +1,63 @@
+v4
+
+(function () {
+    var viewItemCounterKey = 'viewItemCounter';
+
+    if (sessionStorage.getItem(viewItemCounterKey) === null) {
+        sessionStorage.setItem(viewItemCounterKey, 0);
+    }
+
+    // Флаг для перевірки, чи обробка вже виконувалася на цій сторінці
+    if (window._hasProcessedViewItemEvent) {
+        return; // Якщо вже виконувалось, просто виходимо
+    }
+
+    window._hasProcessedViewItemEvent = true; // Встановлюємо флаг
+
+    function incrementViewItemCounter() {
+        var currentCount = parseInt(sessionStorage.getItem(viewItemCounterKey), 10);
+        sessionStorage.setItem(viewItemCounterKey, currentCount + 1);
+    }
+
+    function checkViewItemEvent() {
+        if (window.dataLayer) {
+            window.dataLayer._processedEvents = window.dataLayer._processedEvents || new WeakSet();
+
+            window.dataLayer.forEach(function (event) {
+                if (event.event === 'view_item' && !window.dataLayer._processedEvents.has(event)) {
+                    incrementViewItemCounter();
+                    window.dataLayer._processedEvents.add(event); 
+                }
+            });
+
+            if (!window.dataLayer._isPushWrapped) {
+                var originalPush = window.dataLayer.push;
+
+                window.dataLayer.push = function () {
+                    Array.prototype.forEach.call(arguments, function (event) {
+                        if (event.event === 'view_item' && !window.dataLayer._processedEvents.has(event)) {
+                            incrementViewItemCounter();
+                            window.dataLayer._processedEvents.add(event); 
+                        }
+                    });
+                    return originalPush.apply(this, arguments);
+                };
+
+                window.dataLayer._isPushWrapped = true;
+            }
+        }
+    }
+
+    checkViewItemEvent();
+
+    window.getViewItemCount = function () {
+        return parseInt(sessionStorage.getItem(viewItemCounterKey), 10);
+    };
+})();
+
+
+
+
 v3
 <script>
 (function () {
