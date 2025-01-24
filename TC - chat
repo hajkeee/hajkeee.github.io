@@ -8,14 +8,13 @@ v5
         sessionStorage.setItem(viewItemCounterKey, 0);
     }
 
-    // Флаг для перевірки, чи вже оброблено події на цій сторінці
+
     if (window._hasProcessedViewItemEvent) {
-        return; // Якщо вже виконувалось, просто виходимо
+        return; 
     }
 
-    window._hasProcessedViewItemEvent = true; // Встановлюємо флаг
+    window._hasProcessedViewItemEvent = true; 
 
-    // Зберігаємо оброблені item_id або item_name
     var processedItems = new Set();
 
     function incrementViewItemCounter() {
@@ -30,25 +29,23 @@ v5
             !processedItems.has(event.item_id)
         ) {
             incrementViewItemCounter();
-            processedItems.add(event.item_id); // Відмічаємо item_id як оброблений
+            processedItems.add(event.item_id); 
         } else if (
             event.event === 'view_item' && 
             event.item_name && 
             !processedItems.has(event.item_name)
         ) {
             incrementViewItemCounter();
-            processedItems.add(event.item_name); // Відмічаємо item_name як оброблений
+            processedItems.add(event.item_name);
         }
     }
 
     function processViewItemEvents() {
         if (window.dataLayer) {
-            // Перевіряємо існуючі події в dataLayer
             window.dataLayer.forEach(function (event) {
                 processEvent(event);
             });
 
-            // Обгортка функції push, щоб обробляти нові події
             if (!window.dataLayer._isPushWrapped) {
                 var originalPush = window.dataLayer.push;
 
@@ -64,10 +61,8 @@ v5
         }
     }
 
-    // Викликаємо обробку подій
     processViewItemEvents();
 
-    // Глобальна функція для отримання кількості подій
     window.getViewItemCount = function () {
         return parseInt(sessionStorage.getItem(viewItemCounterKey), 10);
     };
