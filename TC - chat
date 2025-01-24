@@ -1,8 +1,8 @@
 v3
+<script>
 (function () {
     var viewItemCounterKey = 'viewItemCounter';
 
-    // Ініціалізація значення в sessionStorage
     if (sessionStorage.getItem(viewItemCounterKey) === null) {
         sessionStorage.setItem(viewItemCounterKey, 0);
     }
@@ -21,7 +21,7 @@ v3
             window.dataLayer.forEach(function (event) {
                 if (event.event === 'view_item' && !window.dataLayer._processedEvents.has(event)) {
                     incrementViewItemCounter();
-                    window.dataLayer._processedEvents.add(event); // Позначаємо подію як оброблену
+                    window.dataLayer._processedEvents.add(event); 
                 }
             });
 
@@ -33,7 +33,7 @@ v3
                     Array.prototype.forEach.call(arguments, function (event) {
                         if (event.event === 'view_item' && !window.dataLayer._processedEvents.has(event)) {
                             incrementViewItemCounter();
-                            window.dataLayer._processedEvents.add(event); // Позначаємо подію як оброблену
+                            window.dataLayer._processedEvents.add(event); 
                         }
                     });
                     return originalPush.apply(this, arguments);
@@ -53,8 +53,7 @@ v3
         return parseInt(sessionStorage.getItem(viewItemCounterKey), 10);
     };
 })();
-
-
+</script>
 
 
 
