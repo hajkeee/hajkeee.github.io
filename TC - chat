@@ -1,3 +1,33 @@
+v2
+
+(function () {
+    var returningUserSessionKey = 'returningUserSession'; 
+    var currentSession = window.esky_TCSIs; 
+
+   
+    if (!currentSession) {
+        console.error('esky_TCSIs is not defined. Script execution stopped.');
+        return false;
+    }
+
+  
+    var storedSession = localStorage.getItem(returningUserSessionKey);
+
+
+    if (storedSession === null || storedSession === currentSession) {
+
+        localStorage.setItem(returningUserSessionKey, currentSession); 
+        return false; 
+    } else {
+
+        return true; 
+    }
+})();
+
+
+
+
+
 (function () {
     var returningUserKey = 'returningUser'; // Ключ для збереження в localStorage
     var currentSessionKey = 'esky_TCSIs';  // Ключ для ідентифікації сесії
