@@ -13,49 +13,52 @@ function() {
 
 
 <script>
-function setCookie(name, value, days) {
-    var expires = "";
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "") + expires + "; path=/";
-}
-
-function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i].trim();
-        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-}
-
-function checkReturningUser() {
-    var returningUserSessionValue = 'esky_TCSIs';
-    var returningUserSession = getCookie('returningUserSession');
-    var returningUser = getCookie('returningUser');
-
-    if (!returningUserSession || returningUserSession === returningUserSessionValue) {
-        if (!returningUser) {
-            setCookie('returningUserSession', returningUserSessionValue, 7);
-            setCookie('returningUser', 'false', 7);
-            console.log('New user');
-            return 'new';
+(function() {
+    function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
         }
-    } else {
-        if (returningUser === null || returningUser === 'false') {
-            setCookie('returningUser', 'true', 7);
-        }
-        console.log('Returning user');
-        return 'returning';
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
     }
-}
 
-checkReturningUser();
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i].trim();
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    function checkReturningUser() {
+        var returningUserSessionValue = 'esky_TCSIs';
+        var returningUserSession = getCookie('returningUserSession');
+        var returningUser = getCookie('returningUser');
+
+        if (!returningUserSession || returningUserSession === returningUserSessionValue) {
+            if (!returningUser) {
+                setCookie('returningUserSession', returningUserSessionValue, 7);
+                setCookie('returningUser', 'false', 7);
+                console.log('New user');
+                return 'new';
+            }
+        } else {
+            if (returningUser === null || returningUser === 'false') {
+                setCookie('returningUser', 'true', 7);
+            }
+            console.log('Returning user');
+            return 'returning';
+        }
+    }
+
+    checkReturningUser();
+})();
 </script>
+
 
 
 
