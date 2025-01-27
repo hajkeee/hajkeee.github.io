@@ -1,3 +1,39 @@
+zapisujesz do returningUser przy każdym odświeżeniu strony aktualny esky_TCSIs a skrypt przy każdym odświeżeniu sprawdza zanim to nadpiszesz czy esky_TCSIs jest równy returningUser
+1:27
+to moje rozwiązanie, przemyślmy przypadki.
+User wpada po raz pierwszy na stronę
+Skrypt sprawdza czy returningUser nie jest null i czy równa się esky_TCSIs  Okazuje się, że `returningUser  jest null bo wcześniej nie było wizyty więc traktuje usera jako NOWY po czym skrypt kopiuje wartość esky_TCSIs  do returningUser
+Użytkownik potem przechodzi na inną stronę ale w tej samej sesji i skrypt sprawdza czy returningUser nie jest null i czy równa się esky_TCSIs Okazuje się, że returningUser  = esky_TCSIs  więc user jest jako NOWY po czym skrypt kopiuje wartość esky_TCSIs  do returningUser  (czyli nadpisuje go taką samą wartością).
+W tym przypadku wygląda na to, że podczas pierwszej sesji wszystko jest OK i user jest jako NOWY.
+
+
+
+
+
+
+1:30
+User powraca na stronę po jakimś czasie
+Zmienia mu się esky_TCSIs bo to ma lifetime jako Session.
+Skrypt sprawdza czy returningUser nie jest null i czy równa się esky_TCSIs  Okazuje się, że `returningUser  nie jest null i że returningUser != esky_TCSIs  czyli jest POWRACAJĄCY.
+Myślę, że dla tego przypadku należy tutaj zatrzymać skrypt by nie skopiował esky_TCSIs  do returningUser  (bo wtedy będzie znowu jako NOWY) a dzięki temu tego usera cały czas skrypt będzie traktował jako POWRACAJĄCY.
+Po 7 dniach ciacho wygaśnie i user jak wróci to bę dzie jako nowy.
+
+GTM wtedy najpierw wykonuje ten kod a potem opiera się na ciasteczku returningUser
+
+
+
+
+
+
+1:56
+czyli dwa ciacha:
+returningUserSession - string przyjmujący wartość null dla pierwszego razu a potem ciastko esky_TCSIs
+returningUser - bool
+
+
+
+
+
 function checkUserStatus() {
     var returningUserTimestampKey = 'returningUserTimestamp';
     var sevenDaysInMilliseconds = 7 * 24 * 60 * 60 * 1000;
