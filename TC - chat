@@ -6,6 +6,30 @@ Skrypt sprawdza czy returningUser nie jest null i czy równa się esky_TCSIs  Ok
 Użytkownik potem przechodzi na inną stronę ale w tej samej sesji i skrypt sprawdza czy returningUser nie jest null i czy równa się esky_TCSIs Okazuje się, że returningUser  = esky_TCSIs  więc user jest jako NOWY po czym skrypt kopiuje wartość esky_TCSIs  do returningUser  (czyli nadpisuje go taką samą wartością).
 W tym przypadku wygląda na to, że podczas pierwszej sesji wszystko jest OK i user jest jako NOWY.
 
+function () {
+    var returningUserSessionKey = 'returningUserSession';
+    var returningUserKey = 'returningUser';
+    var returningUserSessionValue = 'esky_TCSIs';
+
+    var storedSession = localStorage.getItem(returningUserSessionKey);
+    var returningUser = localStorage.getItem(returningUserKey);
+
+    if (!storedSession || storedSession === returningUserSessionValue) {
+
+        localStorage.setItem(returningUserSessionKey, returningUserSessionValue); 
+        localStorage.setItem(returningUserKey, false);
+        console.log('New user');
+        return 'new';
+    } else {
+     
+        if (returningUser === null || returningUser === 'false') {
+            // Jeśli użytkownik był wcześniej nowy i powrócił po jakimś czasie
+            localStorage.setItem(returningUserKey, true); 
+        }
+        console.log('Returning user');
+        return 'returning';
+    }
+}
 
 
 
