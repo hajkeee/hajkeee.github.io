@@ -55,9 +55,12 @@ function() {
         }
     }
 
-    checkReturningUser();
+
+    var userStatus = checkReturningUser();
+    console.log(userStatus); 
 })();
 </script>
+
 
 
 
