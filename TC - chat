@@ -2,9 +2,12 @@ v2
 
 (function () {
     var returningUserSessionKey = 'returningUserSession'; 
+    var returningUserTimestampKey = 'returningUserTimestamp'; 
     var currentSession = window.esky_TCSIs; 
+    var sevenDaysInMilliseconds = 7 * 24 * 60 * 60 * 1000; 
+    var currentTime = new Date().getTime(); 
 
-   
+ 
     if (!currentSession) {
         console.error('esky_TCSIs is not defined. Script execution stopped.');
         return false;
@@ -12,15 +15,26 @@ v2
 
   
     var storedSession = localStorage.getItem(returningUserSessionKey);
+    var storedTimestamp = localStorage.getItem(returningUserTimestampKey);
 
 
-    if (storedSession === null || storedSession === currentSession) {
-
-        localStorage.setItem(returningUserSessionKey, currentSession); 
+    if (
+        storedTimestamp === null || 
+        storedSession === null || 
+        currentTime - parseInt(storedTimestamp, 10) > sevenDaysInMilliseconds 
+    ) {
+        
+        localStorage.setItem(returningUserSessionKey, currentSession);
+        localStorage.setItem(returningUserTimestampKey, currentTime);
         return false; 
-    } else {
-
+    } else if (storedSession !== currentSession) {
+       
+        localStorage.setItem(returningUserTimestampKey, currentTime); 
         return true; 
+    } else {
+     
+        localStorage.setItem(returningUserTimestampKey, currentTime);
+        return false; 
     }
 })();
 
