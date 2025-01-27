@@ -16,10 +16,12 @@ function checkUserStatus() {
         console.log('New user (after 7 days)');
         return 'new';
     } else {
+        localStorage.setItem(returningUserTimestampKey, currentTime);
         console.log('Returning user');
         return 'returning';
     }
 }
+
 
 
 
