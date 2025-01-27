@@ -1,22 +1,26 @@
-function () {
+function checkUserStatus() {
     var returningUserTimestampKey = 'returningUserTimestamp'; 
     var sevenDaysInMilliseconds = 7 * 24 * 60 * 60 * 1000; 
     var currentTime = new Date().getTime(); 
 
-
+  
     var storedTimestamp = localStorage.getItem(returningUserTimestampKey);
 
- 
-    if (!storedTimestamp || currentTime - parseInt(storedTimestamp, 10) > sevenDaysInMilliseconds) {
 
-        localStorage.setItem(returningUserTimestampKey, currentTime);
+    if (!storedTimestamp) {
+        localStorage.setItem(returningUserTimestampKey, currentTime); 
+        return 'new'; 
+    }
+
+
+    if (currentTime - parseInt(storedTimestamp, 10) > sevenDaysInMilliseconds) {
+        localStorage.setItem(returningUserTimestampKey, currentTime); 
         return 'new'; 
     } else {
-
-        localStorage.setItem(returningUserTimestampKey, currentTime);
-        return 'returning'; 
+        return 'returning';
     }
 }
+
 
 
 
