@@ -43,7 +43,11 @@
         localStorage.setItem(returningUserKey, currentSession);
     }
 })();
+IF returningUserSession is null or returningUserSession = esky_TCSIs 
+THEN returningUserSession = esky_TCSIs 
+AND returningUser = false
 
+ELSE returningUser = true
 
 
 
