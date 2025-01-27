@@ -35,7 +35,7 @@ function() {
     }
 
     function checkReturningUser() {
-        var returningUserSessionValue = 'esky_TCSIs';
+        var returningUserSessionValue = 'esky_TCSIs'; - s.x3n.4.m6evxzgd
         var returningUserSession = getCookie('returningUserSession');
         var returningUser = getCookie('returningUser');
 
