@@ -1,3 +1,28 @@
+v4
+
+(function () {
+    var returningUserTimestampKey = 'returningUserTimestamp'; 
+    var sevenDaysInMilliseconds = 7 * 24 * 60 * 60 * 1000; 
+    var currentTime = new Date().getTime(); 
+
+  
+    var storedTimestamp = localStorage.getItem(returningUserTimestampKey);
+
+  
+    if (storedTimestamp === null || currentTime - parseInt(storedTimestamp, 10) > sevenDaysInMilliseconds) {
+        localStorage.setItem(returningUserTimestampKey, currentTime); 
+        console.log('New user detected: returningUser = false');
+        return false; 
+    } else {
+
+        localStorage.setItem(returningUserTimestampKey, currentTime);
+        console.log('Returning user detected: returningUser = true');
+        return true; 
+    }
+})();
+
+
+
 v3
 
 (function () {
