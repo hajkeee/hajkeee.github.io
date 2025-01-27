@@ -1,5 +1,18 @@
 <script>
 (function() {
+    var returningUserSession = getCookie('returningUserSession'); 
+    var esky_TCSIs = {{CK - esky_TCSIs}}; 
+
+  
+    if (returningUserSession === null || returningUserSession === esky_TCSIs) {
+  
+        setCookie('returningUserSession', esky_TCSIs, 7); 
+        setCookie('returningUser', 'false', 7); 
+    } else {
+        
+        setCookie('returningUser', 'true', 7);
+    }
+    
     function setCookie(name, value, days) {
         var expires = "";
         if (days) {
@@ -7,7 +20,7 @@
             date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
             expires = "; expires=" + date.toUTCString();
         }
-        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
     }
 
     function getCookie(name) {
@@ -19,29 +32,9 @@
         }
         return null;
     }
-
-    function checkReturningUser() {
-        var returningUserSessionValue = {{CK - esky_TCSIs}};  
-        var returningUserSession = getCookie('returningUserSession');
-        var returningUser = getCookie('returningUser');
-
-        if (!returningUserSession || returningUserSession === returningUserSessionValue) {
-            setCookie('returningUserSession', returningUserSessionValue, 7); 
-            setCookie('returningUser', 'false', 7);  
-            console.log('New user');
-            return 'new';
-        } else {
-            setCookie('returningUser', 'true', 7);  
-            console.log('Returning user');
-            return 'returning';
-        }
-    }
-
-   
-    var userStatus = checkReturningUser();
-    console.log(userStatus); 
 })();
 </script>
+
 
 
 
