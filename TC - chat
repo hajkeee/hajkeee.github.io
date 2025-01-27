@@ -1,3 +1,51 @@
+v3
+
+(function () {
+    var returningUserSessionKey = 'returningUserSession';
+    var returningUserTimestampKey = 'returningUserTimestamp'; 
+    var currentSession = window.esky_TCSIs; 
+    var sevenDaysInMilliseconds = 7 * 24 * 60 * 60 * 1000; 
+    var currentTime = new Date().getTime(); 
+
+ 
+    if (!currentSession) {
+        console.error('esky_TCSIs is not defined. Script execution stopped.');
+        return false;
+    }
+
+
+    var storedSession = localStorage.getItem(returningUserSessionKey);
+    var storedTimestamp = localStorage.getItem(returningUserTimestampKey);
+
+
+    storedTimestamp = storedTimestamp ? parseInt(storedTimestamp, 10) : null;
+
+
+    if (
+        storedTimestamp === null || 
+        storedSession === null || 
+        currentTime - storedTimestamp > sevenDaysInMilliseconds 
+    ) {
+  
+        localStorage.setItem(returningUserSessionKey, currentSession);
+        localStorage.setItem(returningUserTimestampKey, currentTime);
+        console.log('New user detected.');
+        return false; 
+    } else if (storedSession !== currentSession) {
+       
+        localStorage.setItem(returningUserTimestampKey, currentTime); 
+        console.log('Returning user detected.');
+        return true; 
+    } else {
+   
+        localStorage.setItem(returningUserTimestampKey, currentTime); 
+        console.log('Same session detected. User treated as new.');
+        return false; 
+    }
+})();
+
+
+
 v2
 
 (function () {
