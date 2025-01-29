@@ -1,3 +1,14 @@
+total price
+
+
+const priceText = document.querySelector("body > jan-app > esky-layout > div > esky-portfolio-variants > jan-basket > jan-portfolio-select-room > div.overview.overview-container > div > esky-hotel-summary-container > esky-hotel-price-summary > div > esky-hotel-offer-sum-up > div:nth-child(2) > workspace-price-formatter").innerText;
+const priceNumber = parseInt(priceText.replace(/[^\d]/g, ''), 10);
+console.log(priceNumber);
+
+
+
+
+
 <script>
 (function() {
     var returningUserSession = getCookie('returningUserSession'); 
