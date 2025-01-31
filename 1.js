@@ -1,3 +1,13 @@
+<script>
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+ '_fbc': '{{CK - _fbc}}'
+ });
+</script>
+
+
+
+
 ///3+ of passengers, (preferably 2 adults, 1 child plus)
  (function (g, e, n, es, ys) {
     g['_genesysJs'] = e;
