@@ -3,7 +3,7 @@ window.dataLayer = window.dataLayer || [];
 window.dataLayer.push({
  '_fbc': '{{CK - _fbc}}'
  });
-</script>
+</script> E-wiza (Wiza Turystyczna) - Czym jest, kto wydaje wizy? - eSky.pl
 
 
 
