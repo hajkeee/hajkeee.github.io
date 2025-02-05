@@ -1,9 +1,40 @@
+ (function (g, e, n, es, ys) {
+    g['_genesysJs'] = e;
+    g[e] = g[e] || function () {
+      (g[e].q = g[e].q || []).push(arguments)
+    };
+    g[e].t = 1 * new Date();
+    g[e].c = es;
+    ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
+  })(window, 'Genesys', 'https://apps.mypurecloud.de/genesys-bootstrap/genesys.min.js', {
+    environment: 'prod-euc1',
+    deploymentId: 'edc84771-8e66-45e6-a5b2-6a7e3bb731ff'
+  });
+
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+ 'event': 'chat_started',
+ });
+
+Genesys("subscribe", "Journey.ready", function() {
+});
+ Genesys("command", "Journey.record", {
+    eventName: "eSky_sales"
+ });
+
+
+
+
+
+
+
+
 <script>
 window.dataLayer = window.dataLayer || [];
 window.dataLayer.push({
  '_fbc': '{{CK - _fbc}}'
  });
-</script> E-wiza (Wiza Turystyczna) - Czym jest, kto wydaje wizy? - eSky.pl
+</script>
 
 
 
