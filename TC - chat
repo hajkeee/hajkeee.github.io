@@ -3,7 +3,7 @@ time on the website
 (function () {
     var timeSpentKey = 'totalTimeOnSite';
     var lastVisitKey = 'lastVisitTime';
-    
+
     function getStoredTime() {
         return parseInt(localStorage.getItem(timeSpentKey), 10) || 0;
     }
@@ -15,13 +15,15 @@ time on the website
     function updateTimeSpent() {
         var storedTime = getStoredTime();
         var lastVisit = parseInt(localStorage.getItem(lastVisitKey), 10) || Date.now();
-        var elapsedTime = Math.floor((Date.now() - lastVisit) / 1000); // Час у секундах
-
-        if (elapsedTime > 0) {
+        
+        // Рахуємо тільки якщо користувач повернувся через менше ніж 30 хвилин
+        var elapsedTime = Math.floor((Date.now() - lastVisit) / 1000); // у секундах
+        if (elapsedTime > 0 && elapsedTime < 1800) { // 30 хв (запобігання обнуленню після довгого перериву)
             storedTime += elapsedTime;
             saveTimeSpent(storedTime);
         }
 
+        // Оновлюємо час останнього заходу
         localStorage.setItem(lastVisitKey, Date.now());
     }
 
@@ -29,8 +31,11 @@ time on the website
         return getStoredTime() >= 120; // 2 хвилини
     }
 
-    // Оновлення часу при кожному вході на сайт
-    updateTimeSpent();
+    // Оновлення часу при кожному завантаженні сторінки
+    if (!sessionStorage.getItem('sessionActive')) {
+        updateTimeSpent();
+        sessionStorage.setItem('sessionActive', 'true'); // Запобігання подвійному запуску
+    }
 
     // Запуск оновлення при закритті сторінки чи переході
     window.addEventListener('beforeunload', updateTimeSpent);
@@ -38,6 +43,7 @@ time on the website
     // Додаємо глобальну функцію для перевірки часу
     window.hasUserSpentTwoMinutes = hasUserSpentTwoMinutes;
 })();
+
 
 cJS - var 
 function() {
