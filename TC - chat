@@ -1,29 +1,32 @@
 (function() {
-    var timeThreshold = 120;
-    var storageKey = 'hasSpentTwoMinutes';
+    var timeThreshold = 120; 
+    var storageKey = 'hasSpentTwoMinutes'; 
+    var timestampKey = 'timeSet'; 
     var expirationTime = 30 * 60 * 1000; 
     
-    if (!localStorage.getItem(storageKey)) {
-        localStorage.setItem(storageKey, 'false'); 
+    function isExpired() {
+        var storedTimestamp = localStorage.getItem(timestampKey);
+        if (!storedTimestamp) return true;
+        return (Date.now() - parseInt(storedTimestamp, 10)) > expirationTime;
+    }
+
+    if (isExpired()) {
+        localStorage.setItem(storageKey, 'false');
+        localStorage.removeItem(timestampKey);
     }
 
     function checkIfTimePassed() {
-        var currentTime = Date.now();
-        var storedTime = localStorage.getItem(storageKey);
-        
-        if (storedTime === 'true') {
-            return true;
-        }
-
-        return false;
+        return localStorage.getItem(storageKey) === 'true';
     }
 
     if (!checkIfTimePassed()) {
-        var timer = setTimeout(function() {
-            localStorage.setItem(storageKey, 'true'); 
-        }, timeThreshold * 1000); 
+        setTimeout(function() {
+            localStorage.setItem(storageKey, 'true');
+            localStorage.setItem(timestampKey, Date.now()); 
+        }, timeThreshold * 1000);
     }
 })();
+
 
 cJS - var 
 function() {
