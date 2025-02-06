@@ -1,37 +1,28 @@
-(function () {
-    var timeThreshold = 120; 
-    var timeSpentKey = 'timeSpentOnSite'; 
-
+(function() {
+    var timeThreshold = 120;
+    var storageKey = 'hasSpentTwoMinutes';
+    var expirationTime = 30 * 60 * 1000;
     
-    function getTimeSpent() {
-        return parseInt(localStorage.getItem(timeSpentKey), 10) || 0;
-    }
-
-  
-    function saveTimeSpent(time) {
-        localStorage.setItem(timeSpentKey, time);
-    }
-
-    
-    function checkTimeSpent() {
-        var timeSpent = getTimeSpent();
-        if (timeSpent >= timeThreshold) {
-         
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-                event: 'timeSpentOverTwoMinutes',
-                timeSpentOverTwoMinutes: true
-            });
+    function checkIfTimePassed() {
+        var currentTime = Date.now();
+        var storedTime = localStorage.getItem(storageKey);
+        
+        if (storedTime) {
+            var parsedStoredTime = JSON.parse(storedTime);
+            if (currentTime - parsedStoredTime.timestamp < expirationTime) {
+                return true;
+            }
         }
+        return false;
     }
 
-    у
-    setInterval(function () {
-        var currentTime = getTimeSpent() + 1; 
-        saveTimeSpent(currentTime);
-        checkTimeSpent(); 
-    }, 1000); 
+    if (!checkIfTimePassed()) {
+        var timer = setTimeout(function() {
+            localStorage.setItem(storageKey, JSON.stringify({ value: true, timestamp: Date.now() }));
+        }, timeThreshold * 1000);
+    }
 })();
+
 
 
 
