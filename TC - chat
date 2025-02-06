@@ -37,20 +37,33 @@
 
             if (newItems) {
                 sessionStorage.setItem(processedItemsKey, JSON.stringify(Array.from(processedItemIds)));
+
+                var uniqueViewCount = processedItemIds.size;
+
+                if (uniqueViewCount >= 3) {
+                }
             }
         }
     }
 
-    window.addEventListener('load', function () {
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push = function (event) {
-            processEvent(event);
-            return Array.prototype.push.apply(this, arguments);
+    function checkDataLayer() {
+        if (!window.dataLayer) {
+            window.dataLayer = [];
+        }
+
+        var originalPush = window.dataLayer.push;
+        window.dataLayer.push = function () {
+            var args = Array.prototype.slice.call(arguments);
+            args.forEach(processEvent);
+            return originalPush.apply(this, args);
         };
 
         window.dataLayer.forEach(processEvent);
-    });
+    }
+
+    window.addEventListener('load', checkDataLayer);
 })();
+
 
 
 const priceText = document.querySelector("body > jan-app > esky-layout > div > esky-portfolio-variants > jan-basket > jan-portfolio-select-room > div.overview.overview-container > div > esky-hotel-summary-container > esky-hotel-price-summary > div > esky-hotel-offer-sum-up > div:nth-child(2) > workspace-price-formatter").innerText;
