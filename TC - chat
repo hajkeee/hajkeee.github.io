@@ -1,4 +1,56 @@
-total price
+//view_item counter
+
+(function () {
+    var viewItemCounterKey = 'viewItemCounter';
+    var processedItemsKey = 'processedViewItems';
+
+    if (sessionStorage.getItem(viewItemCounterKey) === null) {
+        sessionStorage.setItem(viewItemCounterKey, 0);
+    }
+
+    if (sessionStorage.getItem(processedItemsKey) === null) {
+        sessionStorage.setItem(processedItemsKey, JSON.stringify([]));
+    }
+
+    var processedItemIds = new Set(JSON.parse(sessionStorage.getItem(processedItemsKey)));
+
+    function incrementViewItemCounter() {
+        var currentCount = parseInt(sessionStorage.getItem(viewItemCounterKey), 10);
+        sessionStorage.setItem(viewItemCounterKey, currentCount + 1);
+    }
+
+    function processEvent(event) {
+        if (
+            event.event === 'view_item' &&
+            event.ecommerce &&
+            Array.isArray(event.ecommerce.items)
+        ) {
+            var newItems = false;
+
+            event.ecommerce.items.forEach(function (item) {
+                if (item.item_id && !processedItemIds.has(item.item_id)) {
+                    incrementViewItemCounter();
+                    processedItemIds.add(item.item_id);
+                    newItems = true;
+                }
+            });
+
+            if (newItems) {
+                sessionStorage.setItem(processedItemsKey, JSON.stringify(Array.from(processedItemIds)));
+            }
+        }
+    }
+
+    window.addEventListener('load', function () {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push = function (event) {
+            processEvent(event);
+            return Array.prototype.push.apply(this, arguments);
+        };
+
+        window.dataLayer.forEach(processEvent);
+    });
+})();
 
 
 const priceText = document.querySelector("body > jan-app > esky-layout > div > esky-portfolio-variants > jan-basket > jan-portfolio-select-room > div.overview.overview-container > div > esky-hotel-summary-container > esky-hotel-price-summary > div > esky-hotel-offer-sum-up > div:nth-child(2) > workspace-price-formatter").innerText;
