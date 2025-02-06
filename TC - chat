@@ -1,31 +1,35 @@
 (function() {
     var timeThreshold = 120;
     var storageKey = 'hasSpentTwoMinutes';
-    var expirationTime = 30 * 60 * 1000;
+    var expirationTime = 30 * 60 * 1000; 
     
+    if (!localStorage.getItem(storageKey)) {
+        localStorage.setItem(storageKey, 'false'); 
+    }
+
     function checkIfTimePassed() {
         var currentTime = Date.now();
         var storedTime = localStorage.getItem(storageKey);
         
-        if (storedTime) {
-            var parsedStoredTime = JSON.parse(storedTime);
-            if (currentTime - parsedStoredTime.timestamp < expirationTime) {
-                return true;
-            }
+        if (storedTime === 'true') {
+            return true;
         }
+
         return false;
     }
 
     if (!checkIfTimePassed()) {
         var timer = setTimeout(function() {
-            localStorage.setItem(storageKey, JSON.stringify({ value: true, timestamp: Date.now() }));
-        }, timeThreshold * 1000);
+            localStorage.setItem(storageKey, 'true'); 
+        }, timeThreshold * 1000); 
     }
 })();
 
-
-
-
+cJS - var 
+function() {
+    var timeSpent = localStorage.getItem('hasSpentTwoMinutes');
+    return timeSpent === 'true';
+}
 
 
 
@@ -68,11 +72,7 @@ time on the website
 
 
 
-cJS - var 
-function() {
-    var timeSpent = localStorage.getItem('hasSpentTwoMinutes');
-    return timeSpent === 'true';
-}
+
 
 
 
