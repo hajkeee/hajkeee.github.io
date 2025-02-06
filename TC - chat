@@ -1,3 +1,43 @@
+(function () {
+    var timeThreshold = 120; 
+    var timeSpentKey = 'timeSpentOnSite'; 
+
+    
+    function getTimeSpent() {
+        return parseInt(localStorage.getItem(timeSpentKey), 10) || 0;
+    }
+
+  
+    function saveTimeSpent(time) {
+        localStorage.setItem(timeSpentKey, time);
+    }
+
+    
+    function checkTimeSpent() {
+        var timeSpent = getTimeSpent();
+        if (timeSpent >= timeThreshold) {
+         
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: 'timeSpentOverTwoMinutes',
+                timeSpentOverTwoMinutes: true
+            });
+        }
+    }
+
+    у
+    setInterval(function () {
+        var currentTime = getTimeSpent() + 1; 
+        saveTimeSpent(currentTime);
+        checkTimeSpent(); 
+    }, 1000); 
+})();
+
+
+
+
+
+
 time on the website
 (function () {
     var timeSpentKey = 'totalTimeOnSite';
