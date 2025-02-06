@@ -70,8 +70,10 @@ time on the website
 
 cJS - var 
 function() {
-    return window.hasUserSpentTwoMinutes ? window.hasUserSpentTwoMinutes() : false;
+    var timeSpent = localStorage.getItem('hasSpentTwoMinutes');
+    return timeSpent === 'true';
 }
+
 
 
 
