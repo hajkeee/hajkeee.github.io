@@ -1,8 +1,8 @@
 time on the website
 (function () {
     var timeSpentKey = 'totalTimeOnSite';
-    var lastVisitKey = 'lastVisitTime';
-    var sessionActiveKey = 'sessionActive';
+    var firstVisitKey = 'firstVisitTime';
+    var timeThreshold = 120; // 2 хвилини (в секундах)
 
     function getStoredTime() {
         return parseInt(localStorage.getItem(timeSpentKey), 10) || 0;
@@ -13,35 +13,27 @@ time on the website
     }
 
     function updateTimeSpent() {
-        var storedTime = getStoredTime();
-        var lastVisit = parseInt(localStorage.getItem(lastVisitKey), 10) || Date.now();
+        var firstVisit = parseInt(localStorage.getItem(firstVisitKey), 10);
         
-
-        var elapsedTime = Math.floor((Date.now() - lastVisit) / 1000); 
-        if (elapsedTime > 0 && elapsedTime < 1800) { 
-            storedTime += elapsedTime;
-            saveTimeSpent(storedTime);
+        if (!firstVisit) {
+            firstVisit = Date.now();
+            localStorage.setItem(firstVisitKey, firstVisit);
         }
 
-  
-        localStorage.setItem(lastVisitKey, Date.now());
+        var elapsedTime = Math.floor((Date.now() - firstVisit) / 1000); // Час у секундах
+        saveTimeSpent(elapsedTime);
     }
 
     function hasUserSpentTwoMinutes() {
-        return getStoredTime() >= 120; 
+        var totalTime = getStoredTime();
+        return totalTime >= timeThreshold; // Якщо більше або рівно 120 секунд
     }
 
-    if (!localStorage.getItem(sessionActiveKey)) {
-        updateTimeSpent();
-        localStorage.setItem(sessionActiveKey, 'true'); 
-    }
+    updateTimeSpent();
 
- 
-    window.addEventListener('beforeunload', updateTimeSpent);
-
- 
     window.hasUserSpentTwoMinutes = hasUserSpentTwoMinutes;
 })();
+
 
 
 
