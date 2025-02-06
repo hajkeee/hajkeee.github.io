@@ -1,3 +1,53 @@
+time on the website
+
+(function () {
+    var timeSpentKey = 'totalTimeOnSite';
+    var lastVisitKey = 'lastVisitTime';
+    
+    function getStoredTime() {
+        return parseInt(localStorage.getItem(timeSpentKey), 10) || 0;
+    }
+
+    function saveTimeSpent(time) {
+        localStorage.setItem(timeSpentKey, time);
+    }
+
+    function updateTimeSpent() {
+        var storedTime = getStoredTime();
+        var lastVisit = parseInt(localStorage.getItem(lastVisitKey), 10) || Date.now();
+        var elapsedTime = Math.floor((Date.now() - lastVisit) / 1000); // Час у секундах
+
+        if (elapsedTime > 0) {
+            storedTime += elapsedTime;
+            saveTimeSpent(storedTime);
+        }
+
+        localStorage.setItem(lastVisitKey, Date.now());
+    }
+
+    function hasUserSpentTwoMinutes() {
+        return getStoredTime() >= 120; // 2 хвилини
+    }
+
+    // Оновлення часу при кожному вході на сайт
+    updateTimeSpent();
+
+    // Запуск оновлення при закритті сторінки чи переході
+    window.addEventListener('beforeunload', updateTimeSpent);
+
+    // Додаємо глобальну функцію для перевірки часу
+    window.hasUserSpentTwoMinutes = hasUserSpentTwoMinutes;
+})();
+
+cJS - var 
+function() {
+    return window.hasUserSpentTwoMinutes ? window.hasUserSpentTwoMinutes() : false;
+}
+
+
+
+
+
 //view_item counter
 
 (function () {
