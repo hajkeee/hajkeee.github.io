@@ -1,0 +1,112 @@
+'PO_SR', - fixed // if all filters applied - date, destination etc
+            "QSFData": {
+					"SearchType": "Fixed",
+					"DepartureCode": "KRK",
+					"DepartureType": "airport",
+					"DestinationCode": "BRI",
+					"DestinationType": "airport",
+					"CheckInDate": "2024-12-12",
+					"CheckOutDate": "2024-17-12"
+			"FlightsOffers": [
+            {
+					"AvailableDepartureHours": "16:05|19:35",
+					"NQS": "-8.06084987890665",
+					"Price": 488,
+					"TotalPrice": 659,
+					"Provider": "6",
+					"Stops": "0|0",
+					"IsPricePerPax": False,
+					"OfferId": "016c09cb-a97a-4b22-bc7e-9bd189143ccd",
+					"CheckInDate": "2024-12-12",
+					"CheckOutDate": "2024-17-12"
+            },
+            {
+					"AvailableDepartureHours": "05:45|19:40",
+					"NQS": "-7.84800342647558",
+					"Price": 515,
+					"TotalPrice": 657,
+					"Provider": "103",
+					"Stops": "0|0",
+					"IsPricePerPax": False,
+					"OfferId": "ba76a7ce-354a-4046-825d-3b1a28a99f32",
+					"CheckInDate": "2024-12-12",
+					"CheckOutDate": "2024-17-12"
+            }
+        ]
+    },
+				
+'PO_SR', - Flex  if user leave date range empty but applied destination / the same approach if user filtered by data, but destinations are empty
+
+            "QSFData": {
+					"SearchType": "Flex", 
+					"DepartureCode": "KRK", // or ["Any"] if empty
+					"DepartureType": "airport",
+					"DestinationCode": "BRI", // or ["Any"] if empty
+					"DestinationType": "airport",
+					"CheckInDate": "Any", // or ["2024-12-12"] if applied date
+					"CheckOutDate": "Any" // or ["2024-17-12"] if applied date
+			"FlightsOffers": [
+            {
+					"AvailableDepartureHours": "16:05|19:35",
+					"NQS": "-8.06084987890665",
+					"Price": 488,
+					"TotalPrice": 659,
+					"Provider": "6",
+					"Stops": "0|0",
+					"IsPricePerPax": False,
+					"OfferId": "016c09cb-a97a-4b22-bc7e-9bd189143ccd",
+					"CheckInDate": "2022-01-01",
+					"CheckOutDate": "2022-01-23"
+            },
+            {
+					"AvailableDepartureHours": "05:45|19:40",
+					"NQS": "-7.84800342647558",
+					"Price": 515,
+					"TotalPrice": 657,
+					"Provider": "103",
+					"Stops": "0|0",
+					"IsPricePerPax": False,
+					"OfferId": "ba76a7ce-354a-4046-825d-3b1a28a99f32",
+					"CheckInDate": "2022-01-01",
+					"CheckOutDate": "2022-01-23"
+            }
+        ]
+    },
+				
+'PO_SR', - Open_Search if user clicked search without filter
+ [
+            "QSFData": {
+					"SearchType": "Flex", 
+					"DepartureCode": "Any", // 
+					"DepartureType": "airport",
+					"DestinationCode": "Any", // 
+					"DestinationType": "airport",
+					"CheckInDate": "Any", // 
+					"CheckOutDate": "Any" // 
+			"FlightsOffers": [
+            {
+					"AvailableDepartureHours": "16:05|19:35",
+					"NQS": "-8.06084987890665",
+					"Price": 488,
+					"TotalPrice": 659,
+					"Provider": "6",
+					"Stops": "0|0",
+					"IsPricePerPax": False,
+					"OfferId": "016c09cb-a97a-4b22-bc7e-9bd189143ccd",
+					"CheckInDate": "2022-01-01",
+					"CheckOutDate": "2022-01-23"
+            },
+            {
+					"AvailableDepartureHours": "05:45|19:40",
+					"NQS": "-7.84800342647558",
+					"Price": 515,
+					"TotalPrice": 657,
+					"Provider": "103",
+					"Stops": "0|0",
+					"IsPricePerPax": False,
+					"OfferId": "ba76a7ce-354a-4046-825d-3b1a28a99f32",
+					"CheckInDate": "2022-01-01",
+					"CheckOutDate": "2022-01-23"
+            }
+        ]
+    },
