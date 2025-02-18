@@ -1,3 +1,9 @@
+# 📱 eCommerce Tagging Matrix for Mobile Apps
+
+Ця стаття описує структуру тегування eCommerce подій у мобільних додатках із прикладами коду для iOS (Swift - Firebase Analytics) та Android (Kotlin - Firebase Analytics).
+
+## 🔹 Таблиця тегування eCommerce подій
+
 | **Event Name** | **Trigger Point** | **Parameters** | **iOS (Swift) Example** | **Android (Kotlin) Example** |
 |--------------|----------------|--------------|----------------------|-----------------------|
 | **View Item List** (`view_item_list`) | Перегляд списку товарів (категорія, пошук) | `item_list_name`, `item_list_id`, `items: [product_id, name, category]` | ```swift
@@ -49,3 +55,5 @@ FirebaseAnalytics.logEvent(AnalyticsEventPurchase, parameters: [ "transaction_id
 val params = bundleOf("transaction_id" to "T12345", "value" to 59.97, "num_items" to 3, "currency" to "USD", "payment_method" to "Credit Card", "shipping_method" to "Standard Shipping")
 firebaseAnalytics.logEvent(FirebaseAnalytics.Event.PURCHASE, params)
 ``` |
+
+##
