@@ -4,18 +4,23 @@ _eas.push([
     'logEvent',
     [
         'F_SR_PriceChart_Month_click',
-        'FE',
-        {
-            SearchType: 'Fixed',
-            DepartureCode: 'KRK',
-            DepartureType: 'airport',
-            DestinationCode: 'BRI',
-            DestinationType: 'airport',
-            month: 5, 
-            selected_months_count: 3,
-            selected_months_order: 2, 
-            price: 515 
+        'FE', [
+
+             {
+            'SearchType': 'PriceChart',
+            'DepartureCode': 'LIS',
+            'DepartureType': 'airport',
+            'DestinationCode': 'MAD',
+            'DestinationType': 'airport',
+            'MonthClicked': 'May', // last month click
+            'SelectedMonths_SelectedPrice': 
+                [
+                    {'Month':'May', 'Price' : 85}, 
+                    {'Month':'Dec','Price' : 885}
+                ], 
         }
+        ]
+       
     ]
 ]);
 
