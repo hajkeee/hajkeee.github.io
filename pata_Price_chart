@@ -11,15 +11,15 @@ _eas.push([
             DepartureType: 'airport',
             DestinationCode: 'BRI',
             DestinationType: 'airport',
-            month: 5, // Номер місяця, на який клікнули (травень)
-            selected_months_count: 3, // Кількість вибраних місяців
-            selected_months_order: 2, // Порядковий номер місяця серед вибраних (травень - другий)
-            price: 515 // Ціна, на яку клікнули
+            month: 5, 
+            selected_months_count: 3,
+            selected_months_order: 2, 
+            price: 515 
         }
     ]
 ]);
 
-// Виводимо дані в консоль
+
 console.log(_eas);
 
 
