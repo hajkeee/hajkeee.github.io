@@ -1,3 +1,28 @@
+_eas = window['_eas'] || [];
+
+_eas.push([
+    'logEvent',
+    [
+        'F_SR_PriceChart_Month_click',
+        'FE',
+        {
+            SearchType: 'Fixed',
+            DepartureCode: 'KRK',
+            DepartureType: 'airport',
+            DestinationCode: 'BRI',
+            DestinationType: 'airport',
+            month: 5, // Номер місяця, на який клікнули (травень)
+            selected_months_count: 3, // Кількість вибраних місяців
+            selected_months_order: 2, // Порядковий номер місяця серед вибраних (травень - другий)
+            price: 515 // Ціна, на яку клікнули
+        }
+    ]
+]);
+
+// Виводимо дані в консоль
+console.log(_eas);
+
+
 {
   "event": "F_SR_Enter",
   "event_data": {
