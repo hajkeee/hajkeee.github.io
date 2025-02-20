@@ -1,6 +1,7 @@
 <script>
 (function () {
     var viewItemCounterKey = 'viewItemCounter';
+    var processedItemIds = new Set(); // Для відстеження вже оброблених товарів
 
     function initializeCounter() {
         if (sessionStorage.getItem(viewItemCounterKey) === null) {
@@ -10,9 +11,12 @@
 
     initializeCounter();
 
-    function incrementViewItemCounter() {
-        var currentCount = parseInt(sessionStorage.getItem(viewItemCounterKey), 10);
-        sessionStorage.setItem(viewItemCounterKey, currentCount + 1);
+    function incrementViewItemCounter(itemId) {
+        if (!processedItemIds.has(itemId)) { // Перевірка, чи товар вже оброблено
+            var currentCount = parseInt(sessionStorage.getItem(viewItemCounterKey), 10) || 0;
+            sessionStorage.setItem(viewItemCounterKey, currentCount + 1);
+            processedItemIds.add(itemId); // Додаємо товар до списку оброблених
+        }
     }
 
     function processEvent(event) {
@@ -23,7 +27,7 @@
         ) {
             event.ecommerce.items.forEach(function (item) {
                 if (item.item_id) {
-                    incrementViewItemCounter();
+                    incrementViewItemCounter(item.item_id);
                 }
             });
         }
@@ -31,17 +35,15 @@
 
     function processViewItemEvents() {
         if (window.dataLayer) {
-            // Process ALL events in dataLayer, including newly pushed ones
-            for (var i = 0; i < window.dataLayer.length; i++) { // Use var for loop counter
+            for (var i = 0; i < window.dataLayer.length; i++) {
                 processEvent(window.dataLayer[i]);
             }
 
-            // Wrap dataLayer.push ONCE, after the initial processing
             if (!window.dataLayer._isPushWrapped) {
                 var originalPush = window.dataLayer.push;
                 window.dataLayer.push = function () {
-                    var args = Array.prototype.slice.call(arguments); // Convert arguments to array
-                    args.forEach(processEvent); // Process each pushed event
+                    var args = Array.prototype.slice.call(arguments);
+                    args.forEach(processEvent);
                     return originalPush.apply(this, arguments);
                 };
                 window.dataLayer._isPushWrapped = true;
@@ -49,10 +51,8 @@
         }
     }
 
-    // Call processViewItemEvents on page load AND on every dataLayer.push
-    processViewItemEvents(); // Initial processing
+    processViewItemEvents();
 
-    // Use a traditional function for the listener to avoid ES6 syntax
     if (window.dataLayer && !window.dataLayer._listenerAdded) {
         window.dataLayer.push = (function(originalPush) {
             return function() {
@@ -70,7 +70,6 @@
     };
 })();
 </script>
-
 
 current
 <script>
