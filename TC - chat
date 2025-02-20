@@ -32,7 +32,7 @@
     function processViewItemEvents() {
         if (window.dataLayer) {
             // Process ALL events in dataLayer, including newly pushed ones
-            for (let i = 0; i < window.dataLayer.length; i++) { // Iterate using index
+            for (var i = 0; i < window.dataLayer.length; i++) { // Use var for loop counter
                 processEvent(window.dataLayer[i]);
             }
 
@@ -40,7 +40,8 @@
             if (!window.dataLayer._isPushWrapped) {
                 var originalPush = window.dataLayer.push;
                 window.dataLayer.push = function () {
-                    Array.prototype.forEach.call(arguments, processEvent);
+                    var args = Array.prototype.slice.call(arguments); // Convert arguments to array
+                    args.forEach(processEvent); // Process each pushed event
                     return originalPush.apply(this, arguments);
                 };
                 window.dataLayer._isPushWrapped = true;
@@ -51,24 +52,24 @@
     // Call processViewItemEvents on page load AND on every dataLayer.push
     processViewItemEvents(); // Initial processing
 
-    if (window.dataLayer && !window.dataLayer._listenerAdded) { // Add listener only once
-        window.dataLayer.push = new Proxy(window.dataLayer.push, {
-            apply: function(target, thisArg, argumentsList) {
-                const result = Reflect.apply(target, thisArg, argumentsList);
-                processViewItemEvents(); // Process after EVERY push
+    // Use a traditional function for the listener to avoid ES6 syntax
+    if (window.dataLayer && !window.dataLayer._listenerAdded) {
+        window.dataLayer.push = (function(originalPush) {
+            return function() {
+                var args = Array.prototype.slice.call(arguments);
+                var result = originalPush.apply(this, args);
+                processViewItemEvents();
                 return result;
-            }
-        });
+            };
+        })(window.dataLayer.push);
         window.dataLayer._listenerAdded = true;
     }
-
 
     window.getViewItemCount = function () {
         return parseInt(sessionStorage.getItem(viewItemCounterKey), 10) || 0;
     };
 })();
 </script>
-
 
 
 current
