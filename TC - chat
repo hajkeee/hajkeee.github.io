@@ -8,7 +8,7 @@
         }
     }
 
-    initializeCounter(); // Initialize on every page load
+    initializeCounter();
 
     function incrementViewItemCounter() {
         var currentCount = parseInt(sessionStorage.getItem(viewItemCounterKey), 10);
@@ -22,7 +22,7 @@
             Array.isArray(event.ecommerce.items)
         ) {
             event.ecommerce.items.forEach(function (item) {
-                if (item.item_id) { // No need for processedItemIds with the new approach
+                if (item.item_id) {
                     incrementViewItemCounter();
                 }
             });
@@ -31,13 +31,16 @@
 
     function processViewItemEvents() {
         if (window.dataLayer) {
-            window.dataLayer.forEach(processEvent); // Process existing events
+            // Process ALL events in dataLayer, including newly pushed ones
+            for (let i = 0; i < window.dataLayer.length; i++) { // Iterate using index
+                processEvent(window.dataLayer[i]);
+            }
 
             // Wrap dataLayer.push ONCE, after the initial processing
             if (!window.dataLayer._isPushWrapped) {
                 var originalPush = window.dataLayer.push;
                 window.dataLayer.push = function () {
-                    Array.prototype.forEach.call(arguments, processEvent); // Process new events
+                    Array.prototype.forEach.call(arguments, processEvent);
                     return originalPush.apply(this, arguments);
                 };
                 window.dataLayer._isPushWrapped = true;
@@ -45,13 +48,23 @@
         }
     }
 
+    // Call processViewItemEvents on page load AND on every dataLayer.push
+    processViewItemEvents(); // Initial processing
 
-    // Call processViewItemEvents on every dataLayer push (and initially)
-    processViewItemEvents();
+    if (window.dataLayer && !window.dataLayer._listenerAdded) { // Add listener only once
+        window.dataLayer.push = new Proxy(window.dataLayer.push, {
+            apply: function(target, thisArg, argumentsList) {
+                const result = Reflect.apply(target, thisArg, argumentsList);
+                processViewItemEvents(); // Process after EVERY push
+                return result;
+            }
+        });
+        window.dataLayer._listenerAdded = true;
+    }
 
 
     window.getViewItemCount = function () {
-        return parseInt(sessionStorage.getItem(viewItemCounterKey), 10) || 0; // Handle potential NaN
+        return parseInt(sessionStorage.getItem(viewItemCounterKey), 10) || 0;
     };
 })();
 </script>
