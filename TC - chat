@@ -2,6 +2,67 @@
 (function () {
     var viewItemCounterKey = 'viewItemCounter';
 
+    function initializeCounter() {
+        if (sessionStorage.getItem(viewItemCounterKey) === null) {
+            sessionStorage.setItem(viewItemCounterKey, 0);
+        }
+    }
+
+    initializeCounter(); // Initialize on every page load
+
+    function incrementViewItemCounter() {
+        var currentCount = parseInt(sessionStorage.getItem(viewItemCounterKey), 10);
+        sessionStorage.setItem(viewItemCounterKey, currentCount + 1);
+    }
+
+    function processEvent(event) {
+        if (
+            event.event === 'view_item' &&
+            event.ecommerce &&
+            Array.isArray(event.ecommerce.items)
+        ) {
+            event.ecommerce.items.forEach(function (item) {
+                if (item.item_id) { // No need for processedItemIds with the new approach
+                    incrementViewItemCounter();
+                }
+            });
+        }
+    }
+
+    function processViewItemEvents() {
+        if (window.dataLayer) {
+            window.dataLayer.forEach(processEvent); // Process existing events
+
+            // Wrap dataLayer.push ONCE, after the initial processing
+            if (!window.dataLayer._isPushWrapped) {
+                var originalPush = window.dataLayer.push;
+                window.dataLayer.push = function () {
+                    Array.prototype.forEach.call(arguments, processEvent); // Process new events
+                    return originalPush.apply(this, arguments);
+                };
+                window.dataLayer._isPushWrapped = true;
+            }
+        }
+    }
+
+
+    // Call processViewItemEvents on every dataLayer push (and initially)
+    processViewItemEvents();
+
+
+    window.getViewItemCount = function () {
+        return parseInt(sessionStorage.getItem(viewItemCounterKey), 10) || 0; // Handle potential NaN
+    };
+})();
+</script>
+
+
+
+current
+<script>
+(function () {
+    var viewItemCounterKey = 'viewItemCounter';
+
     if (sessionStorage.getItem(viewItemCounterKey) === null) {
         sessionStorage.setItem(viewItemCounterKey, 0);
     }
