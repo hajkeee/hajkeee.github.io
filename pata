@@ -112,7 +112,8 @@
     },
 
 
-^https:\/\/www\.esky\.ro\/r-bilete-de-avion(\/(ci\/[a-z]{3})){1,2}(\/0\/0)?\/[a-z\-]+$
+^https:\/\/www\.esky\.ro\/r-bilete-de-avion(\/0\/0)?(\/ci\/[a-z]{3}){1,2}\/[a-z\-]+$
+
 
 
 https://www.esky.ro/r-bilete-de-avion/0/0/ci/buh/bucuresti
@@ -128,7 +129,7 @@ https://www.esky.ro/r-bilete-de-avion/ci/ist/ci/buh/istanbul-bucuresti
 
 
 
-^https:\/\/www\.esky\.ro\/bilete-de-avion(\/(ci\/[a-z]{3})){1,2}(\/0\/0)?\/[a-z\-]+$
+^https:\/\/www\.esky\.ro\/bilete-de-avion(\/0\/0)?(\/ci\/[a-z]{3}){1,2}\/[a-z\-]+$
 
 old
 https://www.esky.ro/bilete-de-avion/0/0/ci/buh/bucuresti
