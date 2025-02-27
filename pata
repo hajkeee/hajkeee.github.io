@@ -129,8 +129,7 @@ https://www.esky.ro/r-bilete-de-avion/ci/ist/ci/buh/istanbul-bucuresti
 
 
 
-/bilete-de-avion/(0/0/ci/(buh|clj|ias)/(bucuresti|cluj-napoca|iasi)|ci/(buh|clj|ias)/0/0/(bucuresti|cluj-napoca|iasi)|ci/(buh|clj)/ci/(clj|buh)/(bucuresti-cluj-napoca|cluj-napoca-bucuresti)|0/0/ci/ias/iasi|ci/ias/0/0/iasi|ci/buh/ci/ist/bucuresti-istanbul|ci/ist/ci/buh/istanbul-bucuresti)
-
+/bilete-de-avion/(?:0/0/ci/(buh|clj|ias)/(bucuresti|cluj-napoca|iasi)|ci/(buh|clj|ias)/0/0/(bucuresti|cluj-napoca|iasi)|ci/(buh|clj)/ci/(clj|buh)/(bucuresti-cluj-napoca|cluj-napoca-bucuresti)|0/0/ci/ias/iasi|ci/ias/0/0/iasi|ci/buh/ci/ist/bucuresti-istanbul|ci/ist/ci/buh/istanbul-bucuresti)
 old
 https://www.esky.ro/bilete-de-avion/0/0/ci/buh/bucuresti
 https://www.esky.ro/bilete-de-avion/ci/buh/0/0/bucuresti
