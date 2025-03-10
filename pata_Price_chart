@@ -2,6 +2,19 @@
 <script>
   window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments);};hj('event', 'seatsComponent');
 </script>
+/////////////////
+<script>
+  (function() {
+    var eventName = {{Event}} || ""; // Використовуємо стандартну змінну {{Event}} у GTM
+    var cleanEventName = eventName.replace(/^action\./, ""); 
+
+    if (cleanEventName) {
+      window.hj = window.hj || function() { (hj.q = hj.q || []).push(arguments); };
+      hj('event', cleanEventName);
+    }
+  })();
+</script>
+
 
 
 
