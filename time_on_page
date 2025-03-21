@@ -1,28 +1,35 @@
 <script>
+  (function () {
 
-  window.pageLoadTime = new Date().getTime();
-  window.isEventSent = false;
+    var pageLoadTime = new Date().getTime();
+    var isEventSent = false;
 
-  function sendTimeSpent() {
-    if (!window.isEventSent) {
-      var timeSpent = Math.round((new Date().getTime() - window.pageLoadTime) / 1000);
-      window.isEventSent = true;
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        'event': 'timeOnPage',
-        'timeSpent': timeSpent
-      });
+    // Функція для відправки часу в dataLayer
+    function sendTimeSpent() {
+      if (!isEventSent) {
+        var currentTime = new Date().getTime();
+        var timeSpent = Math.round((currentTime - pageLoadTime) / 1000); // У секундах
+
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          'event': 'timeOnPage',
+          'timeSpent': timeSpent
+        });
+
+        isEventSent = true;
+      }
     }
-  }
 
 
-  window.addEventListener('visibilitychange', function() {
-    if (document.visibilityState === 'hidden') {
-      sendTimeSpent();
-    }
-  });
+    document.addEventListener('click', function (e) {
+      var target = e.target.closest('a');
+      if (target && target.href) {
+        sendTimeSpent();
+      }
+    });
 
-  window.addEventListener('beforeunload', function() {
-    sendTimeSpent();
-  });
+
+    window.addEventListener('beforeunload', sendTimeSpent);
+  })();
 </script>
