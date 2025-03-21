@@ -1,0 +1,24 @@
+<script>
+  // Фіксуємо час входу на сторінку
+  window.pageLoadTime = new Date().getTime();
+  
+  function sendTimeSpent() {
+    var timeSpent = Math.round((new Date().getTime() - window.pageLoadTime) / 1000);
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event': 'timeOnPage',
+      'timeSpent': timeSpent
+    });
+  }
+  
+  // Відправляємо дані при переході на іншу сторінку або при закритті вкладки
+  window.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'hidden') {
+      sendTimeSpent();
+    }
+  });
+
+  window.addEventListener('beforeunload', function() {
+    sendTimeSpent();
+  });
+</script>
