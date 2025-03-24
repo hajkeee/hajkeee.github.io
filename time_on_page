@@ -30,6 +30,38 @@
     });
 
 
+
+
+
+
+_eas = window['_eas'] || [];
+      _eas.push(
+    [
+        'logEvent',
+        [
+            'PageView',
+            'FE',
+            [
+              ['PageLabel', 'test', 1],
+              ['PageType', 'test', 1],
+              ['PageCategory', 'test', 1],
+              ['TimingNetworkEffectiveType', 'test', 1],
+              ['TimingNetworkSaveData', 'test', 8]
+            ],
+            [
+                ['TimingNavigationDomComplete', 'test', 1, 3],
+                ['TimingNavigationDomInteractive', 'test', 1, 3],
+                ['TimingNavigationDuration', 'test', 1, 3],
+                ['TimingNavigationResponseEnd', 'test', 1, 3],
+                ['TimingNavigationTransferSize', 'test', 1, 3],
+                ['TimingNetworkDownlink', 'test', 1, 3],
+                ['TimingNetworkPing', 'test', 1, 3]
+            ]
+
+        ]
+]);
+
+
     window.addEventListener('beforeunload', sendTimeSpent);
   })();
 </script>
