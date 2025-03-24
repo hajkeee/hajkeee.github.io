@@ -37,12 +37,10 @@
 try {
   _eas = window['_eas'] || [];
 
-  // Перевірка, чи _eas є масивом
   if (!Array.isArray(_eas)) {
     throw new Error('_eas is not an array');
   }
 
-  // Формування події
   const event = [
     'logEvent',
     [
@@ -67,12 +65,10 @@ try {
     ]
   ];
 
-  // Перевірка структури події
   if (!Array.isArray(event) || event.length < 2) {
     throw new Error('Event format is invalid');
   }
 
-  // Відправка події
   _eas.push(event);
   console.log('Event pushed successfully:', event);
 } catch (error) {
