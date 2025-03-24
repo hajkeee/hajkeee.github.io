@@ -1,6 +1,9 @@
 
 ^(chatgpt\.com|openai\.com|perplexity\.ai|copilot\.microsoft\.com|bard\.google\.com|gemini\.google\.com|claude\.ai|anthropic\.com)$
 
+^https?://(chatgpt\.com|openai\.com|perplexity\.ai|copilot\.microsoft\.com|bard\.google\.com|gemini\.google\.com|claude\.ai|anthropic\.com)(/.*)?$
+
+
 chatgpt.com
 openai.com
 perplexity.ai
