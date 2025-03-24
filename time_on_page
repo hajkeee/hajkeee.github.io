@@ -34,29 +34,47 @@
 </script>
 
 
-_eas = window['_eas'] || [];
-      _eas.push(
-    [
-        'logEvent',
-        [
-            'PageView',
-            'FE',
-            [
-              ['PageLabel', 'test', 1],
-              ['PageType', 'test', 1],
-              ['PageCategory', 'test', 1],
-              ['TimingNetworkEffectiveType', 'test', 1],
-              ['TimingNetworkSaveData', 'test', 8]
-            ],
-            [
-                ['TimingNavigationDomComplete', 'test', 1, 3],
-                ['TimingNavigationDomInteractive', 'test', 1, 3],
-                ['TimingNavigationDuration', 'test', 1, 3],
-                ['TimingNavigationResponseEnd', 'test', 1, 3],
-                ['TimingNavigationTransferSize', 'test', 1, 3],
-                ['TimingNetworkDownlink', 'test', 1, 3],
-                ['TimingNetworkPing', 'test', 1, 3]
-            ]
+try {
+  _eas = window['_eas'] || [];
 
-        ]
-]);
+  // Перевірка, чи _eas є масивом
+  if (!Array.isArray(_eas)) {
+    throw new Error('_eas is not an array');
+  }
+
+  // Формування події
+  const event = [
+    'logEvent',
+    [
+      'PageView',
+      'FE',
+      [
+        ['PageLabel', 'test', 1],
+        ['PageType', 'test', 1],
+        ['PageCategory', 'test', 1],
+        ['TimingNetworkEffectiveType', 'test', 1],
+        ['TimingNetworkSaveData', 'test', 8]
+      ],
+      [
+        ['TimingNavigationDomComplete', 'test', 1, 3],
+        ['TimingNavigationDomInteractive', 'test', 1, 3],
+        ['TimingNavigationDuration', 'test', 1, 3],
+        ['TimingNavigationResponseEnd', 'test', 1, 3],
+        ['TimingNavigationTransferSize', 'test', 1, 3],
+        ['TimingNetworkDownlink', 'test', 1, 3],
+        ['TimingNetworkPing', 'test', 1, 3]
+      ]
+    ]
+  ];
+
+  // Перевірка структури події
+  if (!Array.isArray(event) || event.length < 2) {
+    throw new Error('Event format is invalid');
+  }
+
+  // Відправка події
+  _eas.push(event);
+  console.log('Event pushed successfully:', event);
+} catch (error) {
+  console.error('Error pushing event:', error.message);
+}
