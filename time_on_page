@@ -2,6 +2,9 @@ online-checkin-add-or-edit-data-button
 online-checkin-add-or-edit-data-button
 online-checkin-leg-tab-0|online-checkin-leg-tab-1
 
+^online-checkin-(add-or-edit-data-button|leg-tab-\d+)$
+
+
 
 
 
