@@ -5,6 +5,17 @@ online-checkin-leg-tab-0|online-checkin-leg-tab-1
 ^online-checkin-(add-or-edit-data-button|leg-tab-\d+)$
 
 
+function() {
+  var className = {{Click Classes}};
+
+  switch (className) {
+    case 'online-checkin-add-or-edit-data-button':
+      return 'перше значення';
+    case 'online-checkin-leg-tab-0':
+      return 'друге значення';
+    case 'online-checkin-leg-tab-1':
+      return 'третє значення';
+    defaul
 
 
 
