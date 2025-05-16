@@ -151,7 +151,7 @@ https://www.esky.ro/bilete-de-avion/ci/ist/ci/buh/istanbul-bucuresti
 
 
 
-
+LP 1 regex ^/r-bilete-de-avion/(0/0/ci/buh/bucuresti|ci/buh/0/0/bucuresti|0/0/ci/clj/cluj-napoca|ci/clj/0/0/cluj-napoca|ci/clj/ci/buh/cluj-napoca-bucuresti|ci/buh/ci/clj/bucuresti-cluj-napoca|0/0/ci/ias/iasi|ci/ias/0/0/iasi|ci/buh/ci/ist/bucuresti-istanbul|ci/ist/ci/buh/istanbul-bucuresti)$
 
 
 
