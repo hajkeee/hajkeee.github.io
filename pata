@@ -155,7 +155,8 @@ LP 1 regex ^/r-bilete-de-avion/(0/0/ci/buh/bucuresti|ci/buh/0/0/bucuresti|0/0/ci
 
 
 
-Current Version
+Current Version - ^/bilete-de-avion/(ci/buh/ci/clj/bucuresti-cluj-napoca|0/0/co/ro/romania|0/0/ci/clj/cluj-napoca|0/0/ci/buh/bucuresti|ci/clj/ci/buh/cluj-napoca-bucuresti|ci/tsr/ci/buh/timisoara-bucuresti|ci/omr/ci/buh/oradea-bucuresti|ci/buh/ci/tsr/bucuresti-timisoara|ci/ias/ci/buh/iasi-bucuresti|ci/buh/ci/ias/bucuresti-iasi|0/0/ci/tsr/timisoara|ci/buh/ci/omr/bucuresti-oradea|0/0/ci/ias/iasi|ci/bay/ci/buh/baia-mare-bucuresti|0/0/ci/omr/oradea)$
+
 https://www.esky.ro/bilete-de-avion/ci/buh/ci/clj/bucuresti-cluj-napoca
 https://www.esky.ro/bilete-de-avion/0/0/co/ro/romania
 https://www.esky.ro/bilete-de-avion/0/0/ci/clj/cluj-napoca
@@ -175,7 +176,8 @@ https://www.esky.ro/bilete-de-avion/0/0/ci/omr/oradea
 
 
 
-New Version
+New Version - ^/n-bilete-de-avion/(ci/buh/ci/clj/bucuresti-cluj-napoca|0/0/co/ro/romania|0/0/ci/clj/cluj-napoca|0/0/ci/buh/bucuresti|ci/clj/ci/buh/cluj-napoca-bucuresti|ci/tsr/ci/buh/timisoara-bucuresti|ci/omr/ci/buh/oradea-bucuresti|ci/buh/ci/tsr/bucuresti-timisoara|ci/ias/ci/buh/iasi-bucuresti|ci/buh/ci/ias/bucuresti-iasi|0/0/ci/tsr/timisoara|ci/buh/ci/omr/bucuresti-oradea|0/0/ci/ias/iasi|ci/bay/ci/buh/baia-mare-bucuresti|0/0/ci/omr/oradea)$
+
 https://www.esky.ro/n-bilete-de-avion/ci/buh/ci/clj/bucuresti-cluj-napoca
 https://www.esky.ro/n-bilete-de-avion/0/0/co/ro/romania
 https://www.esky.ro/n-bilete-de-avion/0/0/ci/clj/cluj-napoca
