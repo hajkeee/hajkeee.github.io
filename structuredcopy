@@ -1,0 +1,33 @@
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    const event = window.dataLayer.find(e => e.event === 'Purchase');
+    if (event) {
+      const clone = structuredClone(event);
+      sessionStorage.setItem('purchaseData', JSON.stringify(clone));
+    }
+  });
+</script>
+
+
+
+
+Restore Purchase Event from SessionStorage
+
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    if (!sessionStorage.getItem('purchaseData') || sessionStorage.getItem('purchaseTransferred')) {
+      return;
+    }
+
+    try {
+      const purchase = JSON.parse(sessionStorage.getItem('purchaseData'));
+      if (purchase) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(purchase);
+        sessionStorage.setItem('purchaseTransferred', 'true'); 
+      }
+    } catch (e) {
+      console.error('Failed to restore purchase', e);
+    }
+  });
+</script>
