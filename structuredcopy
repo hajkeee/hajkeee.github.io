@@ -8,6 +8,22 @@
   });
 </script>
 
+v2
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    var purchaseEvent = window.dataLayer.find(e => e.event === 'purchase');
+    if (purchaseEvent) {
+      try {
+        var clone = JSON.parse(JSON.stringify(purchaseEvent));
+        sessionStorage.setItem('purchaseData', JSON.stringify(clone));
+      } catch (e) {
+        console.error('Cloning failed', e);
+      }
+    }
+  });
+</script>
+
+
 
 
 
@@ -25,6 +41,24 @@ Restore Purchase Event from SessionStorage
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push(purchase);
         sessionStorage.setItem('purchaseTransferred', 'true'); 
+      }
+    } catch (e) {
+      console.error('Failed to restore purchase', e);
+    }
+  });
+</script>
+
+v2
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    if (!sessionStorage.getItem('purchaseData') || sessionStorage.getItem('purchaseTransferred')) return;
+
+    try {
+      var purchase = JSON.parse(sessionStorage.getItem('purchaseData'));
+      if (purchase) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(purchase);
+        sessionStorage.setItem('purchaseTransferred', 'true');
       }
     } catch (e) {
       console.error('Failed to restore purchase', e);
