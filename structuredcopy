@@ -11,17 +11,25 @@
 v2
 <script>
   window.addEventListener('DOMContentLoaded', function () {
-    var purchaseEvent = window.dataLayer.find(e => e.event === 'purchase');
-    if (purchaseEvent) {
+    var purchase;
+    for (var i = 0; i < dataLayer.length; i++) {
+      if (dataLayer[i].event === 'purchase') {
+        purchase = dataLayer[i];
+        break;
+      }
+    }
+
+    if (purchase) {
       try {
-        var clone = JSON.parse(JSON.stringify(purchaseEvent));
-        sessionStorage.setItem('purchaseData', JSON.stringify(clone));
+        var cloned = JSON.parse(JSON.stringify(purchase));
+        sessionStorage.setItem('purchaseData', JSON.stringify(cloned));
       } catch (e) {
-        console.error('Cloning failed', e);
+        console.error('Error saving purchase:', e);
       }
     }
   });
 </script>
+
 
 
 
@@ -51,17 +59,18 @@ Restore Purchase Event from SessionStorage
 v2
 <script>
   window.addEventListener('DOMContentLoaded', function () {
-    if (!sessionStorage.getItem('purchaseData') || sessionStorage.getItem('purchaseTransferred')) return;
+    if (sessionStorage.getItem('purchaseTransferred')) return;
 
     try {
-      var purchase = JSON.parse(sessionStorage.getItem('purchaseData'));
-      if (purchase) {
+      var stored = sessionStorage.getItem('purchaseData');
+      if (stored) {
+        var purchase = JSON.parse(stored);
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push(purchase);
         sessionStorage.setItem('purchaseTransferred', 'true');
       }
     } catch (e) {
-      console.error('Failed to restore purchase', e);
+      console.error('Error restoring purchase:', e);
     }
   });
 </script>
