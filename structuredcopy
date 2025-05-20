@@ -33,23 +33,19 @@ v2
 v3
 
 <script>
-  try {
-    var dl = window.dataLayer || [];
-    var current = dl[dl.length - 1];
-
-    console.log('[DEBUG] Поточна подія:', current);
-
-    if (current && current.event === 'Purchase') {
-      var clone = JSON.parse(JSON.stringify(current));
-      sessionStorage.setItem('purchaseData', JSON.stringify(clone));
-      sessionStorage.removeItem('purchaseTransferred');
-      console.log('[GTM] ✅ Збережено подію Purchase:', clone);
-    } else {
-      console.warn('[GTM] ⚠️ Подія не відповідає "Purchase"');
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.forEach(function(item) {
+    if (item.event === 'purchase' && item.ecommerce) {
+      try {
+        // Використовуємо structuredClone для глибокого копіювання об'єкта ecommerce
+        const purchaseData = structuredClone(item.ecommerce);
+        sessionStorage.setItem('gtm_purchaseData', JSON.stringify(purchaseData));
+        console.log('Purchase data saved to sessionStorage:', purchaseData);
+      } catch (e) {
+        console.error('Error saving purchase data:', e);
+      }
     }
-  } catch (e) {
-    console.error('[GTM] ❌ Помилка при збереженні події:', e);
-  }
+  });
 </script>
 
 
@@ -104,31 +100,25 @@ v2
 v3
 
 <script>
-  window.addEventListener('DOMContentLoaded', function () {
+  window.dataLayer = window.dataLayer || [];
+  const storedPurchaseData = sessionStorage.getItem('gtm_purchaseData');
+
+  if (storedPurchaseData) {
     try {
-      if (sessionStorage.getItem('purchaseTransferred')) {
-        console.log('[GTM] ⏭ Уже пушили purchase');
-        return;
-      }
-
-      var raw = sessionStorage.getItem('purchaseData');
-      if (!raw) {
-        console.warn('[GTM] ⚠️ Немає збереженої purchase події');
-        return;
-      }
-
-      var purchase = JSON.parse(raw);
-      if (purchase && purchase.event === 'purchase') {
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push(purchase);
-        sessionStorage.setItem('purchaseTransferred', 'true');
-        console.log('[GTM] ✅ Відновлено purchase:', purchase);
-      } else {
-        console.warn('[GTM] ⚠️ Неправильна структура події');
-      }
+      const purchaseData = JSON.parse(storedPurchaseData);
+      // Додаємо дані покупки назад у dataLayer як нову подію
+      window.dataLayer.push({
+        event: 'purchase_restored', // Нова назва події, щоб відрізняти від оригінальної
+        ecommerce: purchaseData,
+        eventCallback: function() {
+          // Очищаємо дані з sessionStorage після використання, щоб уникнути повторного спрацьовування
+          sessionStorage.removeItem('gtm_purchaseData');
+          console.log('Purchase data restored and pushed to dataLayer.');
+        }
+      });
     } catch (e) {
-      console.error('[GTM] ❌ Помилка відновлення:', e);
+      console.error('Error restoring purchase data:', e);
     }
-  });
+  }
 </script>
 
