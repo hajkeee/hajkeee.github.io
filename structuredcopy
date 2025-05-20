@@ -30,6 +30,34 @@ v2
   });
 </script>
 
+v3
+
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    var purchase = null;
+
+    // Шукаємо подію purchase в dataLayer
+    for (var i = 0; i < window.dataLayer.length; i++) {
+      if (window.dataLayer[i].event === 'purchase') {
+        purchase = window.dataLayer[i];
+        break;
+      }
+    }
+
+    if (purchase) {
+      try {
+        var clone = JSON.parse(JSON.stringify(purchase)); // клонування
+        sessionStorage.setItem('purchaseData', JSON.stringify(clone));
+        console.log('✅ Збережено purchase у sessionStorage:', clone);
+      } catch (e) {
+        console.error('❌ Помилка збереження purchase:', e);
+      }
+    } else {
+      console.warn('⚠️ Подія purchase не знайдена в dataLayer');
+    }
+  });
+</script>
+
 
 
 
@@ -71,6 +99,38 @@ v2
       }
     } catch (e) {
       console.error('Error restoring purchase:', e);
+    }
+  });
+</script>
+
+
+
+v3
+
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    // Перевіряємо, чи вже пушили
+    if (sessionStorage.getItem('purchaseTransferred')) return;
+
+    // Пробуємо зчитати дані
+    var stored = sessionStorage.getItem('purchaseData');
+    if (!stored) return;
+
+    try {
+      var purchase = JSON.parse(stored);
+
+      // Перевіряємо, чи це дійсно purchase подія
+      if (purchase && purchase.event && purchase.event === 'purchase') {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(purchase); // Пуш як подію
+        sessionStorage.setItem('purchaseTransferred', 'true'); // Флаг
+        console.log('✅ Pushed purchase from sessionStorage:', purchase);
+      } else {
+        console.warn('⚠️ Збережена подія не є purchase');
+      }
+
+    } catch (e) {
+      console.error('❌ Помилка розбору JSON:', e);
     }
   });
 </script>
