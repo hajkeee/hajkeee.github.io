@@ -33,33 +33,23 @@ v2
 v3
 
 <script>
-(function () {
-  window.dataLayer = window.dataLayer || [];
+  try {
+    var dl = window.dataLayer || [];
+    var current = dl[dl.length - 1];
 
-  // Беремо існуючий метод push
-  var originalPush = window.dataLayer.push;
+    console.log('[DEBUG] Поточна подія:', current);
 
-  // Перехоплюємо всі нові події
-  window.dataLayer.push = function () {
-    // Проходимося по всіх переданих аргументах
-    for (var i = 0; i < arguments.length; i++) {
-      var item = arguments[i];
-      if (item && item.event === 'Purchase') {
-        try {
-          var clone = JSON.parse(JSON.stringify(item));
-          sessionStorage.setItem('purchaseData', JSON.stringify(clone));
-          sessionStorage.removeItem('purchaseTransferred'); // обнуляємо на випадок
-          console.log('[GTM] ✅ Збережено подію purchase через push:', clone);
-        } catch (e) {
-          console.error('[GTM] ❌ Помилка при клонуванні purchase:', e);
-        }
-      }
+    if (current && current.event === 'Purchase') {
+      var clone = JSON.parse(JSON.stringify(current));
+      sessionStorage.setItem('purchaseData', JSON.stringify(clone));
+      sessionStorage.removeItem('purchaseTransferred');
+      console.log('[GTM] ✅ Збережено подію Purchase:', clone);
+    } else {
+      console.warn('[GTM] ⚠️ Подія не відповідає "Purchase"');
     }
-
-    // Викликаємо оригінальний push
-    return originalPush.apply(window.dataLayer, arguments);
-  };
-})();
+  } catch (e) {
+    console.error('[GTM] ❌ Помилка при збереженні події:', e);
+  }
 </script>
 
 
