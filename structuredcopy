@@ -8,6 +8,8 @@ https://affiliates.ferryscanner.com/pl/ferry?ref=esky
 
 ^https:\/\/(www\.)?(booking\.com|getyourguide\.pl|esky\-pl\.mozio\.com|parkingi\.esky\.pl|esky\-pl\.tickets\-partners\.com|boataround\.com|affiliates\.ferryscanner\.com)
 ^https:\/\/(www\.)?(booking\.com|getyourguide\.pl|esky-pl\.mozio\.com|parkingi\.esky\.pl|esky-pl\.tickets-partners\.com|boataround\.com|affiliates\.ferryscanner\.com)(\/|$)
+^(booking\.com|getyourguide\.pl|esky-pl\.mozio\.com|parkingi\.esky\.pl|esky-pl\.tickets-partners\.com|boataround\.com|affiliates\.ferryscanner\.com)$
+
 
 
 ^https:\/\/(www\.)?(booking\.com|getyourguide\.pl|esky-pl\.mozio\.com|parkingi\.esky\.pl|esky-pl\.tickets-partners\.com|boataround\.com|affiliates\.ferryscanner\.com)\/?$
