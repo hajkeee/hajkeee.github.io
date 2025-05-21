@@ -1,3 +1,13 @@
+https://www.booking.com/cars/index.html
+https://www.getyourguide.pl/?partner_id=6PH6GQ5&cmp=PL
+https://esky-pl.mozio.com/?campaign=website
+https://parkingi.esky.pl/
+https://esky-pl.tickets-partners.com/
+https://www.boataround.com/pl?ref_afi=esky-pl
+https://affiliates.ferryscanner.com/pl/ferry?ref=esky
+
+
+
 <script>
   window.addEventListener('DOMContentLoaded', function () {
     const event = window.dataLayer.find(e => e.event === 'Purchase');
