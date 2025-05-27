@@ -24,6 +24,8 @@ https://www.boataround.com/ro?ref_afi=esky-ro
 https://affiliates.ferryscanner.com/en/ferry?ref=esky
 
 ^(getyourguide\.com|esky-ro\.mozio\.com|eskybymozio\.travelcar\.com|esky-ro\.tickets-partners\.com|boataround\.com|affiliates\.ferryscanner\.com)$
+^(getyourguide\.com|esky-[a-z]{2}\.mozio\.com|eskybymozio\.travelcar\.com|esky-[a-z]{2}\.tickets-partners\.com|boataround\.com|affiliates\.ferryscanner\.com)$
+
 
 
 
