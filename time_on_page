@@ -1,3 +1,24 @@
+
+function() {
+  try {
+    var el = {{Click Element}};
+    if (!el) return;
+
+    var link = el.closest('.answer');
+    if (!link) return;
+
+    var faqItem = link.closest('li.accordion-panel.active');
+    if (!faqItem) return;
+
+    var h5 = faqItem.querySelector('h5.panel-title');
+    return h5 ? h5.innerText.trim() : undefined;
+  } catch(e) {
+    return undefined;
+  }
+}
+
+
+
 online-checkin-add-or-edit-data-button
 online-checkin-add-or-edit-data-button
 online-checkin-leg-tab-0|online-checkin-leg-tab-1
