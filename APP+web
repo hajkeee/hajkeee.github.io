@@ -1,45 +1,49 @@
 (function() {
-  let appSwitchTimer;
-  const timeoutDuration = 500; // milliseconds
+  var appSwitchTimer = null;
+  var timeoutDuration = 500; 
 
-  document.addEventListener('visibilitychange', function() {
+  function pushToDataLayer(eventName, params) {
+    window.dataLayer = window.dataLayer || [];
+    var eventData = {
+      event: eventName,
+      timestamp: new Date().toISOString()
+    };
+    for (var key in params) {
+      if (params.hasOwnProperty(key)) {
+        eventData[key] = params[key];
+      }
+    }
+    dataLayer.push(eventData);
+    console.log('GTM Event Fired: ' + eventName, params); // ES5 конкатенація
+  }
+
+  document.addEventListener('visibilitychange', function() { // Звичайна функція
     if (document.visibilityState === 'hidden') {
-      // Start a timer when the tab becomes hidden
-      appSwitchTimer = setTimeout(function() {
-        // This function will execute if the tab stays hidden for timeoutDuration
-        // We assume it's an app switch if the tab remains hidden
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-          event: 'app_switch_detected',
+      appSwitchTimer = setTimeout(function() { // Звичайна функція
+        pushToDataLayer('app_switch_detected', {
           method: 'visibilitychange_timeout',
-          page_location: window.location.href,
-          timestamp: new Date().toISOString()
+          page_location: window.location.href
         });
-        console.log('App switch detected via visibilitychange timeout');
       }, timeoutDuration);
     } else {
-      // If the tab becomes visible again, clear the timer
       if (appSwitchTimer) {
         clearTimeout(appSwitchTimer);
+        appSwitchTimer = null;
         console.log('Visibility restored, app switch cancelled.');
       }
     }
   });
 
-  // Optional: Try to identify clicks on known deep links
-  // This will help differentiate between user-initiated and "strange" redirects
-  document.addEventListener('click', function(e) {
-    const target = e.target.closest('a');
+  document.addEventListener('click', function(e) { 
+
+    var target = e.target.closest('a');
     if (target && target.href) {
-      if (target.href.startsWith('myapp://') || target.href.includes('yourdomain.com/applink')) { // Replace with your actual deep link patterns
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-          event: 'app_deep_link_click',
+      // Замініть 'myapp://' та 'yourdomain.com/applink' на ваші реальні патерни deep link
+      if (target.href.startsWith('myapp://') || target.href.indexOf('yourdomain.com/applink') !== -1) {
+        pushToDataLayer('app_deep_link_click', {
           app_link_url: target.href,
-          page_location: window.location.href,
-          timestamp: new Date().toISOString()
+          page_location: window.location.href
         });
-        console.log('Explicit app deep link clicked.');
       }
     }
   });
