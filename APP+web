@@ -2,6 +2,7 @@
 (function() {
   var appSwitchTimer = null;
   var timeoutDuration = 500;
+  var isNavigatingAway = false;
 
   function pushToDataLayer(eventName, params) {
     window.dataLayer = window.dataLayer || [];
@@ -15,22 +16,36 @@
       }
     }
     dataLayer.push(eventData);
+    console.log('GTM Event Fired: ' + eventName, params);
   }
+
+  // Позначаємо, що користувач покидає сторінку (навігація)
+  window.addEventListener('pagehide', function() {
+    isNavigatingAway = true;
+  });
+
+  window.addEventListener('beforeunload', function() {
+    isNavigatingAway = true;
+  });
 
   document.addEventListener('visibilitychange', function() {
     if (document.visibilityState === 'hidden') {
       appSwitchTimer = setTimeout(function() {
-        pushToDataLayer('app_switch_detected', {
-          method: 'visibilitychange_timeout',
-          page_location: window.location.href,
-          user_agent: navigator.userAgent,
-          platform: navigator.platform
-        });
+        if (!isNavigatingAway) {
+          pushToDataLayer('app_switch_detected', {
+            method: 'visibilitychange_timeout',
+            page_location: window.location.href,
+            user_agent: navigator.userAgent,
+            platform: navigator.platform
+          });
+        }
       }, timeoutDuration);
     } else {
       if (appSwitchTimer) {
         clearTimeout(appSwitchTimer);
         appSwitchTimer = null;
+        isNavigatingAway = false; // Скидаємо прапор, якщо користувач повернувся
+        console.log('Visibility restored, app switch cancelled.');
       }
     }
   });
@@ -62,6 +77,7 @@
           });
         }
       } catch (err) {
+        console.warn('Invalid href in <a> tag: ', target.href);
       }
     }
   });
