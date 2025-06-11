@@ -1,6 +1,7 @@
+<script>
 (function() {
   var appSwitchTimer = null;
-  var timeoutDuration = 500; 
+  var timeoutDuration = 500;
 
   function pushToDataLayer(eventName, params) {
     window.dataLayer = window.dataLayer || [];
@@ -14,38 +15,55 @@
       }
     }
     dataLayer.push(eventData);
-    console.log('GTM Event Fired: ' + eventName, params); // ES5 конкатенація
   }
 
-  document.addEventListener('visibilitychange', function() { // Звичайна функція
+  document.addEventListener('visibilitychange', function() {
     if (document.visibilityState === 'hidden') {
-      appSwitchTimer = setTimeout(function() { // Звичайна функція
+      appSwitchTimer = setTimeout(function() {
         pushToDataLayer('app_switch_detected', {
           method: 'visibilitychange_timeout',
-          page_location: window.location.href
+          page_location: window.location.href,
+          user_agent: navigator.userAgent,
+          platform: navigator.platform
         });
       }, timeoutDuration);
     } else {
       if (appSwitchTimer) {
         clearTimeout(appSwitchTimer);
         appSwitchTimer = null;
-        console.log('Visibility restored, app switch cancelled.');
       }
     }
   });
 
-  document.addEventListener('click', function(e) { 
-
+  document.addEventListener('click', function(e) {
     var target = e.target.closest('a');
     if (target && target.href) {
-      // Замініть 'myapp://' та 'yourdomain.com/applink' на ваші реальні патерни deep link
-      if (target.href.startsWith('myapp://') || target.href.indexOf('yourdomain.com/applink') !== -1) {
-        pushToDataLayer('app_deep_link_click', {
-          app_link_url: target.href,
-          page_location: window.location.href
+      try {
+        var href = target.href;
+        var url = new URL(href);
+
+        var deepLinkSchemes = ['myapp:', 'intent:', 'tel:', 'mailto:', 'app:', 'customscheme:'];
+        var deepLinkIndicators = ['open_in_app', 'deeplink', 'applink'];
+
+        var isScheme = deepLinkSchemes.some(function(scheme) {
+          return href.indexOf(scheme) === 0;
         });
+
+        var hasIndicator = deepLinkIndicators.some(function(indicator) {
+          return url.pathname.indexOf(indicator) !== -1 || url.search.indexOf(indicator) !== -1;
+        });
+
+        if (isScheme || hasIndicator) {
+          pushToDataLayer('app_deep_link_click', {
+            app_link_url: href,
+            page_location: window.location.href,
+            user_agent: navigator.userAgent,
+            platform: navigator.platform
+          });
+        }
+      } catch (err) {
       }
     }
   });
-
 })();
+</script>
