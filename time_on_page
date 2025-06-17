@@ -1,4 +1,8 @@
 
+^online-checkin-(add-or-edit-data-button|leg-tab-\d+)$map-button|button-fit-content|see-more-button|Szczegóły|online-checkin-self-service-checkin-guide-button|documents-requirements-submit|ng-star-inserted|
+
+
+
 function() {
   try {
     var el = {{Click Element}};
