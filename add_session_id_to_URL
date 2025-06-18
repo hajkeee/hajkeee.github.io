@@ -1,0 +1,41 @@
+<script>
+(function() {
+  try {
+    var STORAGE_KEY = 'ph_phc_owYqs31VgN3pStQbGAwzzR0yE9huqZ1hXkDJzRtMhFa_window_id';
+    var originalPush = window.dataLayer.push;
+
+    var onDataLayerEvent = function(event) {
+      if (event && event.event === 'cookiehub_necessary') {
+        var sessionId = sessionStorage.getItem(STORAGE_KEY);
+        if (!sessionId) return;
+
+        var url = new URL(window.location.href);
+        if (!url.searchParams.has('ph_token')) {
+          url.searchParams.set('ph_token', sessionId);
+          window.history.replaceState(null, '', url.toString());
+        }
+
+        window.dataLayer.push = originalPush;
+      }
+    };
+
+    if (window.dataLayer && window.dataLayer.length) {
+      for (var i = 0; i < window.dataLayer.length; i++) {
+        onDataLayerEvent(window.dataLayer[i]);
+      }
+    }
+
+    window.dataLayer.push = function() {
+      for (var i = 0; i < arguments.length; i++) {
+        onDataLayerEvent(arguments[i]);
+      }
+      return originalPush.apply(this, arguments);
+    };
+
+  } catch (e) {
+    if (window.console && window.console.error) {
+      window.console.error('Error appending ph_token from sessionStorage:', e);
+    }
+  }
+})();
+</script>
