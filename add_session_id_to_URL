@@ -47,33 +47,30 @@
 <script>
 (function() {
   try {
-    var phToken = {{esky_TCSIS}}; // GTM змінна має бути вбудована саме так
+    var sessionIDPat = {{esky_TCSIS}}; 
     
     var originalPush = window.dataLayer.push;
 
     var onDataLayerEvent = function(event) {
       if (event && event.event === 'view_item_list') {
-        if (!phToken) return;
+        if (!sessionIDPat) return;
 
         var url = new URL(window.location.href);
-        if (!url.searchParams.has('ph_token')) {
-          url.searchParams.set('ph_token', phToken);
+        if (!url.searchParams.has('sessionIDPat')) {
+          url.searchParams.set('sessionIDPat', sessionIDPat);
           window.history.replaceState(null, '', url.toString());
         }
 
-        // Відписуємося, якщо треба (опціонально)
         window.dataLayer.push = originalPush;
       }
     };
 
-    // Перевіряємо існуючі події
     if (window.dataLayer && window.dataLayer.length) {
       for (var i = 0; i < window.dataLayer.length; i++) {
         onDataLayerEvent(window.dataLayer[i]);
       }
     }
 
-    // Переоприділяємо push для ловлення нових подій
     window.dataLayer.push = function() {
       for (var i = 0; i < arguments.length; i++) {
         onDataLayerEvent(arguments[i]);
