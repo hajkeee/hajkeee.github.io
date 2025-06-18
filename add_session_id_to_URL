@@ -39,3 +39,52 @@
   }
 })();
 </script>
+
+
+
+
+
+<script>
+(function() {
+  try {
+    var phToken = {{esky_TCSIS}}; // GTM змінна має бути вбудована саме так
+    
+    var originalPush = window.dataLayer.push;
+
+    var onDataLayerEvent = function(event) {
+      if (event && event.event === 'view_item_list') {
+        if (!phToken) return;
+
+        var url = new URL(window.location.href);
+        if (!url.searchParams.has('ph_token')) {
+          url.searchParams.set('ph_token', phToken);
+          window.history.replaceState(null, '', url.toString());
+        }
+
+        // Відписуємося, якщо треба (опціонально)
+        window.dataLayer.push = originalPush;
+      }
+    };
+
+    // Перевіряємо існуючі події
+    if (window.dataLayer && window.dataLayer.length) {
+      for (var i = 0; i < window.dataLayer.length; i++) {
+        onDataLayerEvent(window.dataLayer[i]);
+      }
+    }
+
+    // Переоприділяємо push для ловлення нових подій
+    window.dataLayer.push = function() {
+      for (var i = 0; i < arguments.length; i++) {
+        onDataLayerEvent(arguments[i]);
+      }
+      return originalPush.apply(this, arguments);
+    };
+
+  } catch(e) {
+    if(window.console && window.console.error) {
+      window.console.error('Error appending ph_token from GTM variable:', e);
+    }
+  }
+})();
+</script>
