@@ -1,0 +1,192 @@
+<div id="ccx_tr_5db8f60c3649382c093c1aedd210ee91"></div>
+<script type="text/javascript"> 
+/* PUT YOUR VARIABLES HERE */ 
+var W2T_vars = '' 
+ + '/' + 'homepage_visited' 
+; 
+/* END OF VARIABLES STRING */ 
+var tr_scr = document.createElement("script");
+tr_scr.type = "text/javascript";
+tr_scr.src = "https://delivery.clickonometrics.pl/tracker=13913/track/shoppers"+W2T_vars+"/track.js?gdpr=${gdpr}&gdpr_consent=${gdpr_consent_773}";
+document.getElementById("ccx_tr_5db8f60c3649382c093c1aedd210ee91").appendChild(tr_scr);
+</script>
+
+
+
+///////////////////
+<div id="ccx_tr_6544d967b5f8a4928d79b913d9226e47"></div>
+<script type="text/javascript"> 
+/* PUT YOUR VARIABLES HERE */ 
+var W2T_vars = '' 
+ + '/' + 'product_browsed' 
+ + '/' + encodeURIComponent('{"id":"{ID}","price":"{PRICE}","in_basket":"{QUANTITY}"}') 
+; 
+/* END OF VARIABLES STRING */ 
+var tr_scr = document.createElement("script");
+tr_scr.type = "text/javascript";
+tr_scr.src = "https://delivery.clickonometrics.pl/tracker=13914/track/shoppers"+W2T_vars+"/track.js?gdpr=${gdpr}&gdpr_consent=${gdpr_consent_773}";
+document.getElementById("ccx_tr_6544d967b5f8a4928d79b913d9226e47").appendChild(tr_scr);
+</script>
+Kod należy umieścić na stronie produktowej.
+Podmieniane są zmienne {ID}, {PRICE} oraz {QUANTITY}.
+Wartość „in_basket” jest opcjonalna i powinna reprezentować liczbę tych produktów w koszyku. W przypadku braku takiej informacji – proszę ustawić wartość na ujemną, np. -1, albo pominąć klucz „in_basket”.
+<div id="ccx_tr_xxxxyyyyxxxxyyyyxxxxyyyyxxxxy"></div>
+<script type="text/javascript">
+/* PUT YOUR VARIABLES HERE */
+var W2T_vars = ''
+ + '/' + 'product_browsed'
+ + '/' + encodeURIComponent('{"id":"1235","price":"99.00","in_basket":"1"}')
+;
+/* END OF VARIABLES STRING */
+var tr_scr = document.createElement("script");
+tr_scr.type = "text/javascript";
+tr_scr.src = "//delivery.clickonometrics.pl/tracker=1234/track/shoppers"+W2T_vars+"/track.js";
+document.getElementById("ccx_tr_xxxxyyyyxxxxyyyyxxxxyyyyxxxxy").appendChild(tr_scr);
+</script>
+
+/////////////////////////////////////////////
+
+
+
+<div id="ccx_tr_0403a9e5b88695b232cf0541e95bf33c"></div>
+<script type="text/javascript"> 
+/* PUT YOUR VARIABLES HERE */ 
+var W2T_vars = '' 
+ + '/' + 'product_added' 
+ + '/' + encodeURIComponent('{"id":"{ID}","price":"{PRICE}","added":"{QUANTITY}"}') 
+; 
+/* END OF VARIABLES STRING */ 
+var tr_scr = document.createElement("script");
+tr_scr.type = "text/javascript";
+tr_scr.src = "https://delivery.clickonometrics.pl/tracker=13915/track/shoppers"+W2T_vars+"/track.js?gdpr=${gdpr}&gdpr_consent=${gdpr_consent_773}";
+document.getElementById("ccx_tr_0403a9e5b88695b232cf0541e95bf33c").appendChild(tr_scr);
+</script>
+Kod należy wywołać gdy produkt zostanie dodany do koszyka, zarówno z poziomu karty produktu jak i kategorii o ile istnieje taka możliwość.
+Podmieniane są zmienne {ID}, {PRICE} oraz {QUANTITY}.
+Przykładowo gdy użytkownik doda do koszyka produkt o ID 123, cenie 99.00 w 2 sztukach, kod będzie wyglądał następująco:
+<div id="ccx_tr_xxxxyyyyxxxxyyyyxxxxyyyyxxxxyy"></div>
+<script type="text/javascript">
+/* PUT YOUR VARIABLES HERE */
+var W2T_vars = ''
+ + '/' + 'product_added'
+ + '/' + encodeURIComponent('{"id":"123","price":"99.00","added":"2"}')
+;
+/* END OF VARIABLES STRING */
+var tr_scr = document.createElement("script");
+tr_scr.type = "text/javascript";
+tr_scr.src = "//delivery.clickonometrics.pl/tracker=1234/track/shoppers"+W2T_vars+"/track.js";
+document.getElementById("ccx_tr_xxxxyyyyxxxxyyyyxxxxyyyyxxxxyy").appendChild(tr_scr);
+</script>
+
+///////////////////////////////////////////////////////////////
+
+
+<div id="ccx_tr_f07f564caee67348d4e5bd73226789c4"></div>
+<script type="text/javascript"> 
+/* PUT YOUR VARIABLES HERE */ 
+var W2T_vars = '' 
+ + '/' + 'browsed_category' 
+ + '/' + encodeURIComponent('[{"id":"{ID}","price":"{PRICE}","in_basket":"{QUANTITY}"}]') 
+ + '/' + '{CATEGORY_NAME}' 
+; 
+/* END OF VARIABLES STRING */ 
+var tr_scr = document.createElement("script");
+tr_scr.type = "text/javascript";
+tr_scr.src = "https://delivery.clickonometrics.pl/tracker=13917/track/shoppers"+W2T_vars+"/track.js?gdpr=${gdpr}&gdpr_consent=${gdpr_consent_773}";
+document.getElementById("ccx_tr_f07f564caee67348d4e5bd73226789c4").appendChild(tr_scr);
+</script>
+Kod należy umieścić na stronie kategorii.
+Podmieniane są zmienne {ID}, {PRICE}, {QUANTTY}, {CATEGORY}. W zmiennych ID oraz PRICE powinny być zawarte wszystkie załadowane na podstronie produkty, w kolejności w jakiej są prezentowane na stronie. Kod powinien był wywołany przy każdym dynamicznym doładowaniu produktów, zwracając nowo wyświetlone.
+Wartość „in_basket” jest opcjonalna i powinna reprezentować liczbę tych produktów w koszyku. W przypadku braku takiej informacji – proszę ustawić wartość na ujemną, np. -1, albo pominąć klucz „in_basket”.
+Przykładowo jeżeli użytkownik był na kategorii „Kurtki”, na której jest 5 produktów i żaden nie jest w koszyku klienta.
+<div id="ccx_tr_xxxxyyyyxxxxyyyyxxxxyyyyxxxxyyyy"></div>
+<script type="text/javascript">
+/* PUT YOUR VARIABLES HERE */
+var W2T_vars = ''
+ + '/' + 'browsed_category'
+ + '/' + encodeURIComponent('[{"id":"111","price":"10.00","in_basket":"-1"},{"id":"222","price":"10.00","in_basket":"-1"},{"id":"333","price":"10.00","in_basket":"-1"},{"id":"444","price":"10.00","in_basket":"-1"},{"id":"555","price":"15.00","in_basket":"-1"},{"id":"666","price":"15.00","in_basket":"-1"}]')
+ + '/' + 'Kurtki'
+;
+/* END OF VARIABLES STRING */
+var tr_scr = document.createElement("script");
+tr_scr.type = "text/javascript";
+tr_scr.src = "//delivery.clickonometrics.pl/tracker=1234/track/shoppers"+W2T_vars+"/track.js";
+document.getElementById("ccx_tr_xxxxyyyyxxxxyyyyxxxxyyyyxxxxyyyy").appendChild(tr_scr);
+</script>
+
+////////////////////////////////////////////
+
+<div id="ccx_tr_01a7f538fa1ea01abe80bb10248c8063"></div>
+<script type="text/javascript"> 
+/* PUT YOUR VARIABLES HERE */ 
+var W2T_vars = '' 
+ + '/' + 'cart' 
+ + '/' + encodeURIComponent('[{"id":"{ID}","price":"{PRICE}","in_basket":"{QUANTITY}"}]') 
+; 
+/* END OF VARIABLES STRING */ 
+var tr_scr = document.createElement("script");
+tr_scr.type = "text/javascript";
+tr_scr.src = "https://delivery.clickonometrics.pl/tracker=13918/track/shoppers"+W2T_vars+"/track.js?gdpr=${gdpr}&gdpr_consent=${gdpr_consent_773}";
+document.getElementById("ccx_tr_01a7f538fa1ea01abe80bb10248c8063").appendChild(tr_scr);
+</script>
+Kod należy umieścić na stronie podsumowania koszyka.
+Podmieniane są zmienne {ID}, {PRICE} oraz {QUANTITY}.
+Przykładowo gdy użytkownik jest na stronie z koszykiem z 3 produktami:
+ID 123, cena jednostkowa 10.00 zł, ilość w koszyku 1
+ID 456, cena jednostkowa 15.00 zł, ilość w koszyku 2
+ID 789, cena jednostkowa 20.00 zł, ilość w koszyku 3
+Kod wygląda następująco:
+<div id="ccx_tr_xxxxyyyyxxxxyyyyxxxxyyyyxxxxyyyyy"></div>
+<script type="text/javascript">
+/* PUT YOUR VARIABLES HERE */
+var W2T_vars = ''
+ + '/' + 'cart'
+ + '/' + encodeURIComponent('[{"id":"123","price":"10.00","in_basket":"1"},{"id":"456","price":"15.00","in_basket":"2"},{"id":"789","price":"20.00","in_basket":"3"}]')
+;
+/* END OF VARIABLES STRING */
+var tr_scr = document.createElement("script");tr_scr.type = "text/javascript";
+tr_scr.src = "//delivery.clickonometrics.pl/tracker=1234/track/shoppers"+W2T_vars+"/track.js";
+document.getElementById("ccx_tr_xxxxyyyyxxxxyyyyxxxxyyyyxxxxyyyyy").appendChild(tr_scr);
+</script>
+
+///////////////////////////////////////////////
+
+<div id="ccx_tr_33360db1fbdd0048ea8e4e0d7bf70269"></div>
+<script type="text/javascript"> 
+/* PUT YOUR VARIABLES HERE */ 
+var W2T_vars = '' 
+ + '/' + 'products_ordered' 
+ + '/' + '{SALE_VALUE}' 
+ + '/' + '{ORDER}' 
+ + '/' + encodeURIComponent('[{"id":"{ID}","price":"{PRICE}","in_basket":"{QUANTITY}"}]') 
+; 
+/* END OF VARIABLES STRING */ 
+var tr_scr = document.createElement("script");
+tr_scr.type = "text/javascript";
+tr_scr.src = "https://delivery.clickonometrics.pl/tracker=13919/track/shoppers"+W2T_vars+"/track.js?gdpr=${gdpr}&gdpr_consent=${gdpr_consent_773}";
+document.getElementById("ccx_tr_33360db1fbdd0048ea8e4e0d7bf70269").appendChild(tr_scr);
+</script>
+Kod należy umieścić na stronie z podziękowaniem za zamówienie.
+Podmieniane są zmienne {SALE_VALUE}, {ORDER},  {ID}, {PRICE} oraz {QUANTITY}.
+Przykładowo gdy użytkownik kupił 3 produkty o łącznej wartości 100zł:
+ID 123, cena jednostkowa 10.00 zł, ilość w koszyku 1
+ID 456, cena jednostkowa 15.00 zł, ilość w koszyku 2
+ID 789, cena jednostkowa 20.00 zł, ilość w koszyku 3
+W ramach zamówienia numer 123xxxyyy456.
+<div id="ccx_tr_xxxxyyyyxxxxyyyyxxxxyyyyxxxxyyyyyy"></div>
+<script type="text/javascript">
+/* PUT YOUR VARIABLES HERE */
+var W2T_vars = ''
+ + '/' + 'products_ordered'
+ + '/' + '100.00'
+ + '/' + '123xxxyyy456'
+ + '/' + encodeURIComponent('[{"id":"123","price":"10.00","in_basket":"1"},{"id":"456","price":"15.00","in_basket":"2"},{"id":"789","price":"20.00","in_basket":"3"}]')
+;
+/* END OF VARIABLES STRING */
+var tr_scr = document.createElement("script");
+tr_scr.type = "text/javascript";
+tr_scr.src = "//delivery.clickonometrics.pl/tracker=1234/track/shoppers"+W2T_vars+"/track.js";
+document.getElementById("ccx_tr_xxxxyyyyxxxxyyyyxxxxyyyyxxxxyyyyyy").appendChild(tr_scr);
+</script>
+
+/////////////////////////////////////////////////////////
