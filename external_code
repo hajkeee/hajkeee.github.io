@@ -1,4 +1,25 @@
 function() {
+  var products = [];
+
+  if (window.dataLayer) {
+    for (var i = window.dataLayer.length - 1; i >= 0; i--) {
+      var dl = window.dataLayer[i];
+      if (dl.ecommerce && dl.ecommerce.items && Array.isArray(dl.ecommerce.items) && dl.ecommerce.items.length > 0) {
+
+        products = dl.ecommerce.items.map(function(item) {
+          return '{"id":"' + (item.item_id || '') + '","price":"' + (item.price !== undefined ? item.price.toString() : '') + '","in_basket":"' + (item.quantity !== undefined ? item.quantity.toString() : '') + '"}';
+        });
+
+        break;
+      }
+    }
+  }
+
+  return '[' + products.join(',') + ']';
+}
+
+
+function() {
   var products = '';
 
   if (window.dataLayer) {
