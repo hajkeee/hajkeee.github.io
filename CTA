@@ -1,0 +1,80 @@
+(function () {
+  var eventName = 'click';
+  var useCapture = true;
+
+  function trackClick(event) {
+    if (event._alreadyTracked) return;
+    event._alreadyTracked = true;
+
+    if (!window.dataLayer) window.dataLayer = [];
+
+    var path = [];
+    if (event.composedPath) {
+      path = event.composedPath();
+    }
+
+    var targetElement = path.length ? path[0] : event.target;
+
+    var shadowFound = false;
+    for (var i = 0; i < path.length; i++) {
+      if (path[i].shadowRoot) {
+        shadowFound = true;
+        break;
+      }
+    }
+
+    var elementText = targetElement.textContent ? targetElement.textContent.trim() : '';
+    if (!elementText && targetElement.parentNode) {
+      var parent = targetElement.parentNode;
+      elementText = parent.textContent ? parent.textContent.trim() : '';
+    }
+
+    window.dataLayer.push({
+      event: 'cta_' + event.type,
+      custom_event: {
+        element: targetElement,
+        elementId: targetElement.id || '',
+        elementClasses: targetElement.className || '',
+        elementUrl: targetElement.href || targetElement.action || '',
+        elementTarget: targetElement.target || '',
+        inShadowDom: shadowFound,
+        clickText: elementText
+      }
+    });
+  }
+
+  function addClickListenerToShadowRoots(node) {
+    if (node.shadowRoot && !node.shadowRoot.__clickTracked) {
+      node.shadowRoot.addEventListener(eventName, trackClick, useCapture);
+      node.shadowRoot.__clickTracked = true;
+
+      var all = node.shadowRoot.querySelectorAll('*');
+      for (var i = 0; i < all.length; i++) {
+        addClickListenerToShadowRoots(all[i]);
+      }
+    }
+  }
+
+  document.removeEventListener(eventName, trackClick, useCapture);
+  document.addEventListener(eventName, trackClick, useCapture);
+
+  var allNodes = document.querySelectorAll('*');
+  for (var j = 0; j < allNodes.length; j++) {
+    addClickListenerToShadowRoots(allNodes[j]);
+  }
+
+  var observer = new MutationObserver(function (mutations) {
+    for (var i = 0; i < mutations.length; i++) {
+      var mutation = mutations[i];
+      var addedNodes = mutation.addedNodes;
+      for (var k = 0; k < addedNodes.length; k++) {
+        var node = addedNodes[k];
+        if (node.nodeType === 1) { // ELEMENT_NODE
+          addClickListenerToShadowRoots(node);
+        }
+      }
+    }
+  });
+
+  observer.observe(document.documentElement, { childList: true, subtree: true });
+})();
