@@ -4,3 +4,26 @@ https://www.esky.pl/?utm_source=google&utm_medium=cpc&utm_campaign=22738993898&u
 
 
 https://www.esky.pl/?utm_source=google&utm_medium=cpc&utm_campaign=18804798668&utm_term=skyscanner&utm_content=706668376458&utm_placement=&utm_device=c&gclid=CjwKCAjwqKzEBhANEiwAeQaPVWTeq3PY6lxtsRcK07RhmRx18lPEXCh2W-eMZAs7raikg3d7-Z-EBBoC-dIQAvD_BwE&awc_src=CjwKCAjwqKzEBhANEiwAeQaPVWTeq3PY6lxtsRcK07RhmRx18lPEXCh2W-eMZAs7raikg3d7-Z-EBBoC-dIQAvD_BwE&gad_source=1&gad_campaignid=18804798668&gbraid=0AAAAAD3F2j4Nl0OE2uXLi_QikWGXFRv2A
+
+
+(() => {
+  const customParamName = 'awc_src';
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const gclidExists = urlParams.has('gclid');
+  const customGclid = urlParams.get(customParamName);
+
+  if (gclidExists || !customGclid) {
+    console.log('GCLID already exists or custom param not found.');
+    return;
+  }
+
+  const timestamp = Date.now();
+  const cookieValue = '1.' + timestamp + '.' + customGclid;
+
+  const expires = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toUTCString(); // 90 days
+
+  document.cookie = `_gcl_aw=${cookieValue}; expires=${expires}; path=/; domain=${location.hostname}; SameSite=Lax`;
+
+  console.log(`Cookie _gcl_aw set: ${cookieValue}`);
+})();
