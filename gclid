@@ -26,3 +26,48 @@ https://www.esky.pl/?utm_source=google&utm_medium=cpc&utm_campaign=18804798668&u
 
   console.log(`Cookie _gcl_aw set: ${cookieValue}`);
 })();
+
+
+
+
+<script>
+(function() {
+  var customParamName = 'awc_src';
+  var cookieName = '_gcl_aw';
+
+  var urlParams = new URLSearchParams(window.location.search);
+  var gclidExists = urlParams.has('gclid');
+  var customGclid = urlParams.get(customParamName);
+
+  var existingCookie = document.cookie.split('; ').find(row => row.startsWith(cookieName + '='));
+  var savedValue = localStorage.getItem(cookieName);
+
+  if (!existingCookie && savedValue) {
+    var expires = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toUTCString(); // 90 днів
+    document.cookie = cookieName + '=' + savedValue +
+                      '; expires=' + expires +
+                      '; path=/' +
+                      '; domain=' + location.hostname +
+                      '; SameSite=Lax';
+    console.log('[GTM] Cookie відновлено з localStorage:', savedValue);
+    return;
+  }
+
+  if (gclidExists || !customGclid) {
+    return;
+  }
+
+  var timestamp = Date.now();
+  var cookieValue = '1.' + timestamp + '.' + customGclid;
+
+  var expires = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toUTCString(); // 90 днів
+  document.cookie = cookieName + '=' + cookieValue +
+                    '; expires=' + expires +
+                    '; path=/' +
+                    '; domain=' + location.hostname +
+                    '; SameSite=Lax';
+
+  localStorage.setItem(cookieName, cookieValue);
+  console.log('[GTM] Cookie та localStorage записано:', cookieValue);
+})();
+</script>
