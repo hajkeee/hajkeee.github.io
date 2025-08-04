@@ -39,35 +39,40 @@ https://www.esky.pl/?utm_source=google&utm_medium=cpc&utm_campaign=18804798668&u
   var gclidExists = urlParams.has('gclid');
   var customGclid = urlParams.get(customParamName);
 
+  // Restore cookie from localStorage if it has been deleted
   var existingCookie = document.cookie.split('; ').find(row => row.startsWith(cookieName + '='));
   var savedValue = localStorage.getItem(cookieName);
 
   if (!existingCookie && savedValue) {
-    var expires = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toUTCString(); // 90 днів
+    var expires = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toUTCString(); // 90 days
     document.cookie = cookieName + '=' + savedValue +
                       '; expires=' + expires +
                       '; path=/' +
                       '; domain=' + location.hostname +
                       '; SameSite=Lax';
-    console.log('[GTM] Cookie відновлено з localStorage:', savedValue);
+    console.log('[GTM] Cookie restored from localStorage:', savedValue);
     return;
   }
 
+  // If cookie already exists or the custom parameter is missing, do nothing
   if (gclidExists || !customGclid) {
     return;
   }
 
+  // Create a new cookie value
   var timestamp = Date.now();
   var cookieValue = '1.' + timestamp + '.' + customGclid;
 
-  var expires = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toUTCString(); // 90 днів
+  // Set the cookie
+  var expires = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toUTCString(); // 90 days
   document.cookie = cookieName + '=' + cookieValue +
                     '; expires=' + expires +
                     '; path=/' +
                     '; domain=' + location.hostname +
                     '; SameSite=Lax';
 
+  // Save the same value in localStorage
   localStorage.setItem(cookieName, cookieValue);
-  console.log('[GTM] Cookie та localStorage записано:', cookieValue);
+  console.log('[GTM] Cookie and localStorage set:', cookieValue);
 })();
 </script>
