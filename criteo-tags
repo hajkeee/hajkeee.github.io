@@ -1,0 +1,80 @@
+Main TAG
+
+<script type="text/javascript" src="//static.criteo.net/js/ld/ld.js" async="true"></script> 
+<script type="text/javascript"> window.criteo_q = window.criteo_q || []; 
+window.criteo_q.push( 
+{ event: "setAccount", account: {{LT - Criteo ID}}}, // You should never update this line 
+{ event: "setEmail", email: ""}, 
+{ event: "setSiteType", type: {{JS - deviceType}}}, 
+{ event: "viewHome"}
+); 
+</script>
+
+////////////////
+
+Criteo - Remarketing - Flights - Search - m.kobylec
+
+<script type="text/javascript" src="//static.criteo.net/js/ld/ld.js" async="true"></script> 
+<script type="text/javascript"> 
+  var dout = "{{esky.dateEnd.date}}";
+  if (dout == "null") {
+    dout = "";
+  }  window.criteo_q = window.criteo_q || []; 
+window.criteo_q.push( 
+{ event: "setAccount", account: {{LT - Criteo ID}}}, // You should never update this line 
+{ event: "setEmail", email: ""}, 
+{ event: "setSiteType", type: {{JS - deviceType}}}, 
+{ event: "viewSearch", din: "{{esky.dateStart.date}}", dout: dout, nbra: {{esky.pax.total}}, nbrc: 0, nbri: 0}, 
+{ event: "viewItem", item: {{JS - AirportCodes Combinations}} }
+); 
+</script>
+
+
+///////////////
+Criteo - Remarketing - Flights - Option - m.kobylec
+
+<script type="text/javascript" src="//sm.esky.com/criteo/js/ld.js" async="true"></script> 
+<script type="text/javascript"> 
+var din = "{{esky.dateStart.date}}";
+var dout = "{{esky.dateEnd.date}}";
+  if (din == dout || dout == "null") {
+    dout = "";
+  }
+  
+window.criteo_q = window.criteo_q || [];
+window.criteo_q.push( 
+{ event: "setAccount", account: {{LT - Criteo ID}}}, // You should never update this line 
+{ event: "setEmail", email: ""}, 
+{ event: "setSiteType", type: {{JS - deviceType}}}, 
+{ event: "viewSearch", din: din, dout: dout, nbra: {{esky.pax.total}}, nbrc: 0, nbri: 0},
+{ event: "viewBasket", item: [ 
+{id: "{{esky.from.airport.googleFeed}}{{esky.to.airport.googleFeed}}", price: {{esky.order.value.total}}, quantity: 1 } //add a line for each additional line in the basket 
+]} 
+); 
+</script>
+
+
+/////////////////
+
+Criteo - Remarketing - Flights - Summary - m.kobylec
+
+<script type="text/javascript" src="//sm.esky.com/criteo/js/ld.js" async="true"></script>
+<script type="text/javascript"> 
+var din = "{{esky.dateStart.date}}";
+var dout = "{{esky.dateEnd.date}}";
+  if (din == dout || dout == "null") {
+    dout = "";
+  }  
+  
+window.criteo_q = window.criteo_q || []; 
+window.criteo_q.push( 
+{ event: "setAccount", account: {{LT - Criteo ID}}}, // You should never update this line 
+{ event: "setEmail", email: ""}, 
+{ event: "setSiteType", type: {{JS - deviceType}}}, 
+{ event: "viewSearch", din: din, dout: dout, nbra: {{esky.pax.total}}, nbrc: 0, nbri: 0},
+{ event: "trackTransaction", id: {{DL2 - OrderID}}, item: [
+{id: "{{esky.from.airport.code}}{{esky.to.airport.code}}", price: {{15% from esky.order.value.total}}, quantity: 1 } //add a line for each additional line in the basket 
+]} 
+); 
+</script>
+
