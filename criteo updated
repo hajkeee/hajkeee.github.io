@@ -1,0 +1,104 @@
+v1 - Criteo - Global View
+<script type="text/javascript" src="//sm.esky.com/criteo/js/ld.js" async="true"></script>
+<script> window.criteo_q = window.criteo_q || []; 
+window.criteo_q.push( 
+{ event: "setAccount", account: {{LT - Criteo ID}}}, // You should never update this line 
+{ event: "setSiteType", type: {{JS - deviceType}}}, 
+{ event: "viewHome"}
+); 
+</script>
+/////////////////////////////////////////////
+v1 - Criteo - viewSearch
+<script type="text/javascript" src="//sm.esky.com/criteo/js/ld.js" async="true"></script>
+<script>
+  window.criteo_q = window.criteo_q || [];
+
+  var deviceType = /iPad/.test(navigator.userAgent) ? "t"
+    : /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Silk/.test(navigator.userAgent) ? "m"
+    : "d";
+
+  var itemsVariant = ({{DL - ecommerce}}.items[0].item_variant || "").split("|");
+  var nbra = itemsVariant[0] || 0;
+  var nbrc = itemsVariant[1] || 0;
+  var nbri = itemsVariant[2] || 0;
+
+  window.criteo_q.push(
+    { event: "setAccount", account: {{LT - Criteo ID}} },
+    { event: "setSiteType", type: deviceType },
+    {
+      event: "viewSearch",
+      checkin_date: "{{DL - Flights.Departure.Date}}",
+      checkout_date: "{{DL - Flights.Arrival.Date}}",
+      nbra: nbra,
+      nbrc: nbrc,
+      nbri: nbri
+    },
+    { event: "viewItem", item: "{{JS - AirportCodes Combinations}}" }
+  );
+</script>
+/////////////////////////////////////////////
+v1 - Criteo - viewItem
+<script type="text/javascript" src="//sm.esky.com/criteo/js/ld.js" async="true"></script>
+
+<script type="text/javascript">
+  window.criteo_q = window.criteo_q || [];
+  
+  var price = {{DL - ecommerce}}.items[0].price || 0
+  var deviceType = /iPad/.test(navigator.userAgent)
+    ? "t"
+    : /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Silk/.test(navigator.userAgent)
+      ? "m"
+      : "d";
+
+  window.criteo_q.push(
+    { event: "setAccount", account: {{LT - Criteo ID}} },   
+    { event: "setSiteType", type: deviceType },            
+    {
+      event: "viewItem",
+      item: "{{JS - AirportCodes Combinations}}",           
+      price: price,   
+      availability: "{{esky.context}}"            
+    }
+  );
+</script>
+v1 - Criteo - addToCart
+/////////////////////////////////////////////
+<script type="text/javascript" src="//sm.esky.com/criteo/js/ld.js" async="true"></script>
+<script>
+    window.criteo_q = window.criteo_q || []; 
+    var price = {{DL - ecommerce}}.items[0].price || 0
+    var deviceType = /iPad/.test(navigator.userAgent) ? "t" : /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Silk/.test(navigator.userAgent) ? "m" : "d";
+    window.criteo_q.push(     
+        { event: "setAccount", account: {{LT - Criteo ID}}},     
+        { event: "setSiteType", type: {{JS - deviceType}}},     
+        { event: "addToCart", item: [       
+            {id: "{{cJS - Item array}}", price: price, quantity: "1" }     
+        ]}   
+    );
+</script>
+v1 - Criteo - viewBasket
+////////////////////////////////////////
+<script type="text/javascript" src="//sm.esky.com/criteo/js/ld.js" async="true"></script>
+<script>
+  window.criteo_q = window.criteo_q || [];
+  var ecommerce = {{DL - ecommerce}};
+  var price = ecommerce ? ecommerce.value : 0;
+  var deviceType = /iPad/.test(navigator.userAgent) ? "t"
+    : /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Silk/.test(navigator.userAgent) ? "m"
+    : "d";
+
+  window.criteo_q.push(
+    { event: "setAccount", account: {{LT - Criteo ID}} },   
+    { event: "setSiteType", type: deviceType },             
+    {
+      event: "viewBasket",
+      item: [
+        {
+          id: "{{JS - AirportCodes Combinations}}", 
+          price: price,     
+          quantity: 1     
+        }
+      ]
+    }
+  );
+</script>
