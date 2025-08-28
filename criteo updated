@@ -102,3 +102,29 @@ v1 - Criteo - viewBasket
     }
   );
 </script>
+
+
+function() {
+  try {
+    var dl = window.dataLayer || [];
+    var ecommerceItems = null;
+
+    for (var i = dl.length - 1; i >= 0; i--) {
+      if (dl[i].ecommerce && dl[i].ecommerce.items) {
+        ecommerceItems = dl[i].ecommerce.items;
+        break;
+      }
+    }
+
+    if (!ecommerceItems) {
+      return [];
+    }
+
+    return ecommerceItems.map(function(i) {
+      return i.item_category3;
+    });
+  } catch(e) {
+    return [];
+  }
+}
+
