@@ -1,0 +1,46 @@
+function notNull(e) {
+    return e !== null;
+}
+
+function decodeURL(u) {
+    try {
+        return new Map(new URL(u).searchParams.entries())
+    } catch {
+        return new Map()
+    }
+}
+// Collect impressions on current page
+// Assumes that slots on given page have class="ad-slot". If not, this should be calibrated.
+var impressions = Array.from(document.querySelectorAll('.ad-slot+* iframe')).filter(notNull).map(function(doc) {
+    return doc.contentDocument.querySelector('a>img.img_ad')
+}).filter(notNull).map(function(img) {
+    return decodeURL(img.parentElement.href).get('adurl')
+}).filter(notNull).map(decodeURL).map(function(url) {
+    return {
+        adEvent: url.get('g_ev'),
+        adCampaign: url.get('g_cn')
+    }
+});
+// Send data using Patalyst
+if (typeof _eas !== 'undefined') {
+    impressions.forEach(function(i) {
+        _eas.push(['logEvent', ['Ad_Impression', 'FE', [
+            ['AdEvent', i.adEvent, 'String'],
+            ['AdCampaign', i.adCampaign, 'String']
+        ]]])
+    });
+}
+// Send data to GTM data layer
+if (typeof dataLayer !== 'undefined') {
+    impressions.forEach(function(i) {
+        dataLayer.push({
+            event: 'esky.adImpression',
+            esky: {
+                ad: {
+                    event: i.adEvent,
+                    campaign: i.adCampaign
+                }
+            }
+        })
+    });
+}
