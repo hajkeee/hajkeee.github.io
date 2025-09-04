@@ -1,0 +1,68 @@
+v2 - Criteo - Remarketing - DP - Flights - viewSearch
+
+<script type="text/javascript" src="//sm.esky.com/criteo/js/ld.js" async="true"></script>
+<script type="text/javascript">
+    window.criteo_q = window.criteo_q || [];
+    window.criteo_q.push(
+        { event: "setAccount", account: {{LT - Criteo ID}} },
+        { event: "setSiteType", type: {{JS - deviceType}} },
+        { event: "viewSearch",
+            checkin_date: "{{esky.dateStart.date}}",
+            checkout_date: "{{esky.dateEnd.date}}",
+            nbra: "{{esky.pax.total}}",
+            affiliate: "ESKYPLPACKAGES",
+            item: ["{{cJS - Item array}}"],
+            city_from: "{{esky.from.city.code}}",
+            city_from_name: "{{esky.from.city.name}}",
+            country_from: "{{esky.from.country.code}}",
+            country_to: "{{esky.to.country.code}}"
+        }
+    );
+</script>
+
+v2 - Criteo - Remarketing - DP - Hotels - viewItem
+
+<script type="text/javascript" src="//sm.esky.com/criteo/js/ld.js" async="true"></script>
+<script type="text/javascript">
+    window.criteo_q = window.criteo_q || [];
+    window.criteo_q.push(
+        { event: "setAccount", account: {{LT - Criteo ID}} },
+        { event: "setSiteType", type: {{JS - deviceType}} },
+        { event: "viewItem",
+            item: [ "{{DL2 - Hotels.OfferDetails.ObjectMetaCode}}" ],
+            city_from: "{{esky.from.city.code}}",
+            city_from_name: "{{esky.from.city.name}}",
+            country_from: "{{esky.from.country.code}}",
+            city_to: "{{esky.to.city.code}}",
+            country_to: "{{esky.to.country.code}}",
+        }
+    );
+</script>
+
+v2 - Criteo - Remarketing - DP - Hotels - addToCart
+
+<script type="text/javascript" src="//sm.esky.com/criteo/js/ld.js" async="true"></script>
+<script type="text/javascript">
+    window.criteo_q = window.criteo_q || [];
+    window.criteo_q.push(
+        { event: "setAccount", account: {{LT - Criteo ID}} },
+        { event: "setSiteType", type: {{JS - deviceType}} },
+        { event: "addToCart", item: [       
+            {id: "{{cJS - Item array}}", price: "{{DL - ecommerce.value}}", quantity: "1" }     
+        ]}   
+    );
+</script>
+
+v2 - Criteo - Remarketing - DP - Hotels - viewBasket
+
+<script type="text/javascript" src="//sm.esky.com/criteo/js/ld.js" async="true"></script>
+<script type="text/javascript">
+    window.criteo_q = window.criteo_q || [];
+    window.criteo_q.push(
+        { event: "setAccount", account: {{LT - Criteo ID}} },
+        { event: "setSiteType", type: {{JS - deviceType}} },
+        { event: "addToCart", item: [       
+            {id: "{{cJS - Item array}}", price: "{{DL - ecommerce.value}}", quantity: "1" }     
+        ]}   
+    );
+</script>
