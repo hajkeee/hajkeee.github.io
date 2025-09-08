@@ -1,0 +1,10 @@
+A large part of our employees were also on vacation, so there’s no final decision yet. I haven’t received a 100% confirmation whether this would be a simple implementation for us when it comes to CDN.
+But in my free time, I tested this solution, and indeed, it looks like it’s much harder for browsers to block GTM. However, this doesn’t help with data attribution, which is a more crucial element than simply loading GTM. The fact that Safari removes the gclid means that right now I’m focusing more on reproducing _gcl_aw in the browser, and if everything works as I expect, that should solve the issue.
+
+On my side, I tested the integration with CloudFlare and SiteCore and noticed exactly what I mentioned in the previous sentence. The number of sessions increased in GA4, as did the metrics, but most of this growth is attributed to (not set) and (direct).
+
+Another problem I’m trying to verify is that connecting GTM through CDN happens at the entire site level — all domains, all UAT, SIT, and so on (this is what I observed when connecting through CloudFlare), which makes testing problematic.
+
+As soon as I can discuss this topic with our internal teams, I’ll be able to get back to you with an answer.
+
+Thank you!
