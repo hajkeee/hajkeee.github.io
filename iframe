@@ -226,6 +226,11 @@ for(var j=0;j<impressions.length;j++){
     if(!seen[key]){seen[key]=true;uniqueImpressions.push(impressions[j]);}
 }
 impressions=uniqueImpressions;
+if(typeof _eas!=='undefined'){
+    for(var k=0;k<impressions.length;k++){
+        _eas.push(['logEvent',['Ad_Impression','FE',[['AdEvent',impressions[k].adEvent,'String'],['AdCampaign',impressions[k].adCampaign,'String']]]]);
+    }
+}
 if(typeof dataLayer!=='undefined'){
     for(var m=0;m<impressions.length;m++){
         dataLayer.push({
@@ -237,4 +242,5 @@ if(typeof dataLayer!=='undefined'){
         });
     }
 }
+
 
