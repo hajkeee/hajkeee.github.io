@@ -123,8 +123,8 @@ if (typeof dataLayer !== 'undefined') {
         });
 
         if (i.adCampaign && i.adCampaign.includes("LH")) {
-            var cookieName = "ad_campaign";  // фіксована назва кукі
-            var cookieValue = i.adCampaign;  // значення = назва кампанії
+            var cookieName = "ad_campaign";  
+            var cookieValue = i.adCampaign;  
             setAdCookie(cookieName, cookieValue, 30);
         }
     });
