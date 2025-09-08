@@ -58,3 +58,75 @@ var impressions = Array.from(document.querySelectorAll('.ad-slot+* iframe,iframe
 if (typeof _eas !== 'undefined') {impressions.forEach(function(i){_eas.push(['logEvent',['Ad_Impression','FE',[['AdEvent',i.adEvent,'String'],['AdCampaign',i.adCampaign,'String']]]])});}
 // Send data to GTM data layer
 if (typeof dataLayer !== 'undefined') {impressions.forEach(function(i){dataLayer.push({event:'esky.adImpression',esky:{ad:{event:i.adEvent,campaign:i.adCampaign}}})});}
+
+
+
+version with cookies
+
+function notNull(e){ return e !== null; }
+function decodeURL(u){
+    try { return new Map(new URL(u).searchParams.entries()); } 
+    catch { return new Map(); }
+}
+
+function setAdCookie(name, value, days = 30) {
+    var date = new Date();
+    date.setTime(date.getTime() + (days*24*60*60*1000));
+    var expires = "expires=" + date.toUTCString();
+    document.cookie = name + "=" + encodeURIComponent(value) + ";" + expires + ";path=/";
+}
+
+var impressions = Array.from(document.querySelectorAll('.ad-slot+* iframe, iframe[id^=google_ads]'))
+  .filter(notNull)
+  .map(function(iframe){
+      try {
+          return iframe.contentDocument.querySelector('a>img.img_ad');
+      } catch(e) {
+          return null; // якщо iframe недоступний через cross-origin
+      }
+  })
+  .filter(notNull)
+  .map(function(img){
+      return decodeURL(img.parentElement.href).get('adurl');
+  })
+  .filter(notNull)
+  .map(decodeURL)
+  .map(function(url){
+      return {adEvent: url.get('g_ev'), adCampaign: url.get('g_cn')};
+  });
+
+var seen = new Set();
+impressions = impressions.filter(function(i){
+    var key = i.adEvent + '|' + i.adCampaign;
+    if(seen.has(key)) return false;
+    seen.add(key);
+    return true;
+});
+
+if (typeof _eas !== 'undefined') {
+    impressions.forEach(function(i){
+        _eas.push([
+            'logEvent',
+            ['Ad_Impression','FE',[
+                ['AdEvent', i.adEvent, 'String'],
+                ['AdCampaign', i.adCampaign, 'String']
+            ]]
+        ]);
+    });
+}
+
+if (typeof dataLayer !== 'undefined') {
+    impressions.forEach(function(i){
+        dataLayer.push({
+            event: 'esky.adImpression',
+            esky: { ad: { event: i.adEvent, campaign: i.adCampaign } }
+        });
+
+        if (i.adCampaign && i.adCampaign.includes("LH")) {
+            var cookieName = "ad_campaign";  // фіксована назва кукі
+            var cookieValue = i.adCampaign;  // значення = назва кампанії
+            setAdCookie(cookieName, cookieValue, 30);
+        }
+    });
+}
+
