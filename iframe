@@ -130,3 +130,61 @@ if (typeof dataLayer !== 'undefined') {
     });
 }
 
+v2 cookies ES5
+
+function notNull(e){return e!==null;}
+function decodeURL(u){
+    try{
+        var params={};
+        var parser=document.createElement('a');
+        parser.href=u;
+        var query=parser.search.substring(1);
+        var vars=query.split('&');
+        for(var i=0;i<vars.length;i++){
+            var pair=vars[i].split('=');
+            if(pair[0]) params[decodeURIComponent(pair[0])]=decodeURIComponent(pair[1]||'');
+        }
+        return params;
+    }catch(e){return {};}
+}
+function setAdCookie(name,value,days){
+    days=days||30;
+    var date=new Date();
+    date.setTime(date.getTime()+(days*24*60*60*1000));
+    var hostname=window.location.hostname.split('.').slice(-2).join('.');
+    document.cookie=name+"="+encodeURIComponent(value)+";expires="+date.toUTCString()+";path=/;domain=."+hostname+";secure";
+}
+var iframes=document.querySelectorAll('.ad-slot+* iframe, iframe[id^=google_ads]');
+var impressions=[];
+for(var i=0;i<iframes.length;i++){
+    var iframe=iframes[i];
+    if(!iframe) continue;
+    var img=null;
+    try{img=iframe.contentDocument.querySelector('a>img.img_ad');}catch(e){}
+    if(!img) continue;
+    var adurl=decodeURL(img.parentElement.href)['adurl'];
+    if(!adurl) continue;
+    var urlParams=decodeURL(adurl);
+    impressions.push({adEvent:urlParams['g_ev'],adCampaign:urlParams['g_cn']});
+}
+var seen={};
+var uniqueImpressions=[];
+for(var j=0;j<impressions.length;j++){
+    var key=impressions[j].adEvent+"|"+impressions[j].adCampaign;
+    if(!seen[key]){seen[key]=true;uniqueImpressions.push(impressions[j]);}
+}
+impressions=uniqueImpressions;
+if(typeof _eas!=='undefined'){
+    for(var k=0;k<impressions.length;k++){
+        _eas.push(['logEvent',['Ad_Impression','FE',[['AdEvent',impressions[k].adEvent,'String'],['AdCampaign',impressions[k].adCampaign,'String']]]]);
+    }
+}
+if(typeof dataLayer!=='undefined'){
+    for(var m=0;m<impressions.length;m++){
+        dataLayer.push({event:'esky.adImpression',esky:{ad:{event:impressions[m].adEvent,campaign:impressions[m].adCampaign}}});
+        if(impressions[m].adCampaign && impressions[m].adCampaign.indexOf("LH")!==-1){
+            setAdCookie("ad_campaign",impressions[m].adCampaign,30);
+        }
+    }
+}
+
