@@ -317,29 +317,9 @@ if(typeof dataLayer!=='undefined'){
                           ";secure;SameSite=Lax";
     }
 
-    if (typeof dataLayer !== 'undefined') {
-        for (var i = 0; i < dataLayer.length; i++) {
-            var dl = dataLayer[i];
-            if (dl.event === 'view_promotion' && dl.promotion && dl.promotion.adCampaign) {
-                if (dl.promotion.adCampaign.indexOf("LH") !== -1) {
-                    setAdCookie("ad_campaign", dl.promotion.adCampaign, 30);
-                }
-            }
-        }
-
-        // Підписка на нові події view_promotion
-        var originalPush = dataLayer.push;
-        dataLayer.push = function() {
-            for (var j = 0; j < arguments.length; j++) {
-                var arg = arguments[j];
-                if (arg.event === 'view_promotion' && arg.promotion && arg.promotion.adCampaign) {
-                    if (arg.promotion.adCampaign.indexOf("LH") !== -1) {
-                        setAdCookie("ad_campaign", arg.promotion.adCampaign, 30);
-                    }
-                }
-            }
-            return originalPush.apply(dataLayer, arguments);
-        };
+    if (typeof {{adCampaign}} !== 'undefined') {
+        setAdCookie("ad_campaign", {{adCampaign}}, 30);
     }
 })();
+
 
