@@ -302,3 +302,44 @@ if(typeof dataLayer!=='undefined'){
     observer.observe(document.body,{childList:true,subtree:true});
     checkIframes();
 })();
+
+
+
+(function(){
+    function setAdCookie(name, value, days){
+        days = days || 30;
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        var hostname = window.location.hostname.split('.').slice(-2).join('.');
+        document.cookie = name + "=" + encodeURIComponent(value) + 
+                          ";expires=" + date.toUTCString() + 
+                          ";path=/;domain=." + hostname + 
+                          ";secure;SameSite=Lax";
+    }
+
+    if (typeof dataLayer !== 'undefined') {
+        for (var i = 0; i < dataLayer.length; i++) {
+            var dl = dataLayer[i];
+            if (dl.event === 'view_promotion' && dl.promotion && dl.promotion.adCampaign) {
+                if (dl.promotion.adCampaign.indexOf("LH") !== -1) {
+                    setAdCookie("ad_campaign", dl.promotion.adCampaign, 30);
+                }
+            }
+        }
+
+        // Підписка на нові події view_promotion
+        var originalPush = dataLayer.push;
+        dataLayer.push = function() {
+            for (var j = 0; j < arguments.length; j++) {
+                var arg = arguments[j];
+                if (arg.event === 'view_promotion' && arg.promotion && arg.promotion.adCampaign) {
+                    if (arg.promotion.adCampaign.indexOf("LH") !== -1) {
+                        setAdCookie("ad_campaign", arg.promotion.adCampaign, 30);
+                    }
+                }
+            }
+            return originalPush.apply(dataLayer, arguments);
+        };
+    }
+})();
+
