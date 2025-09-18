@@ -1,0 +1,11 @@
+<script>
+(function() {
+  var url = new URL(window.location.href);
+  if (url.searchParams.has('partner_id') && !url.searchParams.has('utm_source')) {
+    var pid = url.searchParams.get('partner_id');
+    url.searchParams.set('utm_source', pid);
+    url.searchParams.set('utm_medium', 'affiliate');
+    window.location.replace(url.toString());
+  }
+})();
+</script>
