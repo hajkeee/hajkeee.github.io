@@ -14,6 +14,8 @@ END
 But for me it’s not entirely logical that a scanning bot checks, for example, a .pl domain using an IP address that has nothing to do with PL or the EU. In this case, what’s the point of showing an ad for a .pl domain, for example, in Egypt?
 So as I understand it, you also don’t always check whether the tag works while using an EU IP, right?
 
+In this case, as I understand it, we have two options. The first is to display the banner everywhere, even though it’s not actually required under EU rules, just so that the bot can scan it properly. Or, the second option is to create a bunch of additional rules in GTM so that, again, the bot can scan the tag’s operation.
+
 
 esky.fr
 esky.pl
