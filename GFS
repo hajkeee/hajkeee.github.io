@@ -11,6 +11,10 @@ CASE
 END
 
 
+But for me it’s not entirely logical that a scanning bot checks, for example, a .pl domain using an IP address that has nothing to do with PL or the EU. In this case, what’s the point of showing an ad for a .pl domain, for example, in Egypt?
+So as I understand it, you also don’t always check whether the tag works while using an EU IP, right?
+
+
 esky.fr
 esky.pl
 esky.nl
