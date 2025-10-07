@@ -3,7 +3,7 @@ WITH ConversionPaths AS (
         user_pseudo_id,
         ARRAY_AGG(traffic_source.source ORDER BY event_bundle_sequence_id) AS path,
         COUNT(*) AS total_conversions
-    FROM `isacaorg-1549988993890.analytics_296570004.events_fresh_*`
+    FROM `analytics_296570004.events_fresh_*`
     WHERE event_name = 'purchase'
         AND TIMESTAMP_MICROS(event_timestamp) >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)
     GROUP BY user_pseudo_id
@@ -14,7 +14,7 @@ UserJourney AS (
         user_pseudo_id,
         MIN_BY(traffic_source.source, event_bundle_sequence_id) AS first_source,
         MAX_BY(session_traffic_source_last_click.cross_channel_campaign, event_bundle_sequence_id) AS last_click_source
-    FROM `isacaorg-1549988993890.analytics_296570004.events_fresh_*`
+    FROM `analytics_296570004.events_fresh_*`
     WHERE TIMESTAMP_MICROS(event_timestamp) >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)
     GROUP BY user_pseudo_id
 )
