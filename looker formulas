@@ -1,0 +1,19 @@
+Home Page Views
+
+COUNT(
+  CASE
+    WHEN event_name = "page_view"
+      AND page_path = "/"
+      AND page_path REGEXP "^https?://[^/]+/$"
+    THEN 1
+  END
+)
+
+View Item List Events
+
+COUNT(
+  CASE
+    WHEN event_name = "view_item_list"
+    THEN 1
+  END
+)
