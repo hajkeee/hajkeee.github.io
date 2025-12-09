@@ -58,3 +58,33 @@
     checkIframes();
 })();
 </script>
+
+
+
+
+
+<script>
+window.googletag = window.googletag || {cmd: []};
+
+googletag.cmd.push(function() {
+    googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+
+        window.dataLayer = window.dataLayer || [];
+
+        window.dataLayer.push({
+            event: 'view_promotion',
+            promotion: {
+                adUnit: event.slot.getAdUnitPath(),
+                slotId: event.slot.getSlotElementId(),
+                lineItemId: event.lineItemId || null,
+                creativeId: event.creativeId || null,
+                size: event.size || null
+            }
+        });
+
+        console.log('%cVIEW_PROMOTION FIRED',
+            'background:#00b894;color:#fff;padding:5px;border-radius:4px;',
+            event);
+    });
+});
+</script>
