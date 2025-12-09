@@ -88,3 +88,45 @@ googletag.cmd.push(function() {
     });
 });
 </script>
+
+
+
+<script>
+window.googletag = window.googletag || {cmd: []};
+
+googletag.cmd.push(function() {
+
+    googletag.pubads().addEventListener('slotResponseReceived', function(event) {
+
+        var clickUrl = event.slot.getClickUrl && event.slot.getClickUrl();
+
+        if (!clickUrl) return;
+
+        var url = new URL(clickUrl);
+        var utm_source = url.searchParams.get("utm_source");
+        var utm_medium = url.searchParams.get("utm_medium");
+        var utm_campaign = url.searchParams.get("utm_campaign");
+        var utm_content = url.searchParams.get("utm_content");
+
+        dataLayer.push({
+            event: "promotion_utm_detected",
+            utm: {
+                source: utm_source,
+                medium: utm_medium,
+                campaign: utm_campaign,
+                content: utm_content
+            },
+            raw: clickUrl
+        });
+
+        console.log("UTM DETECTED:", {
+            source: utm_source,
+            medium: utm_medium,
+            campaign: utm_campaign,
+            content: utm_content,
+            raw: clickUrl
+        });
+    });
+
+});
+</script>
