@@ -1,0 +1,132 @@
+(function(){
+    console.log('%c[DEBUG] Skrypt śledzący reklamy uruchomiony', 'color: #3498db; font-weight: bold;');
+
+    function notNull(e){return e!==null;}
+    function decodeURL(u){
+        try{
+            var params={};
+            var parser=document.createElement('a');
+            parser.href=u;
+            var query=parser.search.substring(1);
+            var vars=query.split('&');
+            for(var i=0;i<vars.length;i++){
+                var pair=vars[i].split('=');
+                if(pair[0]) params[decodeURIComponent(pair[0])]=decodeURIComponent(pair[1]||'');
+            }
+            return params;
+        }catch(e){ return {}; }
+    }
+    var seen={};
+
+    function sendEvents(event, campaign, source) {
+        console.log(`%c[EVENT] Wysyłam do analityki (${source}): Event=${event}, Campaign=${campaign}`, 'color: #2ecc71; font-weight: bold;');
+        if(typeof _eas!=='undefined'){
+            _eas.push(['logEvent',['Ad_Impression','FE',[['AdEvent',event,'String'],['AdCampaign',campaign,'String']]]]);
+        }
+        if(typeof dataLayer!=='undefined'){
+            dataLayer.push({
+                event:'view_promotion',
+                promotion:{
+                    adEvent:event,
+                    adCampaign:campaign,
+                    debug_source: source
+                }
+            });
+        }        
+    }
+
+    function processIframe(img){
+        console.log('[DEBUG] Przetwarzam obrazek reklamy w iframe...');
+        var adurl=decodeURL(img.parentElement.href)['adurl'];
+        if(!adurl) {
+            console.warn('[DEBUG] Brak parametru adurl w linku rodzica obrazka.');
+            return;
+        }
+        var urlParams=decodeURL(adurl);
+        var key=urlParams['g_ev']+"|"+urlParams['g_cn'];
+        
+        if(seen[key]) {
+            console.log('[DEBUG] Ta reklama była już wysłana (seen).');
+            return;
+        }
+        seen[key]=true;
+
+        sendEvents(urlParams['g_ev'], urlParams['g_cn'], 'Iframe_DOM_Scanner');
+    }
+
+    function checkIframes(){
+        var iframes=document.querySelectorAll('.ad-slot+* iframe, iframe[id^=google_ads]');
+        if(iframes.length > 0) console.log(`[DEBUG] Znaleziono iframe'ów: ${iframes.length}`);
+        
+        for(var i=0;i<iframes.length;i++){
+            var iframe=iframes[i];
+            if(!iframe) continue;
+            var img=null;
+            try {
+                img=iframe.contentDocument.querySelector('a>img.img_ad');
+            } catch(e) {
+                console.error('[DEBUG] Błąd dostępu do zawartości iframe (prawdopodobnie SafeFrame/Cross-Origin):', e.message);
+            }
+            if(!img) continue;
+            processIframe(img);
+        }
+    }
+
+    function getSlotParams(slot){
+        console.log(`[DEBUG] Próba wyciągnięcia parametrów z HTML slotu: ${slot.getSlotElementId()}`);
+        try {
+            const html = slot.getHtml();
+            const match = html.match(/destinationUrl:\s*'([^,]+)'/);
+            
+            if (!match) {
+                console.warn('[DEBUG] Nie znaleziono destinationUrl w kodzie HTML slotu.');
+                return new Map();
+            }
+
+            const url = match[1].replaceAll(/\\x([\da-z]{2})/ig, (_,hex)=>String.fromCharCode(parseInt(hex,16)));
+            console.log('[DEBUG] Wyciągnięty URL z HTML:', url);
+
+            return new Map(Array.from(new URL(url).searchParams));
+        } catch(e) {
+            console.error('[DEBUG] Błąd w getSlotParams:', e.message);
+            return new Map();
+        }
+    }
+
+    // 1. OBSŁUGA GOOGLE TAG (Zdarzenia systemowe)
+    if (typeof googletag !== 'undefined' && typeof googletag.pubads === 'function') {
+        console.log('[DEBUG] Biblioteka googletag wykryta. Podpinam listener slotOnload.');
+        googletag.pubads().addEventListener('slotOnload', (ev) => {
+            console.log(`%c[DEBUG] Zdarzenie slotOnload dla: ${ev.slot.getSlotElementId()}`, 'color: #f39c12');
+            if (ev.slot) {
+                var params = getSlotParams(ev.slot);
+                
+                if (params.has('g_ev') && params.has('g_cn')) {
+                    var event = params.get('g_ev');
+                    var campaign = params.get('g_cn');
+                    var key = event + '|' + campaign;
+                    
+                    if(seen[key]) {
+                        console.log('[DEBUG] Reklama z GPT już wysłana.');
+                        return;
+                    }
+                    seen[key]=true;
+
+                    sendEvents(event, campaign, 'GPT_HTML_Scanner');
+                } else {
+                    console.warn('[DEBUG] Slot załadowany, ale nie znaleziono parametrów g_ev/g_cn w URL.');
+                }
+            }
+        });
+    } else {
+        console.warn('[DEBUG] Biblioteka googletag NIE jest dostępna w momencie startu skryptu.');
+    }
+
+    // 2. OBSŁUGA OBSERVERA (Zmiany w DOM)
+    var observer=new MutationObserver(function(){
+        checkIframes();
+    });
+    observer.observe(document.body,{childList:true,subtree:true});
+    checkIframes();
+
+})();
